@@ -1,0 +1,56 @@
+{% extends 'admin.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/admin.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+
+{% block body %}
+	<section class="header mx-5">
+		<div class="container mt-4 mb-3">
+			<div class="text-center lh-1 mb-2">
+				<h4 class="fw-bold">Add Product Size</h4>
+			</div>
+			<div class="d-flex justify-content-end">
+				<span>Branch: DANA_ISCHG</span>
+			</div>
+		</div>
+
+		<div class="container-boder">
+			{{ form_start(proSizeForm) }}
+			<div class="col-md-12">
+				<div class="row">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								<label for="">Product Name</label>
+								<input type="text" value="{{proName}}" class="mt-2" readonly>
+								<input type="hidden" name="proId" value="{{proId}}">
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(proSizeForm.size) }}
+								{{ form_widget(proSizeForm.size, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(proSizeForm.quantity) }}
+								{{ form_widget(proSizeForm.quantity, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+						{# <a href="{{path('addSize_page')}}">Add new size</a> #}
+						<div class="col-md-12 text-right">
+							<div class="add mt-3">
+								{{form_row(proSizeForm.save, {'attr':{'class': 'btn btn-dark me-4'}})}}
+							</div>
+						</div>
+
+						{{ form_end(proSizeForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</tbody>
+</section>{% endblock %}

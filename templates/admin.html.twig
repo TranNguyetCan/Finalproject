@@ -3,12 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Danaischg
-			{% endblock %}
+			{% block title %}Danaischg{% endblock %}
 		</title>
-		<link
-		rel="icon" href="data: \public\images\logo_store.png">
-
 		<!-- Writing by Vietnamese -->
 		<meta charset="UTF-8"/>
 		<meta
@@ -17,7 +13,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<title>Dana.ischg Store</title>
 		<link
-		rel="icon" href="images/logo_store.png"/>
+		rel="icon" href="{{asset('images/logo_store.png')}}"/>
 		<!-- bootstrap 5 cdn -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"/>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -44,7 +40,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
 		<div class="container-fluid">
 			<a href="{{path('order_page')}}">
-				<img class="nav-logo" src="images\logo.png"/>
+				<img class="nav-logo" src="{{asset('images/logo.png')}}"/>
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -55,7 +51,7 @@
 						<a class="nav-link" aria-current="page" href="{{path('order_page')}}">Order</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{path('supp_page')}}">Suppplier</a>
+						<a class="nav-link" href="{{path('supp_page')}}">Supplier</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('cate_page')}}">Category</a>
@@ -63,10 +59,13 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('pro_page')}}">Product</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('size_page')}}">Size</a>
+					</li>
 				</ul>
 				<ul class="navbar-nav ms-auto">
 					<button class="btn-right">
-						<a class="a-right" href="{{path('home_page')}}">Log Out</a>
+						<a class="a-right" href="{{path('logIn_page')}}">Log Out</a>
 					</button>
 				</ul>
 			</div>
@@ -103,16 +102,19 @@
 								<h6 class="text-uppercase fw-bold">Products</h6>
 								<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: grey; height: 2px"/>
 								<p>
-									<a href="{{path('home_page')}}" class="text-dark text-decoration-none">Home</a>
+									<a href="{{path('order_page')}}" class="text-dark text-decoration-none">Order</a>
 								</p>
 								<p>
-									<a href="{{path('showProduct')}}" class="text-dark text-decoration-none">Product</a>
+									<a href="{{path('cate_page')}}" class="text-dark text-decoration-none">Supplier</a>
 								</p>
 								<p>
-									<a href="{{path('showProduct')}}" class="text-dark text-decoration-none">Sale</a>
+									<a href="{{path('supp_page')}}" class="text-dark text-decoration-none">Category</a>
 								</p>
 								<p>
-									<a href="{{path('showProduct')}}" class="text-dark text-decoration-none">About</a>
+									<a href="{{path('pro_page')}}" class="text-dark text-decoration-none">Product</a>
+								</p>
+								<p>
+									{# <a href="{{path('size_page')}}" class="text-dark text-decoration-none">Size</a> #}
 								</p>
 							</div>
 

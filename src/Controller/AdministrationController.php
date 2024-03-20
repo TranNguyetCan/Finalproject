@@ -14,16 +14,16 @@ class AdministrationController extends AbstractController
     {
         $this->repo = $repo;
     }
-    /**
-     * @Route("/product", name="proManage_show")
-     */
-    public function readAllAction(): Response
-    {
-        $products = $this->repo->findAll();
-        return $this->render('product/index.html.twig', [
-            'products' => $products
-        ]);
-    }
+    // /**
+    //  * @Route("/product", name="proManage_show")
+    //  */
+    // public function readAllAction(): Response
+    // {
+    //     $products = $this->repo->findAll();
+    //     return $this->render('product/index.html.twig', [
+    //         'products' => $products
+    //     ]);
+    // }
 
 
     /**

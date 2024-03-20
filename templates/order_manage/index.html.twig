@@ -1,0 +1,81 @@
+{% extends 'admin.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/admin.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+
+{% block body %}
+	<script>
+		// Function to check if the user wants to delete or not.
+function changeConfirm($id) {
+if (confirm("Are you sure to confirm this order?")) {
+window.location.href = '/admin/order/changeConfirm/' + $id;
+} else {
+return false;
+}
+}
+	</script>
+
+	<section class="header">
+		<div class="container mt-4 mb-3">
+			<div class="text-center lh-1 mb-2">
+				<h4 class="fw-bold">Order List</h4>
+				{# <span class="fw-normal">Payment slip for the month of June 2021</span> #}
+			</div>
+			<div class="d-flex justify-content-end">
+				<span>Branch: DANA_ISCHG</span>
+			</div>
+		</div>
+		<div class=" mb-5 mx-5">
+			<div class="col-md-12">
+				<div
+					class="row">
+
+					{# TABLE #}
+					<table class="mt-4 table table-bordered text-center	">
+						<thead class="bg-dark text-white">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Date</th>
+								<th scope="col">Total</th>
+								<th scope="col">Customer Name</th>
+								<th scope="col">Phone number</th>
+								<th scope="col">Delivery Local</th>
+								<th scope="col">OrderDetail</th>
+								<th scope="col">Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for o in orders %}
+								<tr>
+									<th scope="row">{{o.id}}</th>
+									<td>{{o.date|date("m/d/Y")}}</td>
+									<td>{{o.total}}</td>
+									<td>{{o.cusName}}</td>
+									<td>{{o.cusPhone}}</td>
+									<td>{{o.deliveryLocal}}</td>
+									<td>
+										<a href="{{path('orderdetail_page', {'id': o.id})}}">
+											<button class="bi bi-arrow-right-square border-0 bg-white ">
+												<p class="ms-2">See more</p>
+											</button>
+										</a>
+									</td>
+									{% if (o.status == 0)%}
+										<td>
+											<button name="no" type="button" class="btn btn-danger fa fa-times" onclick="changeConfirm('{{o.id}}')"></button>
+										</td>
+									{% else %}
+										<td>
+											<button type="button" class="btn btn-success fa fa-check"></button>
+										</td>
+									{% endif %}
+								</tr>
+							</tbody>
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}

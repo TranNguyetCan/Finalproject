@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Suppliers list</h1>
+    Total: {{sup|length}}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for s in sup %}
+            <tr>
+                 <td>{{ s.id }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.phone}}</td>
+                <td>{{ s.email }}</td>
+                <td>{{ s.address }}</td>
+            </tr>
+             <td>
+            <!-- Nút xóa, bấm vào sẽ xóa thông tin dựa vào khóa chính `sp_ma` -->
+                {# <a  href="{{path('supp_add')}}" class="btn btn-primary btn-md"><i
+                        class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;ADD</a>
+                #}
+               
+                <a id="delete" data-sp-ma="2" class="btn btn-danger btn-delete-product" 
+					    href="{{path('supp_delete',{'id': s.id})}}">
+                        {# href="#"> #}
+                    <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                </a>
+               
+                {# <a href="{{path('supp_edit', {'id': s.id})}}" id="edit" data-sp-ma="2" class="btn btn-danger btn-edit-product">
+                    <i class="bi bi-pencil-square" aria-hidden="true"></i> Edit
+                </a> #}
+            </td>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
+

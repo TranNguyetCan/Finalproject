@@ -1,92 +1,81 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('css/header.css')}}">
+{% endblock %}
 {% block body %}
-<div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-            <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" width="150px" src="images/account.png">
-                    <span class="font-weight-bold">{{username}}</span>
-                    <span class="text-black-50"> {{email}}</span>
-                </div>
-            </div>
-            <div class="col-md-5 border-right">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <label class="labels">Username</label>
-                            <input type="text" class="form-control" placeholder="" name="username" value="username" readonly>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label class="labels">First Name</label>
-                            <input type="text" class="form-control" name="firstName" value="firstName">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="labels">Last Name</label>
-                            <input type="text" class="form-control" value="lastName" name="lastName">
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label class="labels">Birthday</label>
-                            <input type="date" class="form-control input--style-1" name="birthday" value="birthday">
-                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="labels">Gender</label>
-                            <br>
-                            <select name="gender" class="form-control">
-                                <option value="0" <?= !$row[''] ? "selected" : "" ?>>Male</option>
-                                <option value="1" <?= $row['gender'] ? "selected" : "" ?>>Female</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <label class="labels">Telephone</label>
-                            <input type="text" class="form-control" value="<?= $row['telephone'] ?>">
-                        </div>
-                        <div class="col-md-12 my-3">
-                            <label class="labels">Email</label>
-                            <input type="text" class="form-control" value="<?= $row['email'] ?>">
-                        </div>
-                        <div class="col-md-12">
-                            <label class="labels">Address</label>
-                            <input type="text" class="form-control" value="<?= $row['address'] ?>">
-                        </div>
-                    </div>
-                    <div class="mt-5 text-center">
-                        <button class="btn btn-primary profile-button" type="button">Save Profile</button>
-                    </div>
-                </div>
-            </div>
-        <div class="col-md-4">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Change Password</h4>
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Old Password</label>
-                    <input type="text" class="form-control" value="">
-                </div>
-                <div class="col-md-12 my-3">
-                    <label class="labels">New Password</label>
-                    <input type="text" class="form-control" value="">
-                </div>
-                <div class="col-md-12 my-3">
-                    <label class="labels">Confirm Password</label>
-                    <input type="text" class="form-control" value="">
-                </div>
-                <div class="mt-5 text-center">
-                    <button class="btn btn-primary profile-button" type="button">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="card mb-4">
+				<div class="card-body text-center">
+					{% if user.gender == 0 %}
+						<img src="{{asset('images/male.gif')}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+					{% else %}
+						<img src="{{asset('images/female.gif')}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+					{% endif %}
+					<h5 class="my-3">{{user.username}}</h5>
+					{# <p class="text-muted mb-1">Full Stack Developer</p> #}
+					<div class="d-flex justify-content-center mb-2">
+						<a type="button" class="btn btn-outline-dark" href="{{path('cus_edit')}}">Edit</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-lg-8">
+			<div class="card mb-4">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="mb-0">Full Name</p>
+							{# <span>{{ form.fullname }}</span> #}
+						</div>
+						<div class="col-sm-9">
+							<p class="text-muted mb-0">{{user.fullname}}</p>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="mb-0">Birthday</p>
+						</div>
+						<div class="col-sm-9">
+							<p class="text-muted mb-0">{{user.Birthday|date('d/m/Y')}}</p>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="mb-0">Address</p>
+						</div>
+						<div class="col-sm-9">
+							<p class="text-muted mb-0">{{user.Address}}</p>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="mb-0">Phone</p>
+						</div>
+						<div class="col-sm-9">
+							<p class="text-muted mb-0">{{user.phone}}</p>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="mb-0">Gender</p>
+						</div>
+						<div class="col-sm-9">
+							{% if user.gender == 0 %}
+								<p class="text-muted mb-0">Male</p>
+							{% else %}
+								<p class="text-muted mb-0">Female</p>
+							{% endif %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

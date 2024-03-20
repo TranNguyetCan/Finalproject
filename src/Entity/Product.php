@@ -23,6 +23,7 @@ class Product
     private ?bool $status = null;
 
     #[ORM\Column(length: 255)]
+        
     private ?string $descriptions = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
@@ -31,14 +32,8 @@ class Product
     #[ORM\Column]
     private ?bool $forGender = null;
 
-    #[ORM\Column]
-    private ?int $quantity = null;
-
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
-
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProSup::class)]
-    private Collection $proSups;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProSize::class)]
     private Collection $proSizes;
@@ -46,11 +41,12 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?Supplier $supplier = null;
+
     public function __construct()
     {
-        $this->proSups = new ArrayCollection();
         $this->proSizes = new ArrayCollection();
-
     }
 
     public function getId(): ?int
@@ -118,18 +114,6 @@ class Product
         return $this;
     }
 
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -138,36 +122,6 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ProSup>
-     */
-    public function getProSups(): Collection
-    {
-        return $this->proSups;
-    }
-
-    public function addProSup(ProSup $proSup): self
-    {
-        if (!$this->proSups->contains($proSup)) {
-            $this->proSups->add($proSup);
-            $proSup->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProSup(ProSup $proSup): self
-    {
-        if ($this->proSups->removeElement($proSup)) {
-            // set the owning side to null (unless already changed)
-            if ($proSup->getProduct() === $this) {
-                $proSup->setProduct(null);
-            }
-        }
 
         return $this;
     }
@@ -214,4 +168,15 @@ class Product
         return $this;
     }
 
+    public function getSupplier(): ?Supplier
+    {
+        return $this->supplier;
+    }
+
+    public function setSupplier(?Supplier $supplier): self
+    {
+        $this->supplier = $supplier;
+
+        return $this;
+    }
 }

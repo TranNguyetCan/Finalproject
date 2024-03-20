@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{# {{ encore_entry_link_tags('app') }} #}
+	<link href="{{asset('css/header.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+{% block body %}
+	<body>
+
+		<div class="container mb-5">
+			<div class="d-flex flex row g-0">
+				<div class="col-md-6 mt-3">
+					<div class="card card1 p-3">
+						<div class="d-flex flex-column">
+							<h2 class="text-center text2">Register</h2>
+						</div>
+						{{ form_start(registrationForm) }}
+						<div class="input-field d-flex flex-column mt-3">
+							{{ form_widget(registrationForm.username, {'attr': {'class': 'form-control input', 'placeholder':'Username'}}) }}
+
+							{{ form_widget(registrationForm.password.first, {'attr': {'class': 'form-control input', 'placeholder':'Enter Your Password'}}) }}
+
+							{{ form_widget(registrationForm.password.second, {'attr': {'class': 'form-control input', 'placeholder':'Confirm Your Password'}}) }}
+
+							{{ form_widget(registrationForm.fullname, {'attr': {'class': 'form-control input', 'placeholder':'Fullname'}}) }}
+
+							{{ form_widget(registrationForm.birthday, {'attr': {'class': 'form-control input'}}) }}
+
+							<span class="text2 pb-2 ms-2">Gender</span>
+							<div class="radio">
+								{{ form_widget(registrationForm.gender, {'attr': {'class': 'radio pb-3 ms-2'}})}}
+							</div>
+
+							{{ form_widget(registrationForm.address, {'attr': {'class': 'form-control input', 'placeholder':'Address'}}) }}
+
+							{{ form_widget(registrationForm.phone, {'attr': {'class': 'form-control input', 'placeholder':'Phone', 'pattern':'[0]{1}[0-9]{9}'}}) }}
+
+							<div class="text2 m-3 d-flex flex-row text-center">
+								<span>Do you have an account?<a class="register ms-3" href="{{path("logIn_page")}}">Login here</a></span>
+							</div>
+							<div class="mb-5">
+								{{ form_widget(registrationForm.save, {'attr': {'class': 'btn'}}) }}
+							</div>
+						</div>
+						{{ form_end(registrationForm) }}
+					</div>
+				</div>
+				<div class="col-md-6 mt-3">
+					<div class="card card2">
+						<div class="image">
+							<img src="{{asset('images/Signin.png')}}" style="width:100%;height:750px;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+{% endblock %}

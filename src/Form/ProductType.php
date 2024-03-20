@@ -2,12 +2,18 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
+use App\Entity\Supplier;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\Length;
 
 
 class ProductType extends AbstractType
@@ -15,7 +21,12 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, array(
+                'constraints' => new Length(array('min' => 3))
+            ))
+            ->add('descriptions', TextType::class, array(
+                // 'constraints' => new Length(array('min' => 30))
+            ))
             ->add(
                 'status',
                 ChoiceType::class,
@@ -28,13 +39,14 @@ class ProductType extends AbstractType
 
                     // Cho chon nhieu hay khong
                     'multiple' => false,
-                    'expanded' => true
+                    'expanded' => true,
+                    'data' => 0
                 )
             )
             ->add('descriptions', TextType::class)
             ->add('price', TextType::class)
             ->add(
-                'for_gender',
+                'forGender',
                 ChoiceType::class,
                 array(
                     'choices' => array(
@@ -48,31 +60,19 @@ class ProductType extends AbstractType
                     'expanded' => true
                 )
             )
-            ->add('quantity', NumberType::class)
-
-            // ->add('quantity', NumberType::class, [
-            //     'scale'    => 2,
-            //     'attr'     => array(
-            //         'min'  => 0,
-            //         'max'  => 9999.99,
-            //         'step' => 0.01,
-            //     ),
-            // ])
-            ->add('image', FileType::class)
-            ->add('size', ChoiceType::class,
-            array(
-                'choices' => array(
-                    // So nut radio button
-                    'S' => 's',
-                    'M' => 'm',
-                    'L' => 'l'
-                ),
-
-                // Cho chon nhieu hay khong
-                'multiple' => false
-            ))
+            ->add('image', FileType::class, array('data_class' => null))
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Choose an option'
+            ])
+            ->add('supplier', EntityType::class, [
+                'class' => Supplier::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Choose an option'
+            ])
             ->add('save', SubmitType::class, [
-                'label' => "Add"
+                'label' => "Next"
             ]);
     }
 }

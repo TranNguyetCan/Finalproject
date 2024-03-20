@@ -27,12 +27,12 @@ class Supplier
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
-    #[ORM\OneToMany(mappedBy: 'supplier', targetEntity: ProSup::class)]
-    private Collection $proSups;
+    #[ORM\OneToMany(mappedBy: 'supplier', targetEntity: Product::class)]
+    private Collection $products;
 
     public function __construct()
     {
-        $this->proSups = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,29 +89,29 @@ class Supplier
     }
 
     /**
-     * @return Collection<int, ProSup>
+     * @return Collection<int, Product>
      */
-    public function getProSups(): Collection
+    public function getProducts(): Collection
     {
-        return $this->proSups;
+        return $this->products;
     }
 
-    public function addProSup(ProSup $proSup): self
+    public function addProduct(Product $product): self
     {
-        if (!$this->proSups->contains($proSup)) {
-            $this->proSups->add($proSup);
-            $proSup->setSupplier($this);
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setSupplier($this);
         }
 
         return $this;
     }
 
-    public function removeProSup(ProSup $proSup): self
+    public function removeProduct(Product $product): self
     {
-        if ($this->proSups->removeElement($proSup)) {
+        if ($this->products->removeElement($product)) {
             // set the owning side to null (unless already changed)
-            if ($proSup->getSupplier() === $this) {
-                $proSup->setSupplier(null);
+            if ($product->getSupplier() === $this) {
+                $product->setSupplier(null);
             }
         }
 
