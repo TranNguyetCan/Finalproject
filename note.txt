@@ -1,0 +1,54 @@
+RepeatedType: Yêu cầu nhập lại
+Đăng nhập:
+getLastAuthen... và getLastUsername: không đực xóa vì có băm
+
+ *return $this->render('security/login.html.twig', [
+            'last_username' =>$lastUsername, 'error' =>$error
+        ]); => hỏi có cần đăng nhập lại không, đã đang nhập hay chưa?
+
+*public function authenticate(Request $request): Passport
+    {
+        $birthday = $request->request->get('birthday', '');
+
+        $request->getSession()->set(Security::LAST_USERNAME, $birthday);
+
+        return new Passport(
+            new UserBadge($birthday),
+            new PasswordCredentials($request->request->get('password', '')),
+            [
+                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
+            ]
+        );
+    } => là có sẵn, nó kiểm tra các chức năng trong đây có đúng  hay không, nếu đúng nó băm ra
+
+return new RedirectResponse($this->urlGenerator->generate('home_page')); => đang nhập thành công nó sẽ chuyển hướng (là home_page) nó sẽ lấy route name
+
+  /**
+     * @Route("/logout", name="logout_page")
+     */
+    public function logoutAction()
+    {
+        throw new \Exception('This method can be blank - 
+        it will be intercepted by the lohout key on your firewll');
+    }=> đang nhập thành công sẽ chuyển hướng
+
+
+*target: logIn_page trong security.yaml => nếu muốn logout, đi và coi route name tên là gì thì bên path sẽ là tên route name đó, và target là khi đăng xuất thành công sẽ chuyển hướng qua trang login
+
+=====
+Phần Quyền:
+phù hợp với role admi và role user
+password nó băm
+{ path: ^/admin, roles: ROLE_ADMIN } => xử lý phân quyền cho admin, quản lý admin thì user hong vào được
+- { path: ^/profile, roles: ROLE_USER }=> xử lý phân quyền cho user, quản lý profile
+
+====editer của profile====
+=> username với password là bị ẩn vì nếu người dùng thêm id trên URL 
+thì nó sẽ xảy ra tình trạng sẽ hiện profile của người khác => edit được profile của người khác luôn
+bonus: password nếu thay đổi thì sẽ phải băm lại, username.....
+=====register
+<span>Phone</span>
+{{ form_widget(registrationForm.phone, {'attr': {'class': 'form-control', 'placeholder':'Phone', 'pattern':'[0]{1}[0-9]{9}'}}) }}
+
+=>>'pattern':'[0]{1}[0-9]{9}' -> pattern là biểu thức 9 quy ([0]{1}[0-9]{9}: nhập 1 số 0, 9 số còn lại)
+Biểu thức chính quy là

@@ -1,0 +1,54 @@
+{% extends 'admin.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/admin.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+
+{% block body %}
+	<section class="header mx-5">
+		<div class="container mt-4 mb-3">
+			<div class="text-center lh-1 mb-2">
+				<h4 class="fw-bold">Add Product</h4>
+			</div>
+			<div class="d-flex justify-content-end">
+				<span>Branch: DANA_ISCHG</span>
+			</div>
+		</div>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-5 text-center">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		<table class="mt-2 table table-bordered">
+			<div class="row">
+				<div class="col-lg-6">
+					<h5>
+						Order Detail List</h5>
+				</div>
+			</div>
+
+			<thead class="bg-dark text-white text-center">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Order ID</th>
+					<th scope="col">Product</th>
+					<th scope="col">Size</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Price</th>
+
+				</tr>
+			</thead>
+			{% for o in orderDetails %}
+				<tr id="row_pro{{o.id}}" class="text-center align-middle">
+					<th scope="row">{{o.id}}</th>
+					<td>{{o.orderId}}</td>
+					<td>{{o.product}}</td>
+					<td>{{o.size}}</td>
+					<td>{{o.quantity}}</td>
+					<td>${{o.unitPrice}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</tbody>
+</section>{% endblock %}

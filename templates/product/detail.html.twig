@@ -1,0 +1,230 @@
+	{% extends 'base.html.twig' %}
+	{% block stylesheets %}
+		<link href="{{asset('css/header.css')}}" rel="stylesheet" media="all">
+	{% endblock %}
+	{% block javascripts %}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="{{asset('vendor/jquery/detail.js')}}"></script>
+	{% endblock %}
+	{% block body %}
+		<div
+			class="body">
+			<!-- Shop Detail Start -->
+			<div class="container-fluid">
+				<div
+					class="row px-xl-5">
+					{# Image #}
+					<div class="col-lg-6">
+						<div>
+							<div>
+								<div>
+									{% set img = product.image %}
+									<img class="w-100 h-100" src="{{asset('images/'~img)}}" alt="Image">
+								</div>
+
+							</div>
+						</div>
+					</div>
+					{# end Image #}
+					<div class="col-md-6 py-4 ps-5">
+						<div
+							class="row">
+							{# Infomation #}
+							<div class="product-dtl">
+								<div class="product-info">
+									<div class="name">{{product.name}}</div>
+									<div class="reviews-counter mt-2">
+										<div class="rate">
+											<input type="radio" id="star5" name="rate" value="5" checked/>
+											<label for="star5" title="text">5 stars</label>
+											<input type="radio" id="star4" name="rate" value="4" checked/>
+											<label for="star4" title="text">4 stars</label>
+											<input type="radio" id="star3" name="rate" value="3" checked/>
+											<label for="star3" title="text">3 stars</label>
+											<input type="radio" id="star2" name="rate" value="2"/>
+											<label for="star2" title="text">2 stars</label>
+											<input type="radio" id="star1" name="rate" value="1"/>
+											<label for="star1" title="text">1 star</label>
+										</div>
+										<span>3 Reviews</span>
+									</div>
+
+									<div class="product-price-discount">
+										<span>${{product.price}}</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="product-count">
+											<label for="size">Quantity</label>
+											<div class="display-flex">
+												<div class="qtyminus" data-id="{{product.id}}">-</div>
+												<input type="text" name="quantity" id="count" value="1" class="qty">
+												<div class="qtyplus" data-id="{{product.id}}">+</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="mt-3">
+									<h6>Choose Size:
+									</h6>
+									{# Use local variable to calculate total #}
+									{% set stock = 0 %}
+									{# Use local variable to check status product (On Sale or Sold Out) #}
+									{% set status = 0 %}
+									{% for ps in proSizes %}
+										{% if ps.proId == product.id and ps.productQty > 0 %}
+											<input type="radio" name="size" id="size{{ps.sizeId}}" onchange="getProSize({{ps.psId}}, {{product.id}}, {{ps.productQty}})"/>
+											<label for="size{{ps.sizeId}}" class="me-3">{{ps.sizeName}}</label>
+
+											{% set status = 1 %}
+											{# Display quantity in stock #}
+											{% set stock = stock + ps.productQty %}
+										{% endif %}
+									{% endfor %}
+								</div>
+								<div class="mt-3">
+									{% if stock == 0 %}
+										<button class="round-black-btn text-left">Out of Stock</button>
+									{% else %}
+										<div>
+											<label for="quantity">In stock:</label>
+											<input id="stock{{product.id}}" name="stock" class="border-0" value="{{stock}}"/>
+										</div>
+										<input type="hidden" name="size" value="" id="proSizeId{{product.id}}"/>
+										<button class="round-black-btn text-left" name="insert_button{{product.id}}" onclick="insert_row({{product.id}})">Add to cart</button>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+
+						{# Detail #}
+						<div class="product-info-tabs">
+							<ul class="nav nav-tabs" id="myTab" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (0)</a>
+								</li>
+							</ul>
+							<div class="tab-content" id="myTabContent">
+								<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+									{{product.descriptions}}
+								</div>
+								<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+									<div class="review-heading">REVIEWS</div>
+									<p class="mb-20">There are no reviews yet.</p>
+									<form class="review-form">
+										<div class="form-group">
+											<label>Your rating</label>
+											<div class="reviews-counter">
+												<div class="rate">
+													<input type="radio" id="star5" name="rate" value="5"/>
+													<label for="star5" title="text">5 stars</label>
+													<input type="radio" id="star4" name="rate" value="4"/>
+													<label for="star4" title="text">4 stars</label>
+													<input type="radio" id="star3" name="rate" value="3"/>
+													<label for="star3" title="text">3 stars</label>
+													<input type="radio" id="star2" name="rate" value="2"/>
+													<label for="star2" title="text">2 stars</label>
+													<input type="radio" id="star1" name="rate" value="1"/>
+													<label for="star1" title="text">1 star</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label>Your message</label>
+											<textarea class="form-control" rows="10"></textarea>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<input type="text" name="" class="form-control" placeholder="Name*">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<input type="text" name="" class="form-control" placeholder="Email Id*">
+												</div>
+											</div>
+										</div>
+										<button class="round-black-btn">Submit Review</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# end Detail #}
+		</div>
+		{# end Information #}
+
+		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+
+		<script>
+
+			function getProSize(proSizeId, proId, productQty) {
+	var getProSize = document.getElementById("proSizeId" + proId);
+	getProSize.value = proSizeId;
+
+	var getStock = document.getElementById("stock" + proId);
+	getStock.value = productQty;
+	}
+
+	{# Insert into Cart #}
+		function insert_row(id) {
+		var proSizeId = document.getElementById("proSizeId" + id).value;
+		if (proSizeId != "") {
+		var count = document.getElementById("count").value;
+		$.ajax({
+		type: 'post',
+		url: '{{path('addCart')}}',
+		data: {
+		proSizeId: proSizeId,
+		count: count
+		},
+
+		success: function (response) {
+			window.location.href = '/cart';
+		},
+		
+		error: function (xhr, status, error) {
+		console.log(xhr);
+		}
+		});
+		} else {
+		Swal.fire('Please choose your size!');
+		}
+		}
+
+	$(document).ready(function () {
+	$(".qtyminus").on("click", function () {
+	var now = $(".qty").val();
+	if ($.isNumeric(now)) {
+	if (parseInt(now) - 1 > 0) {
+	now--;
+	}
+	$(".qty").val(now);
+	}
+	})
+
+	$(".qtyplus").on("click", function () {
+	var now = $(".qty").val();
+	var id = $(this).attr("data-id")
+	var stock = document.getElementById('stock' + id);
+	// alert(stock.value);
+	if ($.isNumeric(now)) {
+	if (parseInt(now) + 1 <= parseInt(stock.value)) {
+	now++;
+	}
+	$(".qty").val(now);
+	}
+	});
+	});
+		</script>
+	{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{# {{ encore_entry_link_tags('app') }} #}
+	<link href="{{asset('css/header.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+{% block body %}
+	<section>
+		<!--Start Image-->
+		<div class="img-bg ms-5">
+			<img src="images\LogIn.png" alt="">
+		</div>
+		<!--End Image-->
+		<!--Start Content-->
+		<div class="content">
+			<div class="form text2">
+				<h2>Login</h2>
+				<form method="post">
+					{% if error %}
+						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					{% endif %}
+
+					{% if app.user %}
+						<div class="mb-3">
+							You are logged in as
+							{{ app.user.userIdentifier }},
+							<a href="{{ path('logout_page') }}">Logout</a>
+						</div>
+					{% endif %}
+
+					<div class="input-form text2">
+						<span class="me-4">Username</span>
+						<input type="text" name="birthday" value="{{ last_username }}" autofocus required>
+					</div>
+					<div class="input-form text2 mb-4">
+						<span class="me-4">Password</span>
+						<input type="password" name="password" required>
+					</div>
+					<div class="remember-login">
+						<label><input type="checkbox" name="" class="me-2">Remember Login</label>
+					</div>
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					{# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+						See https://symfony.com/doc/current/security/remember_me.html
+
+					<div class="checkbox mb-3">
+						<label>
+							<input type="checkbox" name="_remember_me">
+							Remember me
+						</label>
+					</div> #}
+
+					<div class="input-form">
+						<input type="submit" class="btn" value="Login">
+					</div>
+				</form>
+
+				<div class="input-form text-center">
+					<p>Do not have an account?
+						<a class="register ms-3" href="{{path("signin_page")}}">Register</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--End Content-->
+	</section>
+{% endblock %}
