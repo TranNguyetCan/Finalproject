@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/header.css')}}" rel="stylesheet" media="all">
+
+{% endblock %}
+
+{% block body %}<link href="{{asset('css\header.css')}}" rel="stylesheet" media="all">
+
+	<script>
+		// Function to check if the user wants to delete or not.
+function deleteConfirm() {
+if (confirm("Are you sure to delete!")) {
+return true;
+} else {
+return false;
+}
+}
+	</script>
+
+	<section class="py-2 h-100">
+		<div class="container d-flex justify-content-center align-items-center">
+			<div class="card card-registration card-registration-2" style="border: none;">
+				<div class="card-body p-0">
+					<div class="row g-0">
+						<div class="col-lg-8">
+							<div class="p-5">
+								<div class="d-flex justify-content-between align-items-center mb-5">
+									<h1 class="title-cart fw-bold mb-0 text-black">Shopping Cart</h1>
+								</div>
+
+								<hr class="my-2">
+								<div class="row mb-4 d-flex justify-content-between align-items-center">
+									<div class="col-md-2 col-lg-2 col-xl-2">
+										<img src="images/Dresses.png" class="img-fluid rounded-3" alt="">
+									</div>
+									<div class="col-md-3 col-lg-3 col-xl-3">
+										<h6 class="text-muted">Jacket</h6>
+										<h6 class="text-black mb-0"></h6>
+										Jacket Winter</h6>
+								</div>
+								<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+									<button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+										<i class="fas fa-minus"></i>
+									</button>
+
+									<div>
+										<input id="form1" min="0" name="quantity" value="1" type="number" class="w-500 form-control form-control-sm"/>
+									</div>
+
+									<button class="btn btn-link" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+								<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+									<h6 class="mb-0">$54.99</h6>
+								</div>
+								<div class="col-md-1 col-lg-1 col-xl-1 text-end">
+									<a href="?page=shoppingcart&function=del&id=<?= $r['pro_id'] ?>" onclick="return deleteConfirm()" class="text-muted">
+										<i class="fas fa-times"></i>
+									</a>
+								</div>
+							</div>
+							<hr class="my-4">
+
+						</div>
+					</div>
+
+					<div class="col-lg-4 bg-grey">
+						<div class="p-5">
+							<h3 class="title-cart fw-bold mb-5 mt-2 pt-1">Summary</h3>
+							<hr class="my-4">
+
+							<div class="d-flex justify-content-between mb-4">
+								<h5 class="text-uppercase">items
+																										3
+								</h5>
+								<h5>$40.00</h5>
+							</div>
+
+							<h5 class="text-uppercase mb-3">Shipping</h5>
+
+							<div class="mb-4 pb-2">
+								<select class="button-60">
+									<option value="1">Standard-Delivery- $5.00</option>
+								</select>
+							</div>
+
+							<hr class="my-4">
+
+							<div class="d-flex justify-content-between mb-5">
+								<h5 class="text-uppercase">Total price</h5>
+								<h5>$60.00</h5>
+							</div>
+
+							<form action="?page=payment" method="post">
+								<input type="submit" class="btn btn-dark btn-block btn-lg btnCheckout" name="btnCheckout" value="Checkout">
+							</form>
+						</div>
+					</div>
+					<div class="pt-5">
+						<h6 class="mb-0 back">
+							<a href="?page=product" class="text-body">
+								<i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a>
+						</h6>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}

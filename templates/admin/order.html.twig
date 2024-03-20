@@ -1,0 +1,108 @@
+{% extends 'admin.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/admin.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+
+{% block body %}
+	<section class="header">
+		<div class="container mt-4 mb-3">
+			<div class="text-center lh-1 mb-2">
+				<h4 class="fw-bold">Order List</h4>
+				{# <span class="fw-normal">Payment slip for the month of June 2021</span> #}
+			</div>
+			<div class="d-flex justify-content-end">
+				<span>Branch: DANA_ISCHG</span>
+			</div>
+		</div>
+		<div class=" mb-5 mx-5">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="row">
+						<div class="col-md-6">
+							<div>
+								<span class="fw-bolder">Last Update:
+								</span>
+								<small class="ms-3">February, 2023</small>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<form action="?page=product" class="d-flex ms-4 mb-2">
+								<input type="text" class="form-control rounded" name="searchValue" placeholder="Search..." aria-label="search" aria-describedby="search-addon"/>
+								<button type="submit" name="btnSearch" class="input-group-text border-0 ms-2 bg-dark">
+									<i class="fas fa-search"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+
+					{# TABLE #}
+					<table class="mt-4 table table-bordered text-center	">
+						<thead class="bg-dark text-white">
+							<tr>
+								<th scope="col">Earnings</th>
+								<th scope="col">Amount</th>
+								<th scope="col">Deductions</th>
+								<th scope="col">Amount</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Basic</th>
+								<td>16250.00</td>
+								<td>PF</td>
+								<td>1800.00</td>
+							</tr>
+							<tr>
+								<th scope="row">DA</th>
+								<td>550.00</td>
+								<td>ESI</td>
+								<td>142.00</td>
+							</tr>
+							<tr>
+								<th scope="row">HRA</th>
+								<td>1650.00
+								</td>
+								<td>TDS</td>
+								<td>0.00</td>
+							</tr>
+							<tr>
+								<th scope="row">WA</th>
+								<td>120.00
+								</td>
+								<td>LOP</td>
+								<td>0.00</td>
+							</tr>
+							<tr>
+								<th scope="row">CA</th>
+								<td>0.00
+								</td>
+								<td>PT</td>
+								<td>0.00</td>
+							</tr>
+							<tr>
+								<th scope="row">CCA</th>
+								<td>0.00
+								</td>
+								<td>SPL. Deduction</td>
+								<td>500.00</td>
+							</tr>
+							<tr>
+								<th scope="row">MA</th>
+								<td>3000.00</td>
+								<td>EWF</td>
+								<td>0.00</td>
+							</tr>
+							<tr>
+								<th scope="row">Sales Incentive</th>
+								<td>0.00</td>
+								<td>CD</td>
+								<td>0.00</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

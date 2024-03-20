@@ -1,0 +1,180 @@
+{% extends 'admin.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/admin.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+
+{% block body %}
+	<section class="header mx-5">
+		<div class="container mt-4 mb-3">
+			<div class="text-center lh-1 mb-2">
+				<h4 class="fw-bold">Add Supplier</h4>
+				{# <span class="fw-normal">Payment slip for the month of June 2021</span> #}
+			</div>
+			<div class="d-flex justify-content-end">
+				<span>Branch: DANA_ISCHG</span>
+			</div>
+		</div>
+		<div class="container-boder">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="forms-inputs rounded mt-3">
+								<span>Supplier Name</span>
+								<input
+								autocomplete="off" type="text">
+							{# <div class="invalid-feedback">A valid email is required!</div> #}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								<span>Phone number</span>
+								<input
+								autocomplete="off" type="text">
+							{# <div class="invalid-feedback">A valid email is required!</div> #}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								<span>Email</span>
+								<input
+								autocomplete="off" type="text">
+							{# <div class="invalid-feedback">A valid email is required!</div> #}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								<span>Address</span>
+								<input
+								autocomplete="off" type="text">
+							{# <div class="invalid-feedback">A valid email is required!</div> #}
+							</div>
+						</div>
+					</div>
+					<div class="add mt-3">
+						<button type="button" class="btn btn-dark me-4">Add</button>
+					</div>
+
+					<table class="mt-2 table table-bordered">
+						<div>
+							<h5>
+								Supplier List</h5>
+						</div>
+						<thead class="bg-dark text-white text-center">
+							<tr>
+								<th scope="col">Earnings</th>
+								<th scope="col">Amount</th>
+								<th scope="col">Deductions</th>
+								<th scope="col">Amount</th>
+								<th scope="col">Edit</th>
+								<th scope="col">Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Basic</th>
+								<td>16250.00</td>
+								<td>PF</td>
+								<td>1800.00</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-pencil-square" style="color: black;"></i>
+									</a>
+								</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-trash3" style="color: black;"></i>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">DA</th>
+								<td>550.00</td>
+								<td>ESI</td>
+								<td>142.00</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-pencil-square" style="color: black;"></i>
+									</a>
+								</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-trash3" style="color: black;"></i>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">HRA</th>
+								<td>1650.00
+								</td>
+								<td>TDS</td>
+								<td>0.00</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-pencil-square" style="color: black;"></i>
+									</a>
+								</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-trash3" style="color: black;"></i>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">WA</th>
+								<td>120.00
+								</td>
+								<td>LOP</td>
+								<td>0.00</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-pencil-square" style="color: black;"></i>
+									</a>
+								</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-trash3" style="color: black;"></i>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CA</th>
+								<td>0.00
+								</td>
+								<td>PT</td>
+								<td>0.00</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-pencil-square" style="color: black;"></i>
+									</a>
+								</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-trash3" style="color: black;"></i>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CCA</th>
+								<td>0.00
+								</td>
+								<td>SPL. Deduction</td>
+								<td>500.00</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-pencil-square" style="color: black;"></i>
+									</a>
+								</td>
+								<td class="text-center align-middle">
+									<a href="">
+										<i class="bi bi-trash3" style="color: black;"></i>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

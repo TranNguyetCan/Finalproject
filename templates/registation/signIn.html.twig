@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{# {{ encore_entry_link_tags('app') }} #}
+	<link href="{{asset('css/header.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+
+
+{% block body %}
+	<div class="page-content">
+		<div class="form-v6-content">
+			<div class="form-left">
+				<img src="images/Signin.png" alt="form">
+			</div>
+			<form class="form-detail" action="#" method="post">
+				<h2>Register</h2>
+				<div class="form-row d-flex">
+					<input type="text" name="full-name" id="full-name" class="input-text me-2" placeholder="First Name" required autocomplete="off">
+					<input type="text" name="full-name" id="full-name" class="input-text ms-2" placeholder="Last Name" required autocomplete="off">
+				</div><div class="form-row">
+					<input type="text" name="your-email" id="your-email" class="input-text" placeholder="Username" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
+				</div>
+                <div class="form-row">
+					<input type="password" name="password" id="password" class="input-text" placeholder="Password" required autocomplete="off">
+				</div>
+				<div class="form-row">
+					<input type="password" name="comfirm-password" id="comfirm-password" class="input-text" placeholder="Comfirm Password" required autocomplete="off">
+				</div>
+                <div class="form-row">
+					<input type="date" name="your-email" id="your-email" class="input-text" placeholder="Birthday" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
+				</div>
+				<div class="form-row">
+					<input type="text" name="your-email" id="your-email" class="input-text" placeholder="Telephone" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
+				</div>
+                <div class="form-row">
+					<input type="text" name="your-email" id="your-email" class="input-text" placeholder="Email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
+				</div>
+                <div class="form-row">
+					<input type="text" name="your-email" id="your-email" class="input-text" placeholder="Address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
+				</div>
+				
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Register">
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}
