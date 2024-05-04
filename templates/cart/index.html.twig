@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
 	<link href="{{asset('css/header.css')}}" rel="stylesheet" media="all">
-
 {% endblock %}
 
 {% block body %}
@@ -173,8 +172,8 @@
 					type: 'delete',
 					url: '/cart/delete/' + proSize_id,
 					data: {
-					id: proSize_id
-				},
+						id: proSize_id
+					},
 				success: function () {
 					var row = document.getElementById("row_product" + proSize_id);
 					row.parentNode.removeChild(row);
