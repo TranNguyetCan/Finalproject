@@ -87,7 +87,7 @@ class CartController extends AbstractController
 
 
     /**
-     * @Route("/cart/delete/{id}", name="deleteCart", methods={"DELETE"})
+     * @Route("/delete/{id}", name="deleteCart", methods={"DELETE"})
      */
     public function deleteCartAction(int $id, ManagerRegistry $reg): Response
     {
@@ -133,4 +133,13 @@ class CartController extends AbstractController
         return $this->redirectToRoute('shoppingCart');
     }
     
+    //hàm hiển thị số lượng sản phẩm trong giỏ hàng bằng api
+    /**
+     * @Route("/count", name="countCart", methods={"GET"})
+     */
+    public function countCartAction(): Response {
+        $user = $this->getUser(); //lấy thông tin user hiện tại
+        $count = $this->repo->showCart($user);
+        return new JsonResponse($count);
+    }
 }
