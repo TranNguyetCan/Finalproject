@@ -43,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?bool $gender = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $avatar = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $fullname = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Cart::class)]
@@ -84,7 +87,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->username;
     }
 
-    /**
+    /** 
      * @see UserInterface
      */
     public function getRoles(): array
@@ -170,6 +173,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGender(bool $gender): self
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(string $avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }

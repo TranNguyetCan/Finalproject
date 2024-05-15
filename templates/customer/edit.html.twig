@@ -3,77 +3,102 @@
 	<link rel="stylesheet" href="{{asset('css/header.css')}}">
 {% endblock %}
 {% block body %}
+
+	{{ form_start(userForm) }}
 	<div class="row">
 		<div class="col-4">
-			<div class="card mb-4">
+			<div
+				class="card mb-4">
+				{#<div class="card-body text-center">
+																									{% if app.user.gender == 0 %}
+																										<img src="{{asset('images/male.gif')}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+																									{% else %}
+																										<img src="{{asset('images/female.gif')}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+																									{% endif %}
+																									<h5 class="my-3">{{app.user.username}}</h5>
+																								</div>
+																							</div>#}
 				<div class="card-body text-center">
-					{% if app.user.gender == 0 %}
-						<img src="{{asset('images/male.gif')}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-					{% else %}
-						<img src="{{asset('images/female.gif')}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+					{% if app.user.avatar is not null %}
+						<img src="{{ asset('/images/' ~ app.user.avatar) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+						<h5 class="my-3">{{ app.user.username }}</h5> 	 	
+						<div class="col-sm-9">
+							<p class="text-muted mb-0">{{ form_widget(userForm.avatar, {'attr':{'autocomplete': 'off'}}) }}</p>
+						</div>
+						{% else %}
+					<!-- Hiển thị một biểu tượng mặc định nếu người dùng không có ảnh đại diện -->
+						{# <img src="{{ asset('images/account2.jpg') }}" class="rounded-circle" height="36" alt="My account" loading="lazy">#}
 					{% endif %}
-					<h5 class="my-3">{{app.user.username}}</h5>
+					{# Thêm nút hoặc liên kết cho phép người dùng thay đổi ảnh đại diện #}
+					<!-- <div
+						class="d-flex justify-content-center mb-2">
+						{# <a type="button" class="btn btn-outline-dark" href="{{ path('cus_edit') }}">Edit Profile</a>#}
+						<form action="{{ path('cus_edit') }}" method="post" enctype="multipart/form-data">
+							<input type="file" name="avatar" id="avatar" style="display: none;">
+							<label for="avatar" class="btn btn-outline-dark" href="{{ path('cus_edit') }}">Change Avatar</label>
+							<button type="submit" style="display: none;"></button>
+						</form>
+					</div> -->
 				</div>
 			</div>
-		</div>
-		<div class="col-8">
-			{{ form_start(userForm) }}
-
-			<div class="card mb-4">
-				<div class="card-body">
-					<div class="row">
-						{{ form_widget(userForm.username) }}
-						<div class="col-sm-3">
-							<p class="mb-0">{{ form_label(userForm.fullname) }}</p>
-						</div>
-						<div class="col-sm-9">
-							<p class="text-muted mb-0">{{ form_widget(userForm.fullname, {'attr':{'autocomplete': 'off'}}) }}</p>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-sm-3">
-							<p class="mb-0">{{ form_label(userForm.birthday) }}</p>
-						</div>
-						<div class="col-sm-9">
-							<p class="text-muted mb-0">{{ form_widget(userForm.birthday, {'attr': {'class': 'input-text me-2 input-form', 'placeholder':'Birthday'}}) }}</p>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-sm-3">
-							<p class="mb-0">{{ form_label(userForm.address) }}</p>
-						</div>
-						<div class="col-sm-9">
-							<p class="text-muted mb-0">{{ form_widget(userForm.address, {'attr':{'autocomplete': 'off'}}) }}</p>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-sm-3">
-							<p class="mb-0">{{ form_label(userForm.phone) }}</p>
-						</div>
-						<div class="col-sm-9">
-							<p class="text-muted mb-0">{{ form_widget(userForm.phone, {'attr':{'autocomplete': 'off','pattern':'[0]{1}[0-9]{9}'}}) }}</p>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-sm-3">
-							<p class="mb-0">{{ form_label(userForm.gender) }}</p>
-						</div>
-						<div class="col-sm-9">
-							<p class="text-muted mb-0">{{ form_widget(userForm.gender, {'attr':{'autocomplete': 'off'}}) }}</p>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="add mt-3">
-							{{form_row(userForm.save, {'attr':{'class': 'btn btn-dark me-4'}})}}
-						</div>
-					</div>
-				</div>
-			</div>
-			{{ form_end(userForm) }}
 		</div>
 	</div>
-{% endblock %}
+
+
+</div>
+<div class="col-8">
+	<div class="card mb-4">
+		<div class="card-body">
+			<div class="row">
+				{{ form_widget(userForm.username) }}
+				<div class="col-sm-3">
+					<p class="mb-0">{{ form_label(userForm.fullname) }}</p>
+				</div>
+				<div class="col-sm-9">
+					<p class="text-muted mb-0">{{ form_widget(userForm.fullname, {'attr':{'autocomplete': 'off'}}) }}</p>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-3">
+					<p class="mb-0">{{ form_label(userForm.birthday) }}</p>
+				</div>
+				<div class="col-sm-9">
+					<p class="text-muted mb-0">{{ form_widget(userForm.birthday, {'attr': {'class': 'input-text me-2 input-form', 'placeholder':'Birthday'}}) }}</p>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-3">
+					<p class="mb-0">{{ form_label(userForm.address) }}</p>
+				</div>
+				<div class="col-sm-9">
+					<p class="text-muted mb-0">{{ form_widget(userForm.address, {'attr':{'autocomplete': 'off'}}) }}</p>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-3">
+					<p class="mb-0">{{ form_label(userForm.phone) }}</p>
+				</div>
+				<div class="col-sm-9">
+					<p class="text-muted mb-0">{{ form_widget(userForm.phone, {'attr':{'autocomplete': 'off','pattern':'[0]{1}[0-9]{9}'}}) }}</p>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-3">
+					<p class="mb-0">{{ form_label(userForm.gender) }}</p>
+				</div>
+				<div class="col-sm-9">
+					<p class="text-muted mb-0">{{ form_widget(userForm.gender, {'attr':{'autocomplete': 'off'}}) }}</p>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="add mt-3">
+					{{form_row(userForm.save, {'attr':{'class': 'btn btn-dark me-4'}})}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div></div>{{ form_end(userForm) }}{% endblock %}

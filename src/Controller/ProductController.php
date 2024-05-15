@@ -106,4 +106,15 @@ class ProductController extends AbstractController
             'proSizes' => $proSizes
         ]);
     }
+    /**
+     * @Route("/", name="featured_products")
+     */
+    public function featuredProducts(ProductRepository $productRepository): Response
+    {
+        $p = $productRepository->findBy(['isFeatured' => true]);
+
+        return $this->render('product/show.html.twig', [
+            'products' => $p,
+        ]);
+    }
 }

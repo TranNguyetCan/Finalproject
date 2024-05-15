@@ -7,10 +7,11 @@
 		<div class="col-lg-4">
 			<div class="card mb-4">
 				<div class="card-body text-center">
-					{% if user.gender == 0 %}
-						<img src="{{asset('images/male.gif')}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+					{% if app.user.avatar is not null %}
+						<img src="{{ asset('/images/' ~ app.user.avatar) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
 					{% else %}
-						<img src="{{asset('images/female.gif')}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+					<!-- Hiển thị một biểu tượng mặc định nếu người dùng không có ảnh đại diện -->
+						{# <img src="{{ asset('images/account2.jpg') }}" class="rounded-circle" height="36" alt="My account" loading="lazy">#}
 					{% endif %}
 					<h5 class="my-3">{{user.username}}</h5>
 					{# <p class="text-muted mb-1">Full Stack Developer</p> #}

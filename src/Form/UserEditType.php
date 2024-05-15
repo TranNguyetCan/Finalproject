@@ -16,7 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Regex;
-
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 class UserEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -31,7 +31,7 @@ class UserEditType extends AbstractType
                 array(
                     'choices' => array(
                     'Male' => 0,
-                    'Female' => 1
+                   ' Female' => 1
                 ),
                 'multiple' => false,
                 'expanded' => true
@@ -40,6 +40,11 @@ class UserEditType extends AbstractType
             
             ->add('phone', TextType::class)
             ->add('address', TextType::class)
+            ->add('avatar', FileType::class, [ // Thêm trường tải lên ảnh đại diện
+                'label' => 'Avatar', // Nhãn cho trường
+                'mapped' => false, // Không ánh xạ trường này với một thuộc tính của đối tượng
+                'required' => false, // Trường không bắt buộc
+            ])
             ->add('save',SubmitType::class,[
                 'label' => "save"
             ]);

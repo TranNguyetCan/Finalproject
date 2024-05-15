@@ -29,7 +29,7 @@
 
 									{# Display cart start #}
 									{% for c in carts %}
-										<div id="row_product{{c.psId}}">
+										<div class="allProducts" id="row_product{{c.psId}}">
 											<hr class="my-2">
 											<div class="row mb-4 d-flex justify-content-between align-items-center">
 												<div class="col-md-2 col-lg-2 col-xl-2">
@@ -109,7 +109,7 @@
 							<h3 class="title-cart fw-bold mb-5 mt-2 pt-1">Summary</h3>
 							<hr class="my-4">
 							<div class="d-flex justify-content-between mb-4">
-								<h5 class="text-uppercase">items
+								<h5 class="text-uppercase" id = "cartCount">items
 									{{count}}
 								</h5>
 							</div>
@@ -177,7 +177,21 @@
 				success: function () {
 					var row = document.getElementById("row_product" + proSize_id);
 					row.parentNode.removeChild(row);
+					// dm trong lop allProducts co bao nhieu san pham
+					var count = $('.allProducts').length;
+
+					$('#cartCount').text('items ' +  count); 	 	
+
+					 $.ajax({
+						url: '/cart/count',
+						type: 'GET',
+						success: function (response) {
+							$('#shopingCart').text(response.length)
+						}
+					});
+	
 					Swal.fire('Deleted!', 'A product has been deleted.', 'success')
+
 				}
 		});
 	}
