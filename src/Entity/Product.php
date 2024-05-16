@@ -44,6 +44,12 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Supplier $supplier = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $originalPrice = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $rating = null;
+
     public function __construct()
     {
         $this->proSizes = new ArrayCollection();
@@ -179,4 +185,29 @@ class Product
 
         return $this;
     }
+
+    public function getOriginalPrice(): ?string
+    {
+        return $this->originalPrice;
+    }
+
+    public function setOriginalPrice(?string $originalPrice): self
+    {
+        $this->originalPrice = $originalPrice;
+
+        return $this;
+    }
+
+    public function getRating(): ?int
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?int $rating): self
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
 }

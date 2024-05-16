@@ -82,133 +82,168 @@
 						<a class="nav-link" href="{{ path('showProduct') }}">Product</a>
 						{# <a class="nav-link" href="{{path('showProduct')}}">Sale</a> #}
 						<a class="nav-link" href="{{ path('aboutUs') }}">About</a>
-						<a class="nav-link" href="{{ path('discount') }}">Discount</a>
-					</div>
-					<!-- Right elements -->
-					<div class="rightElement d-flex pt-2 ps-4 ms-5 me-4">
-						{% if app.user %}
-							<!-- Icon -->
-							<a class="text-reset mt-2 me-4 position-relative" href="{{ path('shoppingCart') }}">
-								<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-								<span class="cart-item-count badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle" id="shopingCart">0</span>
-							</a>
-
-							<!-- Avatar -->
-							<div class="dropdown">
-								<div class="d-flex">
-									<a class="hidden-arrow" href="{{ path('cus_profile') }}" id="navbarDropdownMenuAccount" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-										<a class="hidden-arrow" href="{{ path('cus_profile') }}" id="navbarDropdownMenuAccount" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-											{% if app.user.avatar is not null %}
-												<img src="{{ asset('/images/' ~ app.user.avatar) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
-												{% else %}
-											<!-- Hiển thị một biểu tượng mặc định nếu người dùng không có ảnh đại diện -->
-												{# <img src="{{ asset('images/account2.jpg') }}" class="rounded-circle" height="36" alt="My account" loading="lazy">#}
-											{% endif %}
-											<label for="account" class="ms-2 link-dark" style="font-size: 1rem;"></label>
-										</a>
-										<p
-											class="mt-1">{# <a href="{{ path('cus_profile') }}">My account</a>#}
-										</p>
-									</div>
-									<ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdownMenuAccount">
-										<li>
-											<a href="{{ path('cus_profile') }}" class="dropdown-item">Profile</a>
-										</li>
-										<li>
-											<a href="{{ path('logout_page') }}" class="dropdown-item">Logout</a>
-										</li>
-									</ul>
-								</div>
-							{% else %}
-								<a href="{{ path('logIn_page') }}" class="btn btn-outline-dark me-2">Login</a>
-								<a href="{{ path('signin_page') }}" class="btn btn-dark">Register</a>
-							{% endif %}
-						</div>
-					</div>
-				</nav>
-			{% endblock %}
-			{% block body %}{% endblock %}
-			<footer>
-				{% block footer %}
-					<hr/>
-					<footer class="text-center text-lg-start text-dark footer">
-						<div
-							class="text-md-start">
-							<!-- Grid row -->
-							<div
-								class="row mt-4 mx-2">
-								<!-- Grid column -->
-								<div
-									class="col-md-4 mb-4 text-center">
-									<!-- Content -->
-									<h6 class="text-uppercase fw-bold">About us</h6>
-									<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: grey; height: 2px"/>
-									<p class="mx-5">
-										<a href="{{ path('aboutUs') }}" class="text-dark text-decoration-none">Dana.ischg Store is a brand from Vietnam, born in 2022. Started off as a small thrift shop in CanTho, Vietnam. Through the lens of fashionary, Dana.ischg would like to share experiences and POV in music, movies, and art, connecting the community of youth with global lifestyle.</a>
-									</p>
-								</div>
-
-								<!-- Grid column -->
-								<div
-									class="col-md-4 mb-4 text-center">
-									<!-- Links -->
-									<h6 class="text-uppercase fw-bold">Products</h6>
-									<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: grey; height: 2px"/>
-									<p>
-										<a href="{{ path('home_page') }}" class="text-dark text-decoration-none">Home</a>
-									</p>
-									<p>
-										<a href="{{ path('showProduct') }}" class="text-dark text-decoration-none">Product</a>
-									</p>
-									{# <p>
-																																																												<a href="{{path('showProduct')}}" class="text-dark text-decoration-none">Sale</a>
-																																																											</p> #}
-									<p>
-										<a href="{{ path('aboutUs') }}" class="text-dark text-decoration-none">About</a>
-									</p>
-								</div>
-
-								<!-- Grid column -->
-								<div
-									class="col-md-4 mb-md-0 mb-4 text-center">
-									<!-- Links -->
-									<h6 class="text-uppercase fw-bold">Contact</h6>
-									<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: grey; height: 2px"/>
-									<p>
-										<i class="fas fa-home mr-3"></i>
-										160 Mac Thien Tich, Can Tho
-									</p>
-									<p>
-										<i class="fas fa-envelope mr-3"></i>
-										DanaischgStore@gmail.com
-									</p>
-									<p>
-										<i class="fas fa-phone mr-3"></i>
-										0843 630 939
-									</p>
-									<p>
-										<i class="fas fa-print mr-3"></i>
-										0916 843 367
-									</p>
-								</div>
+						<a class="nav-link" href="{{ path('discount_index') }}">Discount</a>
+						<div class="nav-item dropdown">
+							<div href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</div>
+							<div class="dropdown-menu fade-down m-0">
+								<a href="#" class="dropdown-item">Men's Dresses</a>
+								<a href="#" class="dropdown-item">Women's Dresses</a>
+								<a href="#" class="dropdown-item">Baby's Dresses</a>
+								<a href="#" class="dropdown-item ">Shirts</a>
+								<a href="#" class="dropdown-item ">Jeans</a>
+								<a href="#" class="dropdown-item ">Swimwear</a>
+								<a href="#" class="dropdown-item ">Sleepwear</a>
+								<a href="#" class="dropdown-item ">Sportswear</a>
+								<a href="#" class="dropdown-item ">Jumpsuits</a>
+								<a href="#" class="dropdown-item ">Blazers</a>
+								<a href="#" class="dropdown-item ">Jackets</a>
+								<a href="#" class="dropdown-item ">Shoes</a>
 							</div>
 						</div>
-						<!-- Copyright -->
-						<div class="text-footer p-3 text-white text-center">
-							2020 Copyright:
-							<a class="text-white" href="{{ path('aboutUs') }}">Dana.ischgStore.com</a>
-						</div>
-						<!-- Copyright -->
-					</footer>
-				{% endblock %}
-			</footer>
-		</body>
-	</body>
-</html>
 
-{# tôi muốn hiển thị số lượng sản phẩm trong đơn hàng ra tại id = shopingCart tại controller cart #}
-<script>
-	$(document).ready(function () {
+						{# <i class="fa fa-angle-down text-dark"></i> #}
+					</a>
+					<nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
+						<div class="navbar-nav w-100">
+							<div class="nav-item dropdown dropright">
+								<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dresses
+									<i class="fa fa-angle-right float-right mt-1"></i>
+								</a>
+								<div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
+									<a href="#" class="dropdown-item">Men's Dresses</a>
+									<a href="#" class="dropdown-item">Women's Dresses</a>
+									<a href="#" class="dropdown-item">Baby's Dresses</a>
+								</div>
+							</div>
+							<a href="#" class="nav-item nav-link">Shirts</a>
+							<a href="#" class="nav-item nav-link">Jeans</a>
+							<a href="#" class="nav-item nav-link">Swimwear</a>
+							<a href="#" class="nav-item nav-link">Sleepwear</a>
+							<a href="#" class="nav-item nav-link">Sportswear</a>
+							<a href="#" class="nav-item nav-link">Jumpsuits</a>
+							<a href="#" class="nav-item nav-link">Blazers</a>
+							<a href="#" class="nav-item nav-link">Jackets</a>
+							<a href="#" class="nav-item nav-link">Shoes</a>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<!-- Right elements -->
+			<div class="rightElement d-flex pt-2 ps-4 ms-5 me-4">
+				{% if app.user %}
+					<!-- Icon -->
+					<a class="text-reset mt-2 me-4 position-relative" href="{{ path('shoppingCart') }}">
+						<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+						<span class="cart-item-count badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle" id="shopingCart">0</span>
+					</a>
+
+					<!-- Avatar -->
+					<div class="dropdown">
+						<div class="d-flex">
+							<a class="hidden-arrow" href="{{ path('cus_profile') }}" id="navbarDropdownMenuAccount" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<a class="hidden-arrow" href="{{ path('cus_profile') }}" id="navbarDropdownMenuAccount" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									{% if app.user.avatar is not null %}
+										<img src="{{ asset('/images/' ~ app.user.avatar) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+										{% else %}
+									<!-- Hiển thị một biểu tượng mặc định nếu người dùng không có ảnh đại diện -->
+										{# <img src="{{ asset('images/account2.jpg') }}" class="rounded-circle" height="36" alt="My account" loading="lazy">#}
+									{% endif %}
+									<label for="account" class="ms-2 link-dark" style="font-size: 1rem;"></label>
+								</a>
+								<p
+									class="mt-1">{# <a href="{{ path('cus_profile') }}">My account</a>#}
+								</p>
+							</div>
+							<ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdownMenuAccount">
+								<li>
+									<a href="{{ path('cus_profile') }}" class="dropdown-item">Profile</a>
+								</li>
+								<li>
+									<a href="{{ path('logout_page') }}" class="dropdown-item">Logout</a>
+								</li>
+							</ul>
+						</div>
+					{% else %}
+						<a href="{{ path('logIn_page') }}" class="btn btn-outline-dark me-2">Login</a>
+						<a href="{{ path('signin_page') }}" class="btn btn-dark">Register</a>
+					{% endif %}
+				</div>
+			</div>
+		</body>
+	</html>
+</nav>{% endblock %}{% block body %}{% endblock %}<footer>
+{% block footer %}
+	<hr/>
+	<footer class="text-center text-lg-start text-dark footer">
+		<div
+			class="text-md-start">
+			<!-- Grid row -->
+			<div
+				class="row mt-4 mx-2">
+				<!-- Grid column -->
+				<div
+					class="col-md-4 mb-4 text-center">
+					<!-- Content -->
+					<h6 class="text-uppercase fw-bold">About us</h6>
+					<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: grey; height: 2px"/>
+					<p class="mx-5">
+						<a href="{{ path('aboutUs') }}" class="text-dark text-decoration-none">Dana.ischg Store is a brand from Vietnam, born in 2022. Started off as a small thrift shop in CanTho, Vietnam. Through the lens of fashionary, Dana.ischg would like to share experiences and POV in music, movies, and art, connecting the community of youth with global lifestyle.</a>
+					</p>
+				</div>
+
+				<!-- Grid column -->
+				<div
+					class="col-md-4 mb-4 text-center">
+					<!-- Links -->
+					<h6 class="text-uppercase fw-bold">Products</h6>
+					<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: grey; height: 2px"/>
+					<p>
+						<a href="{{ path('home_page') }}" class="text-dark text-decoration-none">Home</a>
+					</p>
+					<p>
+						<a href="{{ path('showProduct') }}" class="text-dark text-decoration-none">Product</a>
+					</p>
+					{# <p>
+																																																																																<a href="{{path('showProduct')}}" class="text-dark text-decoration-none">Sale</a>
+																																																																															</p> #}
+					<p>
+						<a href="{{ path('aboutUs') }}" class="text-dark text-decoration-none">About</a>
+					</p>
+				</div>
+
+				<!-- Grid column -->
+				<div
+					class="col-md-4 mb-md-0 mb-4 text-center">
+					<!-- Links -->
+					<h6 class="text-uppercase fw-bold">Contact</h6>
+					<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: grey; height: 2px"/>
+					<p>
+						<i class="fas fa-home mr-3"></i>
+						160 Mac Thien Tich, Can Tho
+					</p>
+					<p>
+						<i class="fas fa-envelope mr-3"></i>
+						DanaischgStore@gmail.com
+					</p>
+					<p>
+						<i class="fas fa-phone mr-3"></i>
+						0843 630 939
+					</p>
+					<p>
+						<i class="fas fa-print mr-3"></i>
+						0916 843 367
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- Copyright -->
+		<div class="text-footer p-3 text-white text-center">
+			2020 Copyright:
+			<a class="text-white" href="{{ path('aboutUs') }}">Dana.ischgStore.com</a>
+		</div>
+		<!-- Copyright -->
+	</footer>
+{% endblock %}</footer></body></body></html>{# tôi muốn hiển thị số lượng sản phẩm trong đơn hàng ra tại id = shopingCart tại controller cart #}<script>$(document).ready(function () {
 $.ajax({
 url: '/cart/count',
 type: 'GET',
@@ -217,5 +252,4 @@ console.log(response)
 $('#shopingCart').text(response.length)
 }
 })
-})
-</script>
+})</script>
