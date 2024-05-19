@@ -1,17 +1,141 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}My Wishlist{% endblock %}
+{% block stylesheets %}
+	<link href="{{asset('css/admin.css')}}" rel="stylesheet" media="all">
+{% endblock %}
 
 {% block body %}
-    <h1>My Wishlist</h1>
-    <ul>
-        {% for product in products %}
-            <li>
-                {{ product.name }} - {{ product.price | number_format(2) }}
-                <!-- Thêm các chi tiết sản phẩm nếu cần -->
-            </li>
-        {% else %}
-            <li>No products in your wishlist.</li>
-        {% endfor %}
-    </ul>
-{% endblock %}
+	<section class="header mx-5">
+		<div class="container mt-4 mb-3">
+			<div class="text-center lh-1 mb-2">
+				<h4 class="fw-bold">WishList</h4>
+			</div>
+			<div class="d-flex justify-content-end">
+				<span>Branch: VESTA</span>
+			</div>
+		</div>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-5 text-center">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		<table class="mt-2 table table-bordered">
+			<div class="row">
+				<div class="col-lg-6">
+					<h5>
+						Product List</h5>
+				</div>
+				{# <div class="col-lg-6 mx-auto">
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+						<button class="btn btn-dark me-4" type="button">
+							<a href="{{path('addPro_page')}}" class="text-decoration-none text-reset">Add new Product</a>
+						</button>
+					</div>
+				</div> #}
+			</div>
+
+			<thead class="bg-dark text-white text-center">
+				<tr>
+					<th scope="col">Product ID</th>
+					<th scope="col">Product Name</th>
+					<th scope="col">Status</th>
+					<th scope="col">Descriptions</th>
+					<th scope="col">Price</th>
+					<th scope="col">For Gender</th>
+					<th scope="col">Category</th>
+					<th scope="col">Supplier</th>
+					<th scope="col">Image</th>
+					<th scope="col">Clothing Size Conversion</th>
+
+					{# Edit, Delete #}
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
+					{# Edit, Delete #}
+
+				</tr>
+			</thead>
+			{% for p in products %}
+				<tr id="row_pro{{p.id}}" class="text-center align-middle">
+					<th scope="row">{{p.id}}</th>
+					<td>{{p.name}}</td>
+					<td>
+						{% if p.status == 1 %}
+							On Sale
+						{% else %}
+							Sold Out
+						{% endif %}
+					</td>
+					<td>{{p.descriptions}}</td>
+					<td>{{p.price}}</td>
+					<td>
+						{% if p.forGender == 0 %}
+							Men's Clothings
+						{% else %}
+							Women's Clothing
+						{% endif %}
+					</td>
+					<td>{{p.category.name}}</td>
+					<td>{{p.supplier.name}}</td>
+					<td>
+						{% set img = p.image %}
+						<img src="{{asset('images/'~img)}}" width="100" height="auto" alt="" class="mx-3">
+					</td>
+					<td>
+						<a href="{{path('proSize_page', {'id': p.id})}}">
+							<button class="bi bi-arrow-right-square border-0 bg-white ">
+								<p class="ms-2">See more</p>
+							</button>
+						</a>
+					</td>
+
+					{# Edit, Delete #}
+					<td>
+						<a href="{{path('editPro_page', {'id':p.id})}}">
+							<button class="bi bi-pencil-square border-0 bg-white"></button>
+						</a>
+					</td>
+					<td>
+						<a>
+							<button class="bi bi-trash3 border-0 bg-white" onclick="delete_pro('{{p.id}}');"></button>
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</tbody>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+	function delete_pro(id) {
+Swal.fire({
+title: 'Are you sure?',
+text: "You won't be able to revert this!",
+icon: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Delete'
+}).then((result) => {
+if (result.isConfirmed) {
+$.ajax({
+type: 'delete',
+url: '/admin/product/delete/' + id,
+data: {
+id: id
+},
+success: function () {
+var row = document.getElementById("row_pro" + id);
+row.parentNode.removeChild(row);
+Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
+
+}
+});
+}
+})
+
+}
+</script>{% endblock %}

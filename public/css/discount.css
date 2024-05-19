@@ -52,6 +52,9 @@
   article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block;
   }
+  a.btn.btn-outline-dark.btn-square:hover {
+    color: #e6b400 !important;
+}
   
   body {
     margin: 0;

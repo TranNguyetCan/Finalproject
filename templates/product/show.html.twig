@@ -99,20 +99,19 @@
 												<img src="{{asset('images/'~img)}}" class="card-img-top" alt=""/>
 											</a>
 											<ul class="product-links">
-												<li>
-													<button class="search-btn" onclick="searchProduct('{{p.name}}')" style="width: 25px">
+												{# <li>
+													<button class="search-btn" onclick="searchProduct('{{p.name}}')" style="width: 30px; height: 30px ;background: #efeeec; margin-bottom: 5px;border-radius: 10px;">
 														<i class="fa fa-search"></i>
 													</button>
-
-												</li>
+												</li> #}
 												<li>
-													<button class="heart-btn" onclick="addToFavorites('{{p.id}}')" style="width: 25px">
-														<i id="heartIcon{{p.id}}" class="fa fa-heart"></i>
-													</button>
+													<a class="heart-btn" onclick="addToFavorites('{{p.id}}')" href="{{ path('add_wishlist', {'id': p.id}) }}" method="post" style="width: 30px; height: 30px ; background: #efeeec; margin-bottom: 5px;border-radius: 10px; border: 2px solid;">
+													<i class="fa-solid fa-heart-circle-plus"></i>
+													</a>
 												</li>
 												
 												<li>
-													<button class="share-btn" onclick="shareProduct('{{p.id}}')">
+													<button class="share-btn" onclick="shareProduct('{{p.id}}')" style="width: 30px; height: 30px ; background: #efeeec; margin-bottom: 5px;border-radius: 10px;">
 														<i class="fa fa-share"></i>
 													</button>
 												</li>
@@ -172,7 +171,6 @@
 			</div>
 		</div>
 	</div>
-	
 	<!-- Shop Product End -->
 </div></div>
 
