@@ -2,35 +2,96 @@
 
 namespace App\Controller;
 
-use App\Entity\Product;
+use App\Entity\Wishlist;
 use App\Repository\ProductRepository;
+use App\Repository\WishlistRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
+
+/**
+ * @Route("/wishlist")
+ */
 
 class WishlistController extends AbstractController
 {
     /**
-     * @Route("/wishlist", name="wishlist_index")
+     * @Route("/", name="wishlist_index")
      */
 
-    public function index(): Response
-    {
-        return $this->render('wishlist/index.html.twig', [
-            'controller_name' => 'WishlistController',
-        ]);
-    }
-    /**
-     * @Route("/wishlist/{id}", name="add_wishlist")
-     */
-    public function addWishlist($id, ProductRepository $productRepo, Request $req): Response
+    public function index(WishlistRepository $wishlistRepo): Response
     {
         $user = $this->getUser();
         if (!$user) {
             // return $this->redirectToRoute('app_login');
         }
-        $product = $productRepo->find($id);
-        $wishlist = 
+        $wishlistItems = $wishlistRepo->findBy(['user' => $user]);
+        $products = [];
+        foreach ($wishlistItems as $item) {
+            $products[] = $item->getProduct();
+        }
+        return $this->render('wishlist/index.html.twig', [
+            'products' => $products,
+        ]);
     }
+    /**
+     * @Route("/add/{id}", name="add_wishlist")
+     */
+    public function addWishlist($id, ProductRepository $productRepo, WishlistRepository $wishlistRepo, EntityManagerInterface $em): Response
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+        $product = $productRepo->find($id);
+        if (!$product) {
+            throw $this->createNotFoundException('Product not found');
+        }
+
+        $existingWishlist = $wishlistRepo->findOneBy([
+            'user' => $user,
+            'product' => $product
+        ]);
+
+        if (!$existingWishlist) {
+            $wishlist = new Wishlist();
+            $wishlist->setUser($user);
+            $wishlist->setProduct($product);
+
+            $em->persist($wishlist);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('wishlist_index');
+    }
+
+    // public function addWishlist($id, ProductRepository $productRepo, EntityManagerInterface $em): Response
+    // {
+    //     $user = $this->getUser();
+    //     if (!$user) {
+    //         // return $this->redirectToRoute('app_login');
+    //     }
+
+    //     $product = $productRepo->find($id);
+    //     if (!$product) {
+    //         throw $this->createNotFoundException('Product not found');
+    //     }
+
+    //     $existingWishlist = $user->getWishlists()->filter(function ($wishlist) use ($product) {
+    //         return $wishlist->getProduct() === $product;
+    //     })->first();
+
+    //     if (!$existingWishlist) {
+    //         $wishlist = new Wishlist();
+    //         $wishlist->setUser($user);
+    //         $wishlist->setProduct($product);
+
+    //         $em->persist($wishlist);
+    //         $em->flush();
+    //     }
+
+    //     return $this->redirectToRoute('wishlist_index');
+    // }
 }

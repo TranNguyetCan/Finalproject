@@ -17,8 +17,9 @@ class Discount
     #[ORM\Column]
     private ?int $deal = null;
 
-    #[ORM\Column]
-    private ?int $product_id = null;
+    #[ORM\ManyToOne(targetEntity: ProSize::class)]
+    #[ORM\JoinColumn(name: 'product_id', referencedColumnName: 'id', nullable: false)]
+    private ?ProSize $proSize = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $start_date = null;
@@ -46,14 +47,14 @@ class Discount
         return $this;
     }
 
-    public function getProductId(): ?int
+    public function getProSize(): ?ProSize
     {
-        return $this->product_id;
+        return $this->proSize;
     }
 
-    public function setProductId(int $product_id): self
+    public function setProSize(?ProSize $proSize): self
     {
-        $this->product_id = $product_id;
+        $this->proSize = $proSize;
 
         return $this;
     }

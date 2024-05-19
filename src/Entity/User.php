@@ -58,6 +58,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->carts = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->wishlists = new ArrayCollection();
     }
 
     public function getId(): ?int

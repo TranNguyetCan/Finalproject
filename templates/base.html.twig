@@ -59,6 +59,17 @@
 		{% block header %}
 			<!-- Logo -->
 			{# <img class="navbar-brand" src="{{ asset('images/logo.png') }}" onclick="window.location='/'" /> #}
+			{# templates/your_template.html.twig #}
+
+			{# <div class="btn-group dropdown"> <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown">
+								{{ app.request.locale|upper }}
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="{{ path('change_language', {'locale': 'fr'}) }}">FR</a>
+								<a class="dropdown-item" href="{{ path('change_language', {'locale': 'ar'}) }}">AR</a>
+								<a class="dropdown-item" href="{{ path('change_language', {'locale': 'ru'}) }}">RU</a>
+							</div>
+						</div> #}
 
 			<hr class="line"/> <nav
 				class="navbar navbar-expand-lg navbar-light bg-light">
@@ -80,8 +91,6 @@
 						<!-- active: highline -->
 						<a class="nav-link" href="{{ path('home_page') }}">Home</a>
 						<a class="nav-link" href="{{ path('showProduct') }}">Product</a>
-						{# <a class="nav-link" href="{{path('showProduct')}}">Sale</a> #}
-						<a class="nav-link" href="{{ path('aboutUs') }}">About</a>
 						<a class="nav-link" href="{{ path('discount_index') }}">Discount</a>
 						<div class="nav-item dropdown">
 							<div href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</div>
@@ -100,6 +109,9 @@
 								<a href="#" class="dropdown-item ">Shoes</a>
 							</div>
 						</div>
+						{# <a class="nav-link" href="{{path('showProduct')}}">Sale</a> #}
+						<a class="nav-link" href="{{ path('aboutUs') }}">About</a>
+
 
 						{# <i class="fa fa-angle-down text-dark"></i> #}
 					</a>
@@ -181,6 +193,7 @@
 			<div
 				class="row mt-4 mx-2">
 				<!-- Grid column -->
+
 				<div
 					class="col-md-4 mb-4 text-center">
 					<!-- Content -->
@@ -193,7 +206,7 @@
 
 				<!-- Grid column -->
 				<div
-					class="col-md-4 mb-4 text-center">
+					class="col-md-2 mb-4 text-center" style="width: 200px;">
 					<!-- Links -->
 					<h6 class="text-uppercase fw-bold">Products</h6>
 					<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: grey; height: 2px"/>
@@ -204,46 +217,71 @@
 						<a href="{{ path('showProduct') }}" class="text-dark text-decoration-none">Product</a>
 					</p>
 					{# <p>
-																																																																																<a href="{{path('showProduct')}}" class="text-dark text-decoration-none">Sale</a>
-																																																																															</p> #}
+																																																																																																														<a href="{{path('showProduct')}}" class="text-dark text-decoration-none">Sale</a>
+																																																																																																													</p> #}
 					<p>
 						<a href="{{ path('aboutUs') }}" class="text-dark text-decoration-none">About</a>
 					</p>
 				</div>
 
-				<!-- Grid column -->
-				<div
-					class="col-md-4 mb-md-0 mb-4 text-center">
-					<!-- Links -->
-					<h6 class="text-uppercase fw-bold">Contact</h6>
+				<div class="col-ms-3 mb-4 text-center" style="width: 300px !important;">
+					<h6 class="text-uppercase fw-bold">Contact Us</h6>
 					<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: grey; height: 2px"/>
-					<p>
-						<i class="fas fa-home mr-3"></i>
-						160 Mac Thien Tich, Can Tho
-					</p>
-					<p>
-						<i class="fas fa-envelope mr-3"></i>
-						DanaischgStore@gmail.com
-					</p>
-					<p>
-						<i class="fas fa-phone mr-3"></i>
-						0843 630 939
-					</p>
-					<p>
-						<i class="fas fa-print mr-3"></i>
-						0916 843 367
-					</p>
+
+					<p class="mb-2" style="text-align: left !important;">
+						<i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, Ninh Kieu, Can Tho</p>
+					<p class="mb-2" style="text-align: left !important;">
+						<i class="fa fa-envelope text-primary mr-3"></i>Tranguyetcantsga@gmail.com</p>
+					<p class="mb-2" style="text-align: left !important;">
+						<i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+
 				</div>
+
+				<div
+					class="col-md-3 mb-5 d-flex" style="">
+					{# <div class="bg-light p-30 mb-30"> #}
+					<iframe class="shadow" style="border-radius: 12px; margin-left: 30%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.8640680661892!2d105.7711491793457!3d10.028074201038898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a8990f568d%3A0x2a22d599b2c06b23!2sGreenwich%20Vi%E1%BB%87t%20Nam!5e0!3m2!1sen!2s!4v1715958051557!5m2!1sen!2s" width="450" height="200" style="border:0; margin - left" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					{# </div> #}
+
+				</div>
+
+				{# <!-- Grid column -->
+																												<div
+																													class="col-md-4 mb-md-0 mb-4 text-center">
+																													<!-- Links -->
+																													<h6 class="text-uppercase fw-bold">Contact</h6>
+																													<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: grey; height: 2px"/>
+																													<p>
+																														<i class="fas fa-home mr-3"></i>
+																														160 Mac Thien Tich, Can Tho
+																													</p>
+																													<p>
+																														<i class="fas fa-envelope mr-3"></i>
+																														DanaischgStore@gmail.com
+																													</p>
+																													<p>
+																														<i class="fas fa-phone mr-3"></i>
+																														0843 630 939
+																													</p>
+																													<p>
+																														<i class="fas fa-print mr-3"></i>
+																														0916 843 367
+																													</p>
+																												</div>
+																											</div>
+																										</div>
+																										<!-- Copyright -->
+																										<div class="text-footer p-3 text-white text-center">
+																											2020 Copyright:
+																											<a class="text-white" href="{{ path('aboutUs') }}">Dana.ischgStore.com</a>
+																										</div>
+																										<!-- Copyright -->
+																									</footer> #}
+
 			</div>
 		</div>
-		<!-- Copyright -->
-		<div class="text-footer p-3 text-white text-center">
-			2020 Copyright:
-			<a class="text-white" href="{{ path('aboutUs') }}">Dana.ischgStore.com</a>
-		</div>
-		<!-- Copyright -->
-	</footer>
-{% endblock %}</footer></body></body></html>{# tôi muốn hiển thị số lượng sản phẩm trong đơn hàng ra tại id = shopingCart tại controller cart #}<script>$(document).ready(function () {
+	{% endblock %}
+</footer></body></body></html>{# tôi muốn hiển thị số lượng sản phẩm trong đơn hàng ra tại id = shopingCart tại controller cart #}<script>$(document).ready(function () {
 $.ajax({
 url: '/cart/count',
 type: 'GET',

@@ -13,37 +13,39 @@ class Wishlist
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $productID = null;
+    #[ORM\ManyToOne(targetEntity: Product::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Product $product = null;
 
-    #[ORM\Column]
-    private ?int $userID = null;
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getProductID(): ?int
+    public function getProduct(): ?Product
     {
-        return $this->productID;
+        return $this->product;
     }
 
-    public function setProductID(int $productID): self
+    public function setProduct(?Product $product): self
     {
-        $this->productID = $productID;
+        $this->product = $product;
 
         return $this;
     }
 
-    public function getUserID(): ?int
+    public function getUser(): ?User
     {
-        return $this->userID;
+        return $this->user;
     }
 
-    public function setUserID(int $userID): self
+    public function setUser(?User $user): self
     {
-        $this->userID = $userID;
+        $this->user = $user;
 
         return $this;
     }

@@ -117,5 +117,6 @@ class ProductController extends AbstractController
             'products' => $p,
         ]);
     }
+   
 
 }
