@@ -39,8 +39,8 @@
 	<hr/>
 	<div>
 		<h4 class="attentive ms-3 text-center">Best Seller</h4>
-			<div class="container py-4">
-				<div class="row">
+		<div class="container py-4">
+			<div class="row">
 				{% for b in bestseller %}
 					<div class="col-md-6 col-lg-4 col-xl-3">
 						<div class="product-grid">
@@ -49,13 +49,15 @@
 									{% set img = b.image %}
 									<img src="{{asset('images/'~img)}}">
 								</a>
-								<ul class="product-links">
+								<ul
+									class="product-links">
 									{# <li>
-										<button class="search-btn" onclick="searchProduct('{{b.name}}')" style="width: 30px; height: 30px ;background: #efeeec; margin-bottom: 5px;border-radius: 10px;">
-											<i class="fa fa-search"></i>
-										</button>
-
-									</li> #}
+									
+																																														<button class="search-btn" onclick="searchProduct('{{b.name}}')" style="width: 30px; height: 30px ;background: #efeeec; margin-bottom: 5px;border-radius: 10px;">
+																																<i class="fa fa-search"></i>
+																																														</button>
+																																				
+																																													</li> #}
 									<li>
 										<a class="heart-btn" href="{{ path('add_wishlist', {'id': b.id}) }}" method="post" style="width: 30px; height: 30px ; background: #efeeec; margin-bottom: 5px;border-radius: 10px; border: 2px solid;">
 											<i class="fa-solid fa-heart-circle-plus"></i>
@@ -73,6 +75,20 @@
 							<input type="hidden" id="count" value="1"/>
 							<input type="hidden" name="size" value="" id="proSizeId{{b.id}}">
 							<button class="add-to-cart fw-bold" name="insert_button{{b.id}}" onclick="insert_row({{b.id}})">Add to Cart</button>
+						</div>
+						<!-- HTML cho cửa sổ popup -->
+						<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="shareModalLabel">Share Product</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<p id="shareLink">Product Link Here</p>
+									</div>
+								</div>
+							</div>
 						</div>
 
 						<div class="product-content">
@@ -224,8 +240,6 @@ Swal.fire('Please choose your size!');
 function shareProduct(productId) {
 var currentUrl = window.location.href;
 var shareUrl = currentUrl + "detail/" + productId;
-
-// Create input element
 var input = `
 			<div class="row">
 				<div class="col-10">
@@ -237,8 +251,6 @@ var input = `
 			</div>
 			`;
 document.getElementById("shareLink").innerHTML = input;
-
-
 myModal.show();
 }
 
