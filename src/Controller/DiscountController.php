@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Discount;
+use App\Entity\Product;
 use App\Form\DiscountType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -63,18 +64,19 @@ class DiscountController extends AbstractController
             'product' => $product,
         ]);
     }
-    //   /**
-    //  * @Route("/detail/{id}", name="product_detail")
-    //  */
-    // public function productDetailAction(Product $p, ProSizeRepository $repoPs): Response
-    // {
-    //     $proSize = $repoPs->findNameSize([], [
-    //         'id' => 'DESC'
-    //     ]);
+      /**
+     * @Route("/detail/{id}", name="product_detail")
+     */
+    public function productDetailAction(Product $p, ProSizeRepository $repoPs): Response
+    {
+        $proSize = $repoPs->findNameSize([], [
+            'id' => 'DESC'
+        ]);
 
-    //     return $this->render('product/detail.html.twig', [
-    //         'product' => $p,
-    //         'proSize' => $proSize
-    //     ]);
-    // }
+        return $this->render('product/detail.html.twig', [
+            'product' => $p,
+            'proSize' => $proSize
+        ]);
+    }
+
 }

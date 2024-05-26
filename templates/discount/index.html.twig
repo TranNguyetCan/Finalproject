@@ -130,9 +130,9 @@
 							<img class="position-absolute w-100 h-100" src="{{ asset('images/Poster_1.jpg') }}" style="object-fit: cover;">
 							<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
 								<div class="p-3" style="max-width: 700px;">
-									<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Men Fashion</h1>
-									<p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-									<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+									<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown"></h1>
+									<p class="mx-md-5 px-5 animate__animated animate__bounceIn"></p>
+									{# <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#"></a> #}
 								</div>
 							</div>
 						</div>
@@ -140,9 +140,9 @@
 							<img class="position-absolute w-100 h-100" src="{{ asset('images/poster_header_2.jpg') }}" style="object-fit: cover;">
 							<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
 								<div class="p-3" style="max-width: 700px;">
-									<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Women Fashion</h1>
-									<p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-									<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+									<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown"></h1>
+									<p class="mx-md-5 px-5 animate__animated animate__bounceIn"></p>
+									{# <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a> #}
 								</div>
 							</div>
 						</div>
@@ -150,9 +150,9 @@
 							<img class="position-absolute w-100 h-100" src="{{ asset('images/poster_header.jpg') }}" style="object-fit: cover;">
 							<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
 								<div class="p-3" style="max-width: 700px;">
-									<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Kids Fashion</h1>
-									<p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-									<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+									<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown"></h1>
+									<p class="mx-md-5 px-5 animate__animated animate__bounceIn"></p>
+									{# <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a> #}
 								</div>
 							</div>
 						</div>
@@ -228,7 +228,7 @@
 					<a class="text-decoration-none" href="">
 						<div class="cat-item d-flex align-items-center mb-4">
 							<div class="overflow-hidden" style="width: 100px; height: 100px;">
-								<img class="img-fluid" src="{{ asset('images/Candle' ~ (i % 4 + 1) ~ '.jpg') }}" alt="">
+								<img class="img-fluid" src="{{ asset('images/Candle' ~ (i % 12 + 1) ~ '.jpg') }}" alt="">
 							</div>
 							<div class="flex-fill pl-3">
 								<h6>Category Name</h6>
@@ -463,11 +463,11 @@
 									<a href="{{path('product_detail', {'id': p.id})}}">${{p.price}}</a>
 								</div>
 							</div>
-							{% if product.discount %}
+							{# {% if product.discount %}
 								<p>Discount:
 									{{ product.discount.percentage }}%</p>
 								<p>Discounted Price: ${{ product.price - (product.price * product.discount.percentage / 100) }}</p>
-							{% endif %}
+							{% endif %} #}
 							<div
 								class="text-center py-4">
 								{# <a class="h6 text-decoration-none text-truncate" href="{{ path('product_show', {'id': p.id}) }}">{{ p.name }}</a> #}

@@ -15,10 +15,10 @@
 		</div>
 
 		{# {% for message in app.flashes('success') %}
-			<div class="alert alert-success mt-5 text-center">
-				{{ message }}
-			</div>
-		{% endfor %} #}
+					<div class="alert alert-success mt-5 text-center">
+						{{ message }}
+					</div>
+				{% endfor %} #}
 
 		<table class="mt-2 table table-bordered">
 			<div class="row">
@@ -29,7 +29,7 @@
 				<div class="col-lg-6 mx-auto">
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						<button class="btn btn-dark me-4" type="button">
-							<a href="{{path('category_create')}}" class="text-decoration-none text-reset">Add new Dsicount</a>
+							<a href="{{path('create_discount')}}" class="text-decoration-none text-reset">Add new Dsicount</a>
 						</button>
 					</div>
 				</div>
@@ -39,10 +39,11 @@
 				<tr>
 					<th scope="col">Deal</th>
 					<th scope="col">Product Size</th>
+					<th scope="col">Description</th>
 					<th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
-                    <th scope="col">Description</th>
+					<th scope="col">End Date</th>
 					
+
 					{# Edit, Delete #}
 					<th scope="col">Edit</th>
 					<th scope="col">Delete</th>
@@ -50,21 +51,25 @@
 
 				</tr>
 			</thead>
-			{% for d in discount %}
+			{% for d in discounts %}
 				<tr class="text-center align-middle">
 					<th scope="row">{{d.id}}</th>
-					<td>{{d.name}}</td>
-					<td>{{d.descriptions}}</td>
+					<td>{{d.deal}}</td>
+					{# <td>{{d.proSize}}</td> #}
+					<td>{{d.description}}</td>
+					{# <td>{{ d.start_date|date('Y-m-d') }}</td>
+                    <td>{{ d.end_date|date('Y-m-d') }}</td> #}
+					
 					
 
 					{# Edit, Delete #}
 					<td>
-						<a href="{{path('category_edit', {'id':d.id})}}">
+						<a href="{{path('discount_edit', {'id':d.id})}}">
 							<button class="bi bi-pencil-square border-0 bg-white"></button>
-						</a>	
+						</a>
 					</td>
 					<td>
-						<a href="{{path('category_delete', {'id':d.id})}}">
+						<a href="{{path('discount_delete', {'id':d.id})}}">
 							<button class="bi bi-trash3 border-0 bg-white" onclick="return confirm('Are you sure to remove?')"></button>
 						</a>
 					</td>
@@ -73,4 +78,4 @@
 		</table>
 	</tbody>
 
-	{% endblock %}
+{% endblock %}

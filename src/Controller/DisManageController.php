@@ -10,6 +10,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Discount;
 use App\Form\DiscountType;
+use App\Repository\DiscountRepository;
+use App\Repository\ProductRepository;
 use App\Repository\ProSizeRepository;
 
 /**
@@ -17,6 +19,24 @@ use App\Repository\ProSizeRepository;
  */
 class DisManageController extends AbstractController
 {
+    private DiscountRepository $DiscountRepository;
+    public function __construct(DiscountRepository $DiscountRepository)
+    {
+        $this->DiscountRepository = $DiscountRepository;
+    }
+
+    /**
+     * @Route("/", name="discount_list")
+     */
+    public function index(): Response
+    {
+        $discounts = $this->DiscountRepository->findAll();
+
+        return $this->render('discount_manage/index.html.twig', [
+            'discounts' => $discounts,
+        ]);
+    }
+
     /**
      * @Route("/create", name="create_discount")
      */
@@ -46,6 +66,32 @@ class DisManageController extends AbstractController
         }
         return $this->render('discount_manage/new.html.twig', [
             'form' => $discountForm->createView()
+        ]);
+    }
+     /**
+     *  @Route("/{id}", name="discount_delete", requirements={"id"="\d+"})
+     */
+    public function deleteAction(Request $req, Discount $d): Response
+    {
+        $this->DiscountRepository->remove($d, true);
+        return $this->redirectToRoute('discount_list', [], Response::HTTP_SEE_OTHER);
+    }
+     /**
+     * @Route("/edit/{id}", name="discount_edit")
+     */
+    public function editAction(Request $req, DiscountRepository $DiscountRepository, Discount $d): Response
+    {
+        $formDisc = $this->createform(DiscountType::class, $d);
+
+        $formDisc->handleRequest($req);
+        if ($formDisc->isSubmitted() && $formDisc->isValid()) {
+
+
+            $DiscountRepository->save($d, true);
+            return $this->redirectToRoute('discount_list', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render("discount_manage/edit.html.twig", [
+            'formDisc' => $formDisc->createView()
         ]);
     }
 }
