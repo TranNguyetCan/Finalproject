@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-	<link href="{{asset('css/discount.css')}}" rel="stylesheet" media="all">
+
+	<link href="{{asset('css/Voucher.css')}}" rel="stylesheet" media="all">
+	
 {% endblock %}
 {% block body %}
 	<div class="d-inline-flex align-items-center d-block d-lg-none">
@@ -328,7 +330,7 @@
 								<div class="d-flex align-items-center justify-content-center mt-2">
 									<h5>${{ p.price }}</h5>
 									<h6 class="text-muted ml-2">
-										<del>{{ p.originalPrice }}</del>
+										{# <del>{{ p.originalPrice }}</del> #}
 									</h6>
 
 								</div>
@@ -463,10 +465,10 @@
 									<a href="{{path('product_detail', {'id': p.id})}}">${{p.price}}</a>
 								</div>
 							</div>
-							{# {% if product.discount %}
-								<p>Discount:
-									{{ product.discount.percentage }}%</p>
-								<p>Discounted Price: ${{ product.price - (product.price * product.discount.percentage / 100) }}</p>
+							{# {% if product.Voucher %}
+								<p>Voucher:
+									{{ product.Voucher.percentage }}%</p>
+								<p>Vouchered Price: ${{ product.price - (product.price * product.Voucher.percentage / 100) }}</p>
 							{% endif %} #}
 							<div
 								class="text-center py-4">
@@ -474,7 +476,7 @@
 								<div class="d-flex align-items-center justify-content-center mt-2">
 									<h5>${{ p.price }}</h5>
 									<h6 class="text-muted ml-2">
-										<del>{{ p.originalPrice }}</del>
+										{# <del>{{ p.originalPrice }}</del> #}
 									</h6>
 
 								</div>
@@ -595,7 +597,7 @@ Swal.fire('Please choose your size!');
 // const myModal = new bootstrap.Modal(document.getElementById('shareModal'));
 function shareProduct(productId) {
 var currentUrl = window.location.href;
-var cleanUrl = currentUrl.substring(0, currentUrl.indexOf('/discount/index'));
+var cleanUrl = currentUrl.substring(0, currentUrl.indexOf('/Voucher/index'));
 var shareUrl = cleanUrl + "detail/" + productId;
 var input = `
 			<div class="row">

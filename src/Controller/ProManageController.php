@@ -192,6 +192,8 @@ class ProManageController extends AbstractController
         ]);
     }
 
+    // http://127.0.0.1:8000/admin/product/delete/3 
+
     /* ==========================================================================
    Delete Admin Product Page
    ========================================================================== */
@@ -199,9 +201,11 @@ class ProManageController extends AbstractController
     /**
      * @Route("/delete/{id}", name="deletePro_page", methods={"delete"})
      */
-    public function Action(Product $p)
+    public function Action(int $id)
     {
-        $this->repo->remove($p, true);
+
+        $product = $this->repo->find($id);
+        $this->repo->remove($product, true);
         return new JsonResponse();
     }
 }

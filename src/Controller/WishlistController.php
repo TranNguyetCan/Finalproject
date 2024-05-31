@@ -94,4 +94,23 @@ class WishlistController extends AbstractController
 
     //     return $this->redirectToRoute('wishlist_index');
     // }
+    //  /**
+    //  * @Route("/edit/{id}", name="wishlist_edit")
+    //  */
+    // public function editAction(Request $req, WishlistRepository $repo, Wishlist $w): Response
+    // {
+    //     $formWish = $this->createform(WishlistType ::class, $c);
+
+    //     $formCate->handleRequest($req);
+    //     if ($formCate->isSubmitted() && $formCate->isValid()) {
+
+
+    //         $repo->save($c, true);
+    //         return $this->redirectToRoute('cate_page', [], Response::HTTP_SEE_OTHER);
+    //     }
+    //     return $this->render("cate_manage/edit.html.twig", [
+    //         'formCate' => $formCate->createView()
+    //     ]);
+    // }
+
 }

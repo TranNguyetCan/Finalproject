@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\DiscountRepository;
+use App\Repository\VoucherRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DiscountRepository::class)]
-class Discount
+#[ORM\Entity(repositoryClass: VoucherRepository::class)]
+class Voucher
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

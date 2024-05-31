@@ -57,4 +57,5 @@ class AdministrationController extends AbstractController
     {
         return $this->render('admin/product.html.twig');
     }
+    
 }

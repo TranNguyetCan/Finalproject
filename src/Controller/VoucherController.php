@@ -2,27 +2,27 @@
 
 namespace App\Controller;
 
-use App\Repository\DiscountRepository;
+use App\Repository\VoucherRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ProSizeRepository;
 use App\Repository\SizeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Discount;
+use App\Entity\Voucher;
 use App\Entity\Product;
-use App\Form\DiscountType;
+use App\Form\VoucherType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 /**
- * @Route("/discount")
+ * @Route("/voucher")
  */
-class DiscountController extends AbstractController
+class VoucherController extends AbstractController
 {
     //repository
-    private DiscountRepository $repo;
-    public function __construct(DiscountRepository $repo)
+    private VoucherRepository $repo;
+    public function __construct(VoucherRepository $repo)
     {
         $this->repo = $repo;
     }
@@ -40,7 +40,7 @@ class DiscountController extends AbstractController
             throw new \Exception('Error fetching products or vendor images: ' . $e->getMessage());
         }
 
-        return $this->render('discount/index.html.twig', [
+        return $this->render('Voucher/index.html.twig', [
             'products' => $products,
             'proSize' => $proSize
             
@@ -50,17 +50,17 @@ class DiscountController extends AbstractController
 
 
     /**
-     * @Route("/discount/share/{id}", name="sharediscount")
+     * @Route("/Voucher/share/{id}", name="shareVoucher")
      */
-    public function shareProduct($id, DiscountRepository $discountRepository): Response
+    public function shareProduct($id, VoucherRepository $VoucherRepository): Response
     {
-        $product = $discountRepository->find($id);
+        $product = $VoucherRepository->find($id);
 
         if (!$product) {
             throw $this->createNotFoundException('Product not found.');
         }
 
-        return $this->render('discount/index.html.twig', [
+        return $this->render('Voucher/index.html.twig', [
             'product' => $product,
         ]);
     }

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Discount;
+use App\Entity\Voucher;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Discount>
+ * @extends ServiceEntityRepository<Voucher>
  *
- * @method Discount|null find($id, $lockMode = null, $lockVersion = null)
- * @method Discount|null findOneBy(array $criteria, array $orderBy = null)
- * @method Discount[]    findAll()
- * @method Discount[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Voucher|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Voucher|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Voucher[]    findAll()
+ * @method Voucher[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DiscountRepository extends ServiceEntityRepository
+class VoucherRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Discount::class);
+        parent::__construct($registry, Voucher::class);
     }
 
-    public function save(Discount $entity, bool $flush = false): void
+    public function save(Voucher $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class DiscountRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Discount $entity, bool $flush = false): void
+    public function remove(Voucher $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class DiscountRepository extends ServiceEntityRepository
     }
 
    /**
-    * @return Discount[] Returns an array of Discount objects
+    * @return Voucher[] Returns an array of Voucher objects
     */
    public function findByExampleField($value): array
    {
@@ -54,7 +54,7 @@ class DiscountRepository extends ServiceEntityRepository
        ;
    }
 
-//    public function findOneBySomeField($value): ?Discount
+//    public function findOneBySomeField($value): ?Voucher
 //    {
 //        return $this->createQueryBuilder('d')
 //            ->andWhere('d.exampleField = :val')

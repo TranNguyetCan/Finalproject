@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Discount;
+use App\Entity\Voucher;
 use App\Entity\ProSize;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class DiscountType extends AbstractType
+class VoucherType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

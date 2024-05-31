@@ -44,9 +44,6 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Supplier $supplier = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $originalPrice = null;
-
     #[ORM\Column(nullable: true)]
     private ?int $rating = null;
 
@@ -182,18 +179,6 @@ class Product
     public function setSupplier(?Supplier $supplier): self
     {
         $this->supplier = $supplier;
-
-        return $this;
-    }
-
-    public function getOriginalPrice(): ?string
-    {
-        return $this->originalPrice;
-    }
-
-    public function setOriginalPrice(?string $originalPrice): self
-    {
-        $this->originalPrice = $originalPrice;
 
         return $this;
     }

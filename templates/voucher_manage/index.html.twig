@@ -7,7 +7,7 @@
 	<section class="header mx-5">
 		<div class="container mt-4 mb-3">
 			<div class="text-center lh-1 mb-2">
-				<h4 class="fw-bold">Discount Management</h4>
+				<h4 class="fw-bold">Voucher Management</h4>
 			</div>
 			<div class="d-flex justify-content-end">
 				<span>VESTA</span>
@@ -24,12 +24,12 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<h5>
-						Discount</h5>
+						Voucher</h5>
 				</div>
 				<div class="col-lg-6 mx-auto">
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						<button class="btn btn-dark me-4" type="button">
-							<a href="{{path('create_discount')}}" class="text-decoration-none text-reset">Add new Dsicount</a>
+							<a href="{{path('create_Voucher')}}" class="text-decoration-none text-reset">Add new Dsicount</a>
 						</button>
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 
 				</tr>
 			</thead>
-			{% for d in discounts %}
+			{% for d in Vouchers %}
 				<tr class="text-center align-middle">
 					<th scope="row">{{d.id}}</th>
 					<td>{{d.deal}}</td>
@@ -64,12 +64,12 @@
 
 					{# Edit, Delete #}
 					<td>
-						<a href="{{path('discount_edit', {'id':d.id})}}">
+						<a href="{{path('Voucher_edit', {'id':d.id})}}">
 							<button class="bi bi-pencil-square border-0 bg-white"></button>
 						</a>
 					</td>
 					<td>
-						<a href="{{path('discount_delete', {'id':d.id})}}">
+						<a href="{{path('Voucher_delete', {'id':d.id})}}">
 							<button class="bi bi-trash3 border-0 bg-white" onclick="return confirm('Are you sure to remove?')"></button>
 						</a>
 					</td>

@@ -27,12 +27,12 @@
 						Product List</h5>
 				</div>
 				{# <div class="col-lg-6 mx-auto">
-					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						<button class="btn btn-dark me-4" type="button">
-							<a href="{{path('addPro_page')}}" class="text-decoration-none text-reset">Add new Product</a>
-						</button>
-					</div>
-				</div> #}
+									<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+										<button class="btn btn-dark me-4" type="button">
+											<a href="{{path('addPro_page')}}" class="text-decoration-none text-reset">Add new Product</a>
+										</button>
+									</div>
+								</div> #}
 			</div>
 
 			<thead class="bg-dark text-white text-center">
@@ -122,7 +122,7 @@ confirmButtonText: 'Delete'
 }).then((result) => {
 if (result.isConfirmed) {
 $.ajax({
-type: 'delete',
+type: 'DELETE',
 url: '/admin/product/delete/' + id,
 data: {
 id: id
@@ -132,10 +132,13 @@ var row = document.getElementById("row_pro" + id);
 row.parentNode.removeChild(row);
 Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
 
-}
+},
+error: function () {
+                    Swal.fire('Failed!', 'There was an error deleting the product.', 'error');
+                }
 });
 }
 })
-
 }
-</script>{% endblock %}
+</script>
+{% endblock %}

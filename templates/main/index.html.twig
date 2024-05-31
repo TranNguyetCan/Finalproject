@@ -40,7 +40,7 @@
 	<div>
 		<h4 class="attentive ms-3 text-center">Best Seller</h4>
 		<div class="container py-4">
-			<div class="row">
+			<div class="row">	
 				{% for b in bestseller %}
 					<div class="col-md-6 col-lg-4 col-xl-3">
 						<div class="product-grid">
@@ -49,17 +49,9 @@
 									{% set img = b.image %}
 									<img src="{{asset('images/'~img)}}">
 								</a>
-								<ul
-									class="product-links">
-									{# <li>
-									
-																																														<button class="search-btn" onclick="searchProduct('{{b.name}}')" style="width: 30px; height: 30px ;background: #efeeec; margin-bottom: 5px;border-radius: 10px;">
-																																<i class="fa fa-search"></i>
-																																														</button>
-																																				
-																																													</li> #}
+								<ul class="product-links">
 									<li>
-										<a class="heart-btn" href="{{ path('add_wishlist', {'id': b.id}) }}" method="post" style="width: 30px; height: 30px ; background: #efeeec; margin-bottom: 5px;border-radius: 10px; border: 2px solid;">
+										<a class="" href="{{ path('add_wishlist', {'id': b.id}) }}" method="post" style="width: 30px; height: 30px ; background: #efeeec; margin-bottom: 5px;border-radius: 10px; border: 2px solid;">
 											<i class="fa-solid fa-heart-circle-plus"></i>
 										</a>
 									</li>
@@ -69,144 +61,138 @@
 											<i class="fa fa-share"></i>
 										</button>
 									</li>
-
-								</li>
-							</ul>
-							<input type="hidden" id="count" value="1"/>
-							<input type="hidden" name="size" value="" id="proSizeId{{b.id}}">
-							<button class="add-to-cart fw-bold" name="insert_button{{b.id}}" onclick="insert_row({{b.id}})">Add to Cart</button>
-						</div>
-						<!-- HTML cho cửa sổ popup -->
-						<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="shareModalLabel">Share Product</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">
-										<p id="shareLink">Product Link Here</p>
+								</ul>
+								<input type="hidden" id="count" value="1"/>
+								<input type="hidden" name="size" value="" id="proSizeId{{b.id}}">
+								<button class="add-to-cart fw-bold" name="insert_button{{b.id}}" onclick="insert_row({{b.id}})">Add to Cart</button>
+							</div>
+							<!-- HTML cho cửa sổ popup -->
+							<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="shareModalLabel">Share Product</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<p id="shareLink">Product Link Here</p>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 
-						<div class="product-content">
-							<div
-								class="mb-1">
-								{# <span>Select Size</span> #}
-								<div class="form text-center">
-									{% set status = 0 %}
-									{% for ps in proSizes %}
-										{% if ps.proId == b.id %}
-											<input type="radio" name="size" id="size{{ps.sizeId}}" onchange="getSize({{ps.psId}}, {{b.id}})"/>
-											<label for="size{{ps.sizeId}}" class="me-1">{{ps.sizeName}}</label>
-											{% set status = 1 %}
+							<div class="product-content">
+								<div
+									class="mb-1">
+									{# <span>Select Size</span> #}
+									<div class="form text-center">
+										{% set status = 0 %}
+										{% for ps in proSizes %}
+											{% if ps.proId == b.id %}
+												<input type="radio" name="size" id="size{{ps.sizeId}}" onchange="getSize({{ps.psId}}, {{b.id}})"/>
+												<label for="size{{ps.sizeId}}" class="me-1">{{ps.sizeName}}</label>
+												{% set status = 1 %}
+											{% endif %}
+										{% endfor %}
+										{% if status == 0 %}
+											<p class="mb-0">Out Of Stock</p>
 										{% endif %}
-									{% endfor %}
-									{% if status == 0 %}
-										<p class="mb-0">Out Of Stock</p>
-									{% endif %}
+									</div>
 								</div>
-							</div>
-							<h3 class="title">
-								<a href="{{path('proDetail_page', {'id': b.id})}}">{{b.name}}</a>
-							</h3>
-							<div class="price">
-								<a href="{{path('proDetail_page', {'id': b.id})}}">${{b.price}}</a>
+								<h3 class="title">
+									<a href="{{path('proDetail_page', {'id': b.id})}}">{{b.name}}</a>
+								</h3>
+								<div class="price">
+									<a href="{{path('proDetail_page', {'id': b.id})}}">${{b.price}}</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			{% endfor %}
+				{% endfor %}
 
+			</div>
 		</div>
 	</div>
-</div>
-<div class="text-center mb-3">
-	<a href="{{path('showProduct')}}" class="btn-home btn-radius text-center">
-		See More</a>
-</div>
-<video src="{{asset('video/introduction.mp4')}}" style="width:100%;position-relative:top;height:100%;" loop autoplay muted></video>
-
-<hr/>
-<div>=
-	<h4 class="attentive ms-3 text-center">New Items</h4>
-	<div class="container py-4">
-		<div class="row">
-			{% for n in newItems %}
-				<div class="col-md-6 col-lg-4 col-xl-3">
-					<div class="product-grid">
-						<div class="product-image">
-							<a href="{{path('proDetail_page', {'id': n.id})}}" class="image">
-								{% set img = n.image %}
-								<img src="{{asset('images/'~img)}}">
-							</a>
-							<ul class="product-links">
-								<li>
-									<a href="#">
-										<i class="fa fa-search"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<i class="fa fa-heart"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<i class="fa fa-random"></i>
-									</a>
-								</li>
-							</ul>
-							<input type="hidden" id="count" value="1"/>
-							<input type="hidden" name="size" value="" id="proSizeId{{n.id}}">
-							<button class="add-to-cart fw-bold" name="insert_button{{n.id}}" onclick="insert_row({{n.id}})">Add to Cart</button>
-						</div>
-
-						<div class="product-content">
-							<div
-								class="mb-1">
-								{# <span>Select Size</span> #}
-								<div class="form text-center">
-									{% set status = 0 %}
-									{% for ps in proSizes %}
-										{% if ps.proId == n.id %}
-											<input type="radio" name="size" id="size{{ps.sizeId}}" onchange="getSize({{ps.psId}}, {{n.id}})"/>
-											<label for="size{{ps.sizeId}}" class="me-1">{{ps.sizeName}}</label>
-											{% set status = 1 %}
-										{% endif %}
-									{% endfor %}
-									{% if status == 0 %}
-										<p class="mb-0">Out Of Stock</p>
-									{% endif %}
-								</div>
-							</div>
-							<h3 class="title">
-								<a href="{{path('proDetail_page', {'id': n.id})}}">{{n.name}}</a>
-							</h3>
-							<div class="price">
-								<a href="{{path('proDetail_page', {'id': n.id})}}">${{n.price}}</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-	</div>
-
-	<div class="text-center">
+	<div class="text-center mb-3">
 		<a href="{{path('showProduct')}}" class="btn-home btn-radius text-center">
 			See More</a>
 	</div>
-</div>
+	<video src="{{asset('video/introduction.mp4')}}" style="width:100%;position-relative:top;height:100%;" loop autoplay muted></video>
 
-<script script script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<hr/>
+	<div>=
+		<h4 class="attentive ms-3 text-center">New Items</h4>
+		<div class="container py-4">
+			<div class="row">
+				{% for n in newItems %}
+					<div class="col-md-6 col-lg-4 col-xl-3">
+						<div class="product-grid">
+							<div class="product-image">
+								<a href="{{path('proDetail_page', {'id': n.id})}}" class="image">
+									{% set img = n.image %}
+									<img src="{{asset('images/'~img)}}">
+								</a>
+								<ul class="product-links">
+									<li>
+										<a class="" href="{{ path('add_wishlist', {'id': n.id}) }}" method="post" style="width: 30px; height: 30px ; background: #efeeec; margin-bottom: 5px;border-radius: 10px; border: 2px solid;">
+											<i class="fa-solid fa-heart-circle-plus"></i>
+										</a>
+									</li>
 
-<script>
-	const myModal = new bootstrap.Modal(document.getElementById('shareModal'));
+									<li>
+										<button class="share-btn" onclick="shareProduct('{{n.id}}')" style="width: 30px; height: 30px ; background: #efeeec; margin-bottom: 5px;border-radius: 10px;">
+											<i class="fa fa-share"></i>
+										</button>
+									</li>
+								</ul>
+								<input type="hidden" id="count" value="1"/>
+								<input type="hidden" name="size" value="" id="proSizeId{{n.id}}">
+								<button class="add-to-cart fw-bold" name="insert_button{{n.id}}" onclick="insert_row({{n.id}})">Add to Cart</button>
+							</div>
+
+							<div class="product-content">
+								<div
+									class="mb-1">
+									{# <span>Select Size</span> #}
+									<div class="form text-center">
+										{% set status = 0 %}
+										{% for ps in proSizes %}
+											{% if ps.proId == n.id %}
+												<input type="radio" name="size" id="size{{ps.sizeId}}" onchange="getSize({{ps.psId}}, {{n.id}})"/>
+												<label for="size{{ps.sizeId}}" class="me-1">{{ps.sizeName}}</label>
+												{% set status = 1 %}
+											{% endif %}
+										{% endfor %}
+										{% if status == 0 %}
+											<p class="mb-0">Out Of Stock</p>
+										{% endif %}
+									</div>
+								</div>
+								<h3 class="title">
+									<a href="{{path('proDetail_page', {'id': n.id})}}">{{n.name}}</a>
+								</h3>
+								<div class="price">
+									<a href="{{path('proDetail_page', {'id': n.id})}}">${{n.price}}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div class="text-center">
+			<a href="{{path('showProduct')}}" class="btn-home btn-radius text-center">
+				See More</a>
+		</div>
+	</div>
+
+	<script script script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<script>
+		const myModal = new bootstrap.Modal(document.getElementById('shareModal'));
 
 function getSize(proSizeId, proId) {
 var getProSize = document.getElementById("proSizeId" + proId);
@@ -273,4 +259,5 @@ timer: 1500
 myModal.hide();
 });
 }
-</script>{% endblock %}
+	</script>
+{% endblock %}

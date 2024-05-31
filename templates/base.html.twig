@@ -44,6 +44,11 @@
 		<link href="lib/animate/animate.min.css" rel="stylesheet">
 		<link
 		href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+		<link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+		<link href =" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
@@ -80,12 +85,12 @@
 				<!-- Search -->
 				<form action="/product" class="d-flex ms-4 mb-2">
 					<input type="text" class="form-control rounded search" name="value" placeholder="Search..." aria-label="search" aria-describedby="search-addon"/>
-					<button type="submit" name="btnSearch" value="search" class="input-group-text border-0 fa-solid fa-magnifying-glass"></button>
+					<button type="submit" name="btnSearch" value="search" class="input-group-text border-0" style="margin: 0px 0px;"><i class="fa-solid fa-magnifying-glass"></i></button>
 				</form>
-				
-				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Choose your address
+				<!--Dropdown -->
+				<div class="dropdown" style="margin-bottom: 7px; margin-left: 10px;">
+					<button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Choose your address <i class="fa-solid fa-caret-down"></i>
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="#">Ho Chi Minh</a>
@@ -102,9 +107,9 @@
 						<!-- active: highline -->
 						<a class="nav-link" href="{{ path('home_page') }}">Home</a>
 						<a class="nav-link" href="{{ path('showProduct') }}">Product</a>
-						<a class="nav-link" href="{{ path('discount_index') }}">Discount</a>
+						<a class="nav-link" href="{{ path('index') }}">Voucher</a>
 						<div class="nav-item dropdown">
-							<div href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</div>
+							<div href="#" class="nav-link" data-bs-toggle="dropdown" style="width: 110px;">Category <i class="fa-solid fa-caret-down"></i></div>
 							<div class="dropdown-menu fade-down m-0">
 								<a href="#" class="dropdown-item">Men's Dresses</a>
 								<a href="#" class="dropdown-item">Women's Dresses</a>
