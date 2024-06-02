@@ -15,7 +15,7 @@ use App\Repository\ProductRepository;
 use App\Repository\ProSizeRepository;
 
 /**
- * @Route("/admin/Voucher")
+ * @Route("/admin/voucher")
  */
 class DisManageController extends AbstractController
 {

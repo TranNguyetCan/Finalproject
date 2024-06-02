@@ -13,21 +13,26 @@ use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ProSizeRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 class PaymentController extends AbstractController
 {
+    private $em;
+    private $kernel;
     private OrderRepository $repo;
-    public function __construct(OrderRepository $repo)
+    public function __construct(OrderRepository $repo, EntityManagerInterface $em, KernelInterface $kernel)
     {
         $this->repo = $repo;
+        $this->em = $em;
+        $this->kernel = $kernel;
     }
-
     // Show payment page
     /**
      * @Route("/payment", name="payment_page", methods={"POST"})
