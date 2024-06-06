@@ -4,12 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\OrderDetail;
+use App\Entity\CreditCard;
+use App\Entity\Paypal;
 use App\Entity\ProSize;
 use App\Entity\User;
 use App\Form\OrderType;
+use App\Form\PaymentType;
+use App\Form\CreditCardType;
+use App\Form\PaypalType;
+use App\Form\UserType;
 use App\Repository\CartRepository;
 use App\Repository\OrderDetailRepository;
 use App\Repository\OrderRepository;
+use App\Repository\PaymentRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ProSizeRepository;
 use App\Repository\UserRepository;
@@ -19,6 +26,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -123,4 +131,112 @@ class PaymentController extends AbstractController
         
         return $this->redirectToRoute("shoppingCart");
     }
+
+    /**
+     * @Route("/checkout", name="checkout")
+     */
+    public function checkout(Request $request, PaymentRepository $repo): Response
+    {
+        $paymentform = $this->createForm(PaymentType::class);
+
+        $paymentform->handleRequest($request);
+            $listPayment = $repo->findAll();
+    
+            // Xử lý dữ liệu khi form được gửi đi
+            // $formData = $paymentform->getData();
+            // $selectedPayment = $formData['pa'];
+            return $this->render('payment/choosePayment.html.twig', ['listPayment' => $listPayment]);
+            // xử lý theo phương thức thanh toán được chọn
+            
+            // return $this->redirectToRoute('payment');
+        
+
+      
+    }
+
+    // /**
+    //  * @Route("/payment", name="payment")
+    //  */
+    // public function paymentSuccess(): Response
+    // {
+    //     return new Response('Payment Successful!');
+    // }
+    /**
+     * @Route("/payment", name="paypal_login")
+     */
+    public function Paypal(Request $request): Response
+    {
+        $paypal = $this->createForm(PaypalType::class);
+        $paypal->handleRequest($request);
+    
+        return $this->render('payment/login.html.twig', [
+
+        'paypal' => $paypal->createView(  )
+    ]);
+       
+ }
+    // /**
+    //  * @Route("/paypal-login", name="paypal_login")
+    //  */
+    // public function paypalLogin(): Response
+    // {
+    //     // Đường dẫn đến trang đăng nhập PayPal
+    //     $paypalLoginUrl = 'https://www.paypal.com/signin';
+
+    //     return $this->redirect($paypalLoginUrl);
+    // }
+
+    // /**
+    //  * @Route("/payment", name="Paypal")
+    //  */
+    // public function Paypal(Request $request): Response
+    // {
+    //     $paypal = $this->createForm(PaypalType::class);
+    //     $paypal->handleRequest($request);
+    
+    //     return $this->render('payment/paypal.html.twig', [
+
+    //     'paypal' => $paypal->createView(  )
+    // ]);
+       
+    // }
+
+    /**
+     * @Route("/signin", name="signIn")
+     */
+    public function SignIn(
+        Request $req,
+        UserPasswordHasherInterface $userPasswordHasher,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $pay = new Paypal();
+        $paypalForm = $this->createForm(PaypalType::class, $pay);
+        $paypalForm->handleRequest($req);
+
+        if ($paypalForm->isSubmitted() && $paypalForm->isValid()) {
+            //encode the plain password
+            $pay->setPassword(
+                $userPasswordHasher->hashPassword( $pay,
+                    $paypalForm->get('password')->getData()
+                )
+            );
+            
+            // $user->setRoles(['ROLE_USER']);
+
+            // THe purposr use insert and update
+            // $entityManager->persist($pay);
+            // $entityManager->flush();
+
+            //  do anything eslse you nedd here, like send and email
+
+            return $this->redirectToRoute('paypal_login');
+        }
+        return $this->render('payment/signIn.html.twig', [
+            'paypalForm' => $paypalForm->createView()
+        ]);
+        // return $this->redirectToRoute('signIn_page');
+
+    }
+
+
 }

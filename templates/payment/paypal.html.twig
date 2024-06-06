@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/header.css')}}" rel="stylesheet" media="all">
+	<link href="{{asset('css/paypal.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+{% block body %}
+<div class="container-bill">
+    <div class="row">
+        <div class="col">
+            <h3 class="title">billing address</h3>
+
+            {{ form_start(paypal) }}
+            <div class="inputBox">
+                <span>{{ form_label(paypal.fullName) }} :</span>
+                {{ form_widget(paypal.fullName) }}
+            </div>
+            <div class="inputBox">
+                <span>{{ form_label(paypal.email) }} :</span>
+                {{ form_widget(paypal.email) }}
+            </div>
+            <div class="inputBox">
+                <span>{{ form_label(paypal.address) }} :</span>
+                {{ form_widget(paypal.address) }}
+            </div>
+            <div class="inputBox">
+                <span>{{ form_label(paypal.password) }} :</span>
+                {{ form_widget(paypal.password) }}
+            </div>
+            {# <div class="inputBox">
+                <span>{{ form_label(paypalform.confirmPassword) }} :</span>
+                {{ form_widget(paypalform.confirmPassword) }}
+            </div> #}
+            <div>
+                <input type="submit" value="Signin" class="submit-btn">
+            </div>
+            {{ form_end(paypal) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

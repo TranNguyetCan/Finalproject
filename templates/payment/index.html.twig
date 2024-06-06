@@ -60,20 +60,23 @@
 				<div class="col text-left">
 					<b>Total to pay</b>
 				</div>
-				<div
-					class="col text-right">
+				<div class="col text-right">
 					<div class="d-flex">
 						${{total + 5}}.00
 
 						{{ form_widget(orderForm.total, {'attr':{'value': (total + 5), 'class': 'border-0 p-0 text-dark d-none'  }})  }}
 					</div>
 				</div>
+				<div>
+					
+					<a class ="btn-choosepayment" name="btnChoosepayment" href="{{path('checkout')}}">Choose Payment Method</a>
+				</div>
+				
 			</div>
 			<div class="mt-3">
 				<button class="btn-payment" name="btnPayment">Payment</button>
 			</div>
 			{{ form_end(orderForm) }}
-			
+
 		</div>
 	{% endblock %}
-

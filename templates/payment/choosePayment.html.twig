@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/header.css')}}" rel="stylesheet" media="all">
+
+{% endblock %}
+
+{% block body %}
+	<div>
+        <ul>
+            {% for payment in listPayment %}
+                <li>
+                    {% if payment.NAME == 'PayPal' %}
+                        <a href="{{ path('paypal_login') }}">{{ payment.NAME }}</a>
+                    {% else %}
+                        {{ payment.NAME }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
