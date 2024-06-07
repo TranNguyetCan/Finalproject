@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\PaypalRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: PaypalRepository::class)]
-class Paypal 
+class Paypal implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -25,8 +27,8 @@ class Paypal
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    // #[ORM\Column(length: 255)]
-    // private ?string $confirmpassword = null;
+    #[ORM\Column(length: 255)]
+    private ?string $confirmpassword = null;
 
     public function getId(): ?int
     {
@@ -81,15 +83,30 @@ class Paypal
         return $this;
     }
 
-    // public function getConfirmpassword(): ?string
-    // {
-    //     return $this->confirmpassword;
-    // }
+    public function getRoles(): array
+    {
+        return ['ROLE_USER'];
+    }
 
-    // public function setConfirmpassword(string $confirmpassword): self
-    // {
-    //     $this->confirmpassword = $confirmpassword;
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+    }
 
-    //     return $this;
-    // }
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    public function getConfirmpassword(): ?string
+    {
+        return $this->confirmpassword;
+    }
+
+    public function setConfirmpassword(string $confirmpassword): self
+    {
+        $this->confirmpassword = $confirmpassword;
+
+        return $this;
+    }
 }

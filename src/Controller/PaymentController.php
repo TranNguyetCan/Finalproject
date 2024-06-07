@@ -162,7 +162,7 @@ class PaymentController extends AbstractController
     //     return new Response('Payment Successful!');
     // }
     /**
-     * @Route("/payment", name="paypal_login")
+     * @Route("/loginPaypal", name="paypal_login")
      */
     public function Paypal(Request $request): Response
     {
@@ -204,38 +204,35 @@ class PaymentController extends AbstractController
     /**
      * @Route("/signin", name="signIn")
      */
-    public function SignIn(
+    public function signIn(
         Request $req,
-        UserPasswordHasherInterface $userPasswordHasher,
+        UserPasswordHasherInterface $paypalPasswordHasher,
         EntityManagerInterface $entityManager
     ): Response {
-        $pay = new Paypal();
-        $paypalForm = $this->createForm(PaypalType::class, $pay);
+        $paypal = new Paypal();
+        $paypalForm = $this->createForm(PaypalType::class, $paypal);
         $paypalForm->handleRequest($req);
 
         if ($paypalForm->isSubmitted() && $paypalForm->isValid()) {
-            //encode the plain password
-            $pay->setPassword(
-                $userPasswordHasher->hashPassword( $pay,
+            // Encode the plain password
+            $paypal->setPassword(
+                $paypalPasswordHasher->hashPassword(
+                    $paypal,
                     $paypalForm->get('password')->getData()
                 )
             );
-            
-            // $user->setRoles(['ROLE_USER']);
 
-            // THe purposr use insert and update
-            // $entityManager->persist($pay);
-            // $entityManager->flush();
+            // Persist user data to the database
+            $entityManager->persist($paypal);
+            $entityManager->flush();
 
-            //  do anything eslse you nedd here, like send and email
-
+            // Redirect to PayPal login
             return $this->redirectToRoute('paypal_login');
         }
-        return $this->render('payment/signIn.html.twig', [
-            'paypalForm' => $paypalForm->createView()
-        ]);
-        // return $this->redirectToRoute('signIn_page');
 
+        return $this->render('payment/signIn.html.twig', [
+            'paypalForm' => $paypalForm->createView(),
+        ]);
     }
 
 

@@ -8,44 +8,48 @@
 
 {% block body %}
 	<div class="container-bill">
-    <div class="row">
-        <div class="col">
-			{# <div class="form-left">
-				<img src="images/Signin.png" alt="form">
-			</div> #}
-			{# <form class="form-detail" action="#" method="post"> #}
-			 <h3 class="title">SIGN IN</h3>
-				 {{ form_start(paypalForm) }}
-            <div class="inputBox">
-                <span>{{ form_label(paypalForm.fullName) }} :</span>
-                {{ form_widget(paypalForm.fullName) }}
-            </div>
-            <div class="inputBox">
-                <span>{{ form_label(paypalForm.email) }} :</span>
-                {{ form_widget(paypalForm.email) }}
-            </div>
-            <div class="inputBox">
-                <span>{{ form_label(paypalForm.address) }} :</span>
-                {{ form_widget(paypalForm.address) }}
-            </div>
-            <div class="inputBox">
-                <span>{{ form_label(paypalForm.password) }} :</span>
-                {{ form_widget(paypalForm.password) }}
-            </div>
-                {# <div class="form-row">
-					<input type="date" name="your-email" id="your-email" class="input-text" placeholder="Birthday" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
-				</div>
-				<div class="form-row">
-					<input type="text" name="your-email" id="your-email" class="input-text" placeholder="Telephone" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
-				</div>
-                <div class="form-row">
-					<input type="text" name="your-email" id="your-email" class="input-text" placeholder="Email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
-				</div> #}
-				<div>
-                <input type="submit" value="Sign In" class="submit-btn">
-            </div>
-            {{ form_end(paypalForm) }}
-        </div>
-    </div>
-</div>
+		<div class="row">
+			<div class="col">
+				{# <div class="form-left">
+																<img src="images/Signin.png" alt="form">
+															</div> #}
+				{# <form class="form-detail" action="#" method="post"> #}
+					<h3 class="title"> SIGN IN</h3>
+				{{ form_start(paypalForm) }}
+				{# <div class="inputBox">
+									<span>{{ form_label(paypalForm.fullName) }}
+										:</span>
+									{{ form_widget(paypalForm.fullName) }}
+								</div>
+								<div class="inputBox">
+									<span>{{ form_label(paypalForm.email) }}
+										:</span>
+									{{ form_widget(paypalForm.email) }}
+								</div>
+								<div class="inputBox">
+									<span>{{ form_label(paypalForm.address) }}
+										:</span>
+									{{ form_widget(paypalForm.address) }}
+								</div>
+								<div class="inputBox">
+									<span>{{ form_label(paypalForm.password) }}
+										:</span>
+									{{ form_widget(paypalForm.password) }}
+								</div> #}
+				{# <div class="form-row">
+																	<input type="date" name="your-email" id="your-email" class="input-text" placeholder="Birthday" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
+																</div>
+																<div class="form-row">
+																	<input type="text" name="your-email" id="your-email" class="input-text" placeholder="Telephone" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
+																</div>
+												                <div class="form-row">
+																	<input type="text" name="your-email" id="your-email" class="input-text" placeholder="Email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" autocomplete="off">
+																</div> #}
+					<div>
+				{{ form_end(paypalForm) }}
+
+				<input type="submit" value="Sign In" class="submit-btn"> </div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

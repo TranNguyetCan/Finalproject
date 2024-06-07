@@ -29,18 +29,31 @@ class PaypalType extends AbstractType
             'label' => 'Address',
             'attr' => ['placeholder' => 'Address']
         ])
-        ->add('password', RepeatedType::class, [
-            'type' => PasswordType::class,
-            'first_options' => ['label' => 'Password', 'attr' => ['placeholder' => 'password']],
+        // ->add('password', RepeatedType::class, [
+        //     'type' => PasswordType::class,
+        //     'first_options' => [
+        //         'label' => 'Password', 
+        //         'attr' => ['placeholder' => 'password']
+        //     ],
 
-            'second_options' => ['label' => 'Confirm Password', 'attr' => ['placeholder' => 'confirm - password']],
+        //     'second_options' => ['label' => 'Confirm Password', 'attr' => ['p  laceholder' => 'confirm - password']],
+        // ])
+        ->add('password', PasswordType::class, [
+            'label' => 'Password',
+            'attr' => ['placeholder' => 'Password']
         ])
-        //Login PayPal
-        ->add('email', EmailType::class, [
-            'label' => 'PayPal Email Address',
-            'required' => false,
-            'attr' => ['placeholder' => 'example@paypal.com']
+
+        ->add('confirm_password', PasswordType::class, [
+            'label' => 'Confirm Password',
+            'attr' => ['placeholder' => 'Confirm Password']
         ]);
+        //Login PayPal
+        // ->add('email', EmailType::class, [
+        //     'label' => 'PayPal Email Address',
+        //     'required' => false,
+        //     'attr' => ['placeholder' => 'example@paypal.com']
+        // ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
