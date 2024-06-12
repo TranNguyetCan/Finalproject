@@ -154,13 +154,7 @@ class PaymentController extends AbstractController
       
     }
 
-    // /**
-    //  * @Route("/payment", name="payment")
-    //  */
-    // public function paymentSuccess(): Response
-    // {
-    //     return new Response('Payment Successful!');
-    // }
+   
     /**
      * @Route("/loginPaypal", name="paypal_login")
      */
@@ -233,6 +227,13 @@ class PaymentController extends AbstractController
         return $this->render('payment/signIn.html.twig', [
             'paypalForm' => $paypalForm->createView(),
         ]);
+    }
+     /**
+     * @Route("successful", name="successful")
+     */
+    public function paymentSuccess(): Response
+    {
+        return new Response('Payment Successful!');
     }
 
 

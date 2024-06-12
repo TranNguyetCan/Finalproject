@@ -47,6 +47,9 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?int $rating = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $branch = null;
+
     public function __construct()
     {
         $this->proSizes = new ArrayCollection();
@@ -191,6 +194,18 @@ class Product
     public function setRating(?int $rating): self
     {
         $this->rating = $rating;
+
+        return $this;
+    }
+
+    public function getBranch(): ?string
+    {
+        return $this->branch;
+    }
+
+    public function setBranch(string $branch): self
+    {
+        $this->branch = $branch;
 
         return $this;
     }
