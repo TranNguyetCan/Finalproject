@@ -199,13 +199,13 @@ class ProManageController extends AbstractController
    ========================================================================== */
 
     /**
-     * @Route("/delete/{id}", name="deletePro_page", methods={"delete"})
+     * @Route("/delete/{id}", name="deletePro_page", methods={"DELETE"})
      */
-    public function Action(int $id)
+    public function Action(int $id): Response
     {
 
         $product = $this->repo->find($id);
-        $this->repo->remove($product, true);
+        $this->repo->remove($product, false);
         return new JsonResponse();
     }
 }
