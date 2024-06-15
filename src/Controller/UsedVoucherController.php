@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\UsedVoucher;
+use App\Form\UsedVoucherType;
+use App\Repository\UsedVoucherRepository;
 use App\Service\VoucherService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +20,7 @@ class UsedVoucherController extends AbstractController
     }
 
     /**
-     * @Route("/apply-voucher", name="apply_voucher")
+     * @Route("/usedvoucher", name="apply_voucher")
      */
     public function applyVoucher(Request $request): Response
     {
@@ -27,12 +30,30 @@ class UsedVoucherController extends AbstractController
         $voucher = $request->get('voucher_code');
 
         // return new Response('Voucher applied successfully.');
-        return $this->render('Voucher/index.html.twig', [
+        return $this->render('voucher/index.html.twig', [
             'voucher' => $voucher,
             'cusName' => $cusName,
             'deal' => $deal,
             'Id' => $Id,         
         ]);
 
+    }
+     /**
+     * @Route("/edit/{id}", name="usedvoucher_edit")
+     */
+    public function usedvouchereditAction(Request $req, UsedVoucherRepository $usedVoucherRepository, UsedVoucher $uv): Response
+    {
+        $formUV = $this->createform(UsedVoucherType::class, $uv);
+
+        $formUV->handleRequest($req);
+        if ($formUV->isSubmitted() && $formUV->isValid()) {
+
+
+            $usedVoucherRepository->save($uv, true);
+            return $this->redirectToRoute('apply_voucher', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render("used_voucher/edit.html.twig", [
+            'formUV' => $formUV->createView()
+        ]);
     }
 }

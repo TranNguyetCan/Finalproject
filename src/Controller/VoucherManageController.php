@@ -17,7 +17,7 @@ use App\Repository\ProSizeRepository;
 /**
  * @Route("/admin/voucher")
  */
-class DisManageController extends AbstractController
+class VoucherManageController extends AbstractController
 {
     private VoucherRepository $VoucherRepository;
     public function __construct(VoucherRepository $VoucherRepository)
@@ -26,13 +26,13 @@ class DisManageController extends AbstractController
     }
 
     /**
-     * @Route("/", name="Voucher_list")
+     * @Route("/", name="voucher_list")
      */
     public function index(): Response
     {
         $Vouchers = $this->VoucherRepository->findAll();
 
-        return $this->render('Voucher_manage/index.html.twig', [
+        return $this->render('voucher_manage/index.html.twig', [
             'Vouchers' => $Vouchers,
         ]);
     }

@@ -40,7 +40,7 @@ class VoucherController extends AbstractController
             throw new \Exception('Error fetching products or vendor images: ' . $e->getMessage());
         }
 
-        return $this->render('Voucher/index.html.twig', [
+        return $this->render('voucher/index.html.twig', [
             'products' => $products,
             'proSize' => $proSize
             
