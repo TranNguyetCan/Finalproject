@@ -45,7 +45,7 @@
 
 					{# Edit, Delete #}
 					<th scope="col">Edit</th>
-					{# <th scope="col">Delete</th> #}
+					<th scope="col">Delete</th>
 					{# Edit, Delete #}
 
 				</tr>
@@ -64,11 +64,11 @@
 							<button class="bi bi-pencil-square border-0 bg-white"></button>
 						</a>	
 					</td>
-					{# <td>
+					<td>
 						<a href="{{path('deleteSupp_page', {'id':s.id})}}">
 							<button class="bi bi-trash3 border-0 bg-white" onclick="return confirm('Are you sure to remove?')"></button>
 						</a>
-					</td> #}
+					</td>
 				</tr>
 			{% endfor %}
 		</table>

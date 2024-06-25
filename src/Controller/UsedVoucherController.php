@@ -30,7 +30,7 @@ class UsedVoucherController extends AbstractController
         $voucher = $request->get('voucher_code');
 
         // return new Response('Voucher applied successfully.');
-        return $this->render('voucher/index.html.twig', [
+        return $this->render('used_voucher/index.html.twig', [
             'voucher' => $voucher,
             'cusName' => $cusName,
             'deal' => $deal,

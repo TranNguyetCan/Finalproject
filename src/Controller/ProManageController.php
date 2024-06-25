@@ -205,7 +205,14 @@ class ProManageController extends AbstractController
     {
 
         $product = $this->repo->find($id);
-        $this->repo->remove($product, false);
+        // $this->repo->remove($product, true);
+        try {
+            $this->repo->remove($product, false);
+            $this->repo->flush();
+        } catch (\Exception $e) {
+            // Log or handle the exception
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
         return new JsonResponse();
     }
 }

@@ -45,4 +45,24 @@ class MainController extends AbstractController
     {
         return $this->render('about/index.html.twig');
     }
+
+    /**
+     * @Route("/branch", name="branches")
+     */
+    public function index(): Response
+    {
+        // Sample data for branches, replace this with data from your database
+        $branches = [
+            'Branch 1',
+            'Branch 2',
+            'Branch 3',
+            'Branch 4',
+            'Branch 5',
+            'Branch 6'
+        ];
+
+        return $this->render('base.html.twig', [
+            'branches' => $branches
+        ]);
+    }
 }

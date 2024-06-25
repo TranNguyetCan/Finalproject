@@ -1,1245 +1,1285 @@
-    @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap");
-    @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
-    /* @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Khojki&display=swap'); */
-    /* ==========================================================================
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Khojki&display=swap'); */
+/* ==========================================================================
    #Home
    ========================================================================== */
-    
-    .navbar-logo {
-        padding: 0px;
-        margin: auto;
-        display: block;
-        width: 100px;
-        height: 100px;
-        top: 20px;
-    }
-    
-    .navbar-brand {
-        padding: 0px;
-        margin: auto;
-        display: block;
-        width: 330px;
-        height: 85px;
-        top: 20px;
-    }
-    
-    a {
-        text-decoration: none;
-        color: #0d0d0d;
-        font-family: "Noto Serif", serif;
-        font-size: 17px;
-    }
-    
-    a:hover {
-        color: rgb(110, 107, 107);
-    }
-    
-    .line {
-        margin: 0px;
-    }
-    
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
-    
-    ul li a {
-        font-size: 90%;
-        color: #0d0d0d;
-    }
-    
-    ul li a:hover {
-        font-size: 100%;
-    }
-    
-    .navbar-nav {
-        font-family: "Noto Serif", serif;
-        height: 50px;
-        width: 100px;
-    }
-    
-    .navbar-nav:hover {
-        color: black;
-    }
-    
-    .nav-link {
-        font-size: 17px;
-    }
-    
-    .nav-link:hover {
-        color: black;
-    }
-    
-    .imageCenter {
-        width: 100%;
-        height: 100%;
-    }
-    .carousel-item img {
-        max-height: 100%;
-        max-width: 100%;
-        width: auto;
-        height: auto;
-    }    
-    
-    .header {
-        display: flex;
-        justify-content: -between;
-    }
-    
-    .input-group-text {
-        margin-left: 5px;
-        width: 40px;
-        height: 37px;
-    }
-    
-    .btn-outline-dark:hover {
-        /* background-color: grey; */
-        color: white;
-    }
-    
-    .btn {
-        padding-left: 1.3rem;
-        padding-right: 1.3rem;
-        font-family: "Noto Serif", serif;
-    }
-    
-    .search {
-        font-family: "Noto Serif", serif;
-    }
-    
-    .fa-shopping-cart:hover {
-        color: rgb(54, 53, 53);
-    }
-    /* Payment */
-    
-    .icons {
-        margin-left: auto;
-    }
-    
-    form span {
-        font-family: "Noto Serif", serif;
-        color: grey;
-    }
-    
-    form {
-        /* padding: 2vh 0; */
-    }
-    
-    .input {
-        border: 1px solid rgba(0, 0, 0, 0.137);
-        padding: 1vh;
-        margin-bottom: 4vh;
-        outline: none;
-        width: 100%;
-        background-color: white;
-        font-family: "Noto Serif", serif;
-    }
-    
-    .input:focus::-webkit-input-placeholder {
-        color: transparent;
-    }
-    
-    .header-payment {
-        font-size: 1.5rem;
-    }
-    
-    .left {
-        background-color: #ffffff;
-        padding: 2vh;
-    }
-    
-    .left img {
-        width: 2rem;
-    }
-    
-    .left .col-4 {
-        padding-left: 0;
-    }
-    
-    .right .item {
-        /* padding: 0.3rem 0; */
-    }
-    
-    .right {
-        background-color: #ffffff;
-        padding: 0vh;
-    }
-    
-    .col-8 {
-        padding: 0 1vh;
-    }
-    
-    .lower {
-        line-height: 2;
-    }
-    
-    .btn-payment {
-        background-color: black;
-        border-color: black;
-        color: white;
-        width: 100%;
-        font-size: 0.9rem;
-        font-weight: bold;
-        padding: 1.5vh;
-        border-radius: 0;
-        font-family: "Playfair Display", serif;
-    }
-    
-    .btn-payment:hover {
-        background-color: white;
-        color: black;
-    }
-    
-    .input[type="checkbox"] {
-        width: unset;
-        margin-bottom: unset;
-    }
-    
-    #cvv {
-        background-image: linear-gradient( to left, rgba(255, 255, 255, 0.575), rgba(255, 255, 255, 0.541)), url("https://img.icons8.com/material-outlined/24/000000/help.png");
-        background-repeat: no-repeat;
-        background-position-x: 95%;
-        background-position-y: center;
-    }
-    
-    #cvv:hover {}
-    
-    @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&display=swap");
-    /* ==========================================================================
+
+.navbar-logo {
+  padding: 0px;
+  margin: auto;
+  display: block;
+  width: 100px;
+  height: 100px;
+  top: 20px;
+}
+
+.navbar-brand {
+  padding: 0px;
+  margin: auto;
+  display: block;
+  width: 330px;
+  height: 85px;
+  top: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #0d0d0d;
+  font-family: "Noto Serif", serif;
+  font-size: 17px;
+}
+
+a:hover {
+  color: rgb(110, 107, 107);
+}
+
+.line {
+  margin: 0px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+ul li a {
+  font-size: 90%;
+  color: #0d0d0d;
+}
+
+ul li a:hover {
+  font-size: 100%;
+}
+
+.navbar-nav {
+  font-family: "Noto Serif", serif;
+  height: 50px;
+  width: 100px;
+}
+
+.navbar-nav:hover {
+  color: black;
+}
+
+.nav-link {
+  font-size: 17px;
+}
+
+.nav-link:hover {
+  color: black;
+}
+
+.imageCenter {
+  width: 100%;
+  height: 100%;
+}
+.carousel-item img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: -between;
+}
+
+.input-group-text {
+  margin-left: 5px;
+  width: 40px;
+  height: 37px;
+}
+
+.btn-outline-dark:hover {
+  /* background-color: grey; */
+  color: white;
+}
+
+.btn {
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+  font-family: "Noto Serif", serif;
+}
+
+.search {
+  font-family: "Noto Serif", serif;
+}
+
+.fa-shopping-cart:hover {
+  color: rgb(54, 53, 53);
+}
+/* Payment */
+
+.icons {
+  margin-left: auto;
+}
+
+form span {
+  font-family: "Noto Serif", serif;
+  color: grey;
+}
+
+form {
+  /* padding: 2vh 0; */
+}
+
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.137);
+  padding: 1vh;
+  margin-bottom: 4vh;
+  outline: none;
+  width: 100%;
+  background-color: white;
+  font-family: "Noto Serif", serif;
+}
+
+.input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.header-payment {
+  font-size: 1.5rem;
+}
+
+.left {
+  background-color: #ffffff;
+  padding: 2vh;
+}
+
+.left img {
+  width: 2rem;
+}
+
+.left .col-4 {
+  padding-left: 0;
+}
+
+.right .item {
+  /* padding: 0.3rem 0; */
+}
+
+.right {
+  background-color: #ffffff;
+  padding: 0vh;
+}
+
+.col-8 {
+  padding: 0 1vh;
+}
+
+.lower {
+  line-height: 2;
+}
+
+.btn-payment {
+  background-color: black;
+  border-color: black;
+  color: white;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 1.5vh;
+  border-radius: 0;
+  font-family: "Playfair Display", serif;
+}
+
+.btn-payment:hover {
+  background-color: white;
+  color: black;
+}
+
+.input[type="checkbox"] {
+  width: unset;
+  margin-bottom: unset;
+}
+
+#cvv {
+  background-image: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0.575),
+      rgba(255, 255, 255, 0.541)
+    ),
+    url("https://img.icons8.com/material-outlined/24/000000/help.png");
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: center;
+}
+
+#cvv:hover {
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&display=swap");
+/* ==========================================================================
    #Product
    ========================================================================== */
-    
-    .attentive {
-        font-family: "Merriweather", serif;
-        text-align: center;
-    }
-    
-    h5 {
-        font-family: "Playfair Display", serif;
-        font-weight: bold;
-    }
-    
-    h2 {
-        font-family: "Noto Serif", serif;
-    }
-    
-    .product-content .ul-color {
-        font-family: "Playfair Display", serif;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .product-content .ul-color li {
-        list-style: none;
-        float: left;
-        margin-right: 10px;
-    }
-    
-    .product-content .ul-color li:first-child {
-        margin-left: 0;
-    }
-    
-    .product-content .ul-color li:last-child {
-        margin-right: 0;
-    }
-    
-    .product-content .ul-color li a {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        border-radius: 100%;
-    }
-    
-    .product-content .ul-color li a.green-active {
-        background-color: green;
-    }
-    
-    .product-content .ul-color li a.blue {
-        background-color: blue;
-    }
-    
-    .product-content .ul-color li a.yellow {
-        background-color: yellow;
-    }
-    
-    select option {
-        font-family: "Noto Serif", serif;
-    }
-    
-    .form-control {
-        appearance: revert;
-        width: 100%;
-    }
-    
-    @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil&display=swap");
-    /* ==========================================================================
+
+.attentive {
+  font-family: "Merriweather", serif;
+  text-align: center;
+}
+
+h5 {
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: "Noto Serif", serif;
+}
+
+.product-content .ul-color {
+  font-family: "Playfair Display", serif;
+  margin: 0;
+  padding: 0;
+}
+
+.product-content .ul-color li {
+  list-style: none;
+  float: left;
+  margin-right: 10px;
+}
+
+.product-content .ul-color li:first-child {
+  margin-left: 0;
+}
+
+.product-content .ul-color li:last-child {
+  margin-right: 0;
+}
+
+.product-content .ul-color li a {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+}
+
+.product-content .ul-color li a.green-active {
+  background-color: green;
+}
+
+.product-content .ul-color li a.blue {
+  background-color: blue;
+}
+
+.product-content .ul-color li a.yellow {
+  background-color: yellow;
+}
+
+select option {
+  font-family: "Noto Serif", serif;
+}
+
+.form-control {
+  appearance: revert;
+  width: 100%;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil&display=swap");
+/* ==========================================================================
    Card 
    ========================================================================== */
-    
-    .filter {
-        padding-right: 50px;
-    }
-    
-    .product-grid .title-cart {
-        font-family: "Noto Serif Tamil", serif;
-        text-align: center;
-    }
-    
-    .product-grid .product-image {
-        overflow: hidden;
-        position: relative;
-        z-index: 1;
-    }
-    
-    .product-grid .product-image a.image {
-        display: block;
-    }
-    
-    .product-grid .product-image img {
-        width: 100%;
-        height: auto;
-    }
-    
-    .product-grid .product-discount-label {
-        color: #fff;
-        background: black;
-        font-size: 13px;
-        font-weight: 600;
-        line-height: 25px;
-        padding: 0 20px;
-        position: absolute;
-        top: 10px;
-        left: 0;
-    }
-    
-    .product-grid .product-links {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        position: absolute;
-        top: 10px;
-        right: -50%;
-        transition: all 0.5s ease 0s;
-    }
-    
-    .product-grid:hover .product-links {
-        right: 5px;
-    }
-    
-    .product-grid .product-links li a {
-        color: #333;
-        background: transparent;
-        font-size: 17px;
-        line-height: 38px;
-        width: 38px;
-        height: 38px;
-        border: 1px solid #333;
-        border-bottom: none;
-        display: block;
-        transition: all 0.3s;
-        text-align: center;
-    }
-    
-    .product-grid .product-links li:last-child a {
-        border-bottom: 1px solid #333;
-    }
-    
-    .product-grid .product-links li a:hover {
-        color: #fff;
-        background: #333;
-    }
-    
-    .product-grid .add-to-cart {
-        background: black;
-        color: #fff;
-        font-size: 80%;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        width: 100%;
-        padding: 10px 26px;
-        position: absolute;
-        left: 0;
-        bottom: -60px;
-        transition: all 0.3s ease 0s;
-        font-family: "Merriweather", serif;
-    }
-    
-    .product-grid:hover .add-to-cart {
-        bottom: 0;
-    }
-    
-    .product-grid .add-to-cart:hover {
-        background: rgb(186, 186, 186);
-        text-shadow: 4px 4px rgba(0, 0, 0, 0.2);
-        border: rgb(186, 186, 186);
-    }
-    
-    .product-grid .product-content {
-        background: #fff;
-        padding: 15px;
-        box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1) inset;
-    }
-    
-    .product-grid .title {
-        font-size: 16px;
-        font-weight: 600;
-        text-transform: capitalize;
-        margin: 0 0 7px;
-    }
-    
-    .product-grid .title a {
-        color: #777;
-        transition: all 0.3s ease 0s;
-    }
-    
-    .size {
-        background-color: white;
-    }
-    
-    .product-grid .title a:hover {
-        color: black;
-    }
-    
-    .product-grid .price {
-        color: #0d0d0d;
-        font-size: 14px;
-        font-weight: 600;
-    }
-    
-    .product-grid .price span {
-        color: #888;
-        font-size: 13px;
-        font-weight: 400;
-        text-decoration: line-through;
-    }
-    
-    @media screen and (max-width: 990px) {
-        .product-grid {
-            margin-bottom: 30px;
-        }
-    }
-    
-    .input-group {
-        padding-top: 5%;
-        border-bottom: 2px solid #ccc;
-        display: block;
-    }
-    /* ==========================================================================
+
+.filter {
+  padding-right: 50px;
+}
+
+.product-grid .title-cart {
+  font-family: "Noto Serif Tamil", serif;
+  text-align: center;
+}
+
+.product-grid .product-image {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.product-grid .product-image a.image {
+  display: block;
+}
+
+.product-grid .product-image img {
+  width: 100%;
+  height: auto;
+}
+
+.product-grid .product-discount-label {
+  color: #fff;
+  background: black;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 25px;
+  padding: 0 20px;
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+.product-grid .product-links {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: absolute;
+  top: 10px;
+  right: -50%;
+  transition: all 0.5s ease 0s;
+}
+
+.product-grid:hover .product-links {
+  right: 5px;
+}
+
+.product-grid .product-links li a {
+  color: #333;
+  background: transparent;
+  font-size: 17px;
+  line-height: 38px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #333;
+  border-bottom: none;
+  display: block;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.product-grid .product-links li:last-child a {
+  border-bottom: 1px solid #333;
+}
+
+.product-grid .product-links li a:hover {
+  color: #fff;
+  background: #333;
+}
+
+.product-grid .add-to-cart {
+  background: black;
+  color: #fff;
+  font-size: 80%;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: 100%;
+  padding: 10px 26px;
+  position: absolute;
+  left: 0;
+  bottom: -60px;
+  transition: all 0.3s ease 0s;
+  font-family: "Merriweather", serif;
+}
+
+.product-grid:hover .add-to-cart {
+  bottom: 0;
+}
+
+.product-grid .add-to-cart:hover {
+  background: rgb(186, 186, 186);
+  text-shadow: 4px 4px rgba(0, 0, 0, 0.2);
+  border: rgb(186, 186, 186);
+}
+
+.product-grid .product-content {
+  background: #fff;
+  padding: 15px;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1) inset;
+}
+
+.product-grid .title {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin: 0 0 7px;
+}
+
+.product-grid .title a {
+  color: #777;
+  transition: all 0.3s ease 0s;
+}
+
+.size {
+  background-color: white;
+}
+
+.product-grid .title a:hover {
+  color: black;
+}
+
+.product-grid .price {
+  color: #0d0d0d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.product-grid .price span {
+  color: #888;
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: line-through;
+}
+
+@media screen and (max-width: 990px) {
+  .product-grid {
+    margin-bottom: 30px;
+  }
+}
+
+.input-group {
+  padding-top: 5%;
+  border-bottom: 2px solid #ccc;
+  display: block;
+}
+/* ==========================================================================
    Button
    ========================================================================== */
-    
-    .btn-home {
-        line-height: 40px;
-        display: inline-block;
-        padding: 0 25px;
-        color: black;
-        font-weight: bold;
-        background-color: white;
-        border: 1px solid #dbdbdb;
-    }
-    
-    .btn-radius {
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-    }
-    
-    .btn-home:hover {
-        background: black;  
-        color: white;
-    }
-    /* ==========================================================================
+
+.btn-home {
+  line-height: 40px;
+  display: inline-block;
+  padding: 0 25px;
+  color: black;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid #dbdbdb;
+}
+
+.btn-radius {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.btn-home:hover {
+  background: black;
+  color: white;
+}
+/* ==========================================================================
    Footer
    ========================================================================== */
-    
-    .text-footer {
-        background-color: black;
-    }
-    
-    .footer {
-        font-family: "Noto Serif", serif;
-    }
-    /* ==========================================================================
+
+.text-footer {
+  background-color: black;
+}
+
+.footer {
+  font-family: "Noto Serif", serif;
+}
+/* ==========================================================================
    Sign-In
    ========================================================================== */
-    
-    @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap");
-    .page-content {
-        width: 100%;
-        margin: 0 auto;
-        /* background-image: -moz-linear-gradient( 136deg, rgb(0, 0, 70) 0%, rgb(28, 181, 224) 100%);
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap");
+.page-content {
+  width: 100%;
+  margin: 0 auto;
+  /* background-image: -moz-linear-gradient( 136deg, rgb(0, 0, 70) 0%, rgb(28, 181, 224) 100%);
     background-image: -webkit-linear-gradient( 136deg, rgb(0, 0, 70) 0%, rgb(28, 181, 224) 100%);
     background-image: -ms-linear-gradient( 136deg, rgb(0, 0, 70) 0%, rgb(28, 181, 224) 100%); */
-        display: flex;
-        display: -webkit-flex;
-        justify-content: center;
-        -o-justify-content: center;
-        -ms-justify-content: center;
-        -moz-justify-content: center;
-        -webkit-justify-content: center;
-        align-items: center;
-        -o-align-items: center;
-        -ms-align-items: center;
-        -moz-align-items: center;
-        -webkit-align-items: center;
-    }
-    
-    .form-v6-content {
-        background: #fff;
-        width: 1100px;
-        border-radius: 8px;
-        -o-border-radius: 8px;
-        -ms-border-radius: 8px;
-        -moz-border-radius: 8px;
-        -webkit-border-radius: 8px;
-        margin-top: 1%;
-        margin-bottom: 3%;
-        font-family: "Playfair Display", serif;
-        color: #fff;
-        font-weight: 700;
-        position: relative;
-        display: flex;
-        display: -webkit-flex;
-        box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-        -o-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-        -ms-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-        -moz-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-        -webkit-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-    }
-    
-    .form-v6-content .form-left {
-        margin-bottom: -6px;
-    }
-    
-    .form-v6-content .form-left img {
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
-        height: 600px;
-    }
-    
-    .form-v6-content .form-detail {
-        padding: 30px 60px;
-        position: relative;
-        width: 100%;
-    }
-    
-    .form-v6-content .form-detail h2 {
-        color: #333;
-        font-size: 35px;
-        text-align: center;
-        position: relative;
-        padding: 6px 0 0;
-        margin-bottom: 47px;
-    }
-    
-    .form-v6-content .form-row {
-        width: 100%;
-    }
-    
-    .form-v6-content .form-detail .form-row-last {
-        text-align: center;
-    }
-    
-    .form-v6-content .form-detail .input-text {
-        margin-bottom: 35px;
-    }
-    
-    .form-v6-content .form-detail input {
-        width: 100%;
-        padding: 0px 15px 10px 15px;
-        border: 2px solid transparent;
-        border-bottom: 2px solid #e5e5e5;
-        appearance: unset;
-        -moz-appearance: unset;
-        -webkit-appearance: unset;
-        -o-appearance: unset;
-        -ms-appearance: unset;
-        outline: none;
-        -moz-outline: none;
-        -webkit-outline: none;
-        -o-outline: none;
-        -ms-outline: none;
-        font-family: "Playfair Display", serif;
-        font-size: 16px;
-        font-weight: 700;
-        color: #333;
-    }
-    
-    .form-v6-content .form-detail .form-row input:focus {
-        border-bottom: 2px solid #fe892a;
-    }
-    
-    .form-v6-content .form-detail .register {
-        background: black;
-        border-radius: 6px;
-        -o-border-radius: 6px;
-        -ms-border-radius: 6px;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        width: 160px;
-        box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-        -o-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-        -ms-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-        -moz-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-        -webkit-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-        border: none;
-        margin: 11px 0 50px 0px;
-        cursor: pointer;
-        font-family: "Playfair Display", serif;
-        color: #fff;
-        font-weight: 700;
-        font-size: 18px;
-    }
-    
-    .form-v6-content .form-detail .register:hover {
-        background: white;
-        color: black;
-    }
-    
-    .form-v6-content .form-detail .form-row-last input {
-        padding: 13px;
-    }
-    
-    input::-webkit-input-placeholder {
-        /* Chrome/Opera/Safari */
-        color: #666;
-        font-size: 16px;
-    }
-    
-    input::-moz-placeholder {
-        /* Firefox 19+ */
-        color: #666;
-        font-size: 16px;
-    }
-    
-    input:-ms-input-placeholder {
-        /* IE 10+ */
-        color: #666;
-        font-size: 16px;
-    }
-    
-    input:-moz-placeholder {
-        /* Firefox 18- */
-        color: #666;
-        font-size: 16px;
-    }
-    /* Responsive */
-    
-    @media screen and (max-width: 991px) {
-        .form-v6-content .form-left {
-            width: 100%;
-        }
-        .form-v6-content .form-left img {
-            width: 100%;
-            border-bottom-left-radius: 0px;
-            border-top-right-radius: 8px;
-        }
-        .form-v6-content .form-detail {
-            padding: 30px 20px 30px 20px;
-            width: auto;
-        }
-        .form-v6-content .form-detail .form-row input {
-            width: 96%;
-        }
-        .form-v6-content .form-detail .register {
-            margin-bottom: 80px;
-        }
-    }
-    
-    @media screen and (max-width: 767px) {
-        .form-v6-content .form-detail .form-row input {
-            width: 94%;
-        }
-    }
-    
-    @media screen and (max-width: 575px) {
-        .form-v6-content .form-detail .form-row input {
-            width: 89%;
-        }
-    }
-    
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Noto Serif", serif;
-    }
-    
-    section {
-        position: relative;
-        width: 100%;
-        height: 77vh;
-        display: flex;
-    }
-    
-    section .img-bg {
-        position: relative;
-        width: 50%;
-        height: 100%;
-        /* margin-right: 10%; */
-    }
-    
-    section .img-bg img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 90%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    section .content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40%;
-        height: 105%;
-    }
-    
-    section .content .form .login {
-        width: 80%;
-    }
-    
-    section .content .form h2 {
-        color: #000000;
-        font-weight: 500;
-        font-size: 1.5em;
-        text-transform: uppercase;
-        margin-bottom: 20px;
-        border-bottom: 4px solid black;
-        display: inline-block;
-        letter-spacing: 1px;
-        font-family: "Playfair Display", serif;
-    }
-    
-    section .content .form .input-form {
-        margin-bottom: 20px;
-    }
-    
-    section .content .form .input-form span {
-        font-size: 16px;
-        margin-bottom: 5px;
-        display: inline-block;
-        color: #000000;
-        letter-spacing: 1px;
-    }
-    
-    section .content .form .input-form input {
-        /* width: 100%; */
-        padding: 10px 20px;
-        outline: none;
-        border: 1px solid black;
-        font-size: 16px;
-        letter-spacing: 1px;
-        color: black;
-        background: transparent;
-        border-radius: 30px;
-    }
-    
-    section .content .form .input-form input[type="submit"] {
-        background: black;
-        color: white;
-        outline: none;
-        border: none;
-        font-weight: 500;
-        cursor: pointer;
-        box-shadow: 0 1px 1px rgba(107, 51, 51, 0.12), 0 2px 2px rgba(74, 3, 3, 0.12), 0 4px 4px rgba(50, 27, 27, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
-    }
-    
-    section .content .form .input-form input[type="submit"]:hover {
-        background: white;
-        color: #000;
-    }
-    
-    section .content .form .remember-login {
-        margin-bottom: 10px;
-        color: #000000;
-        font-size: 14px;
-        font-weight: lighter;
-    }
-    
-    section .content .form .input-form p {
-        color: black;
-        font-size: 14px;
-        font-weight: lighter;
-    }
-    
-    section .content .form .input-form p a {
-        color: blue;
-        font-weight: bold;
-    }
-    
-    section .content .form h3 {
-        color: #4cafdd;
-        text-align: center;
-        margin: 80px 0 10px;
-        font-weight: 500;
-    }
-    
-    section .content .form .login-icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    section .content .form .login-icon li {
-        list-style: none;
-        cursor: pointer;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    section .content .form .login-icon li:nth-child(1) {
-        color: #3b5999;
-    }
-    
-    section .content .form .login-icon li:nth-child(2) {
-        color: #dd4b39;
-    }
-    
-    section .content .form .login-icon li:nth-child(3) {
-        color: #55acee;
-    }
-    
-    section .content .form .login-icon li i {
-        font-size: 24px;
-    }
-    
-    @media (max-width: 768px) {
-        section .img-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        section .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        section .content .form {
-            width: 100%;
-            padding: 40px;
-            background: rgba(255 255 255 / 0.9);
-            margin: 50px;
-        }
-        section .content .form h3 {
-            color: #607d8b;
-            text-align: center;
-            margin: 30px 0 10px;
-            font-weight: 500;
-        }
-    }
-    /* ==========================================================================
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+}
+
+.form-v6-content {
+  background: #fff;
+  width: 1100px;
+  border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  margin-top: 1%;
+  margin-bottom: 3%;
+  font-family: "Playfair Display", serif;
+  color: #fff;
+  font-weight: 700;
+  position: relative;
+  display: flex;
+  display: -webkit-flex;
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  -o-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  -ms-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.form-v6-content .form-left {
+  margin-bottom: -6px;
+}
+
+.form-v6-content .form-left img {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  height: 600px;
+}
+
+.form-v6-content .form-detail {
+  padding: 30px 60px;
+  position: relative;
+  width: 100%;
+}
+
+.form-v6-content .form-detail h2 {
+  color: #333;
+  font-size: 35px;
+  text-align: center;
+  position: relative;
+  padding: 6px 0 0;
+  margin-bottom: 47px;
+}
+
+.form-v6-content .form-row {
+  width: 100%;
+}
+
+.form-v6-content .form-detail .form-row-last {
+  text-align: center;
+}
+
+.form-v6-content .form-detail .input-text {
+  margin-bottom: 35px;
+}
+
+.form-v6-content .form-detail input {
+  width: 100%;
+  padding: 0px 15px 10px 15px;
+  border: 2px solid transparent;
+  border-bottom: 2px solid #e5e5e5;
+  appearance: unset;
+  -moz-appearance: unset;
+  -webkit-appearance: unset;
+  -o-appearance: unset;
+  -ms-appearance: unset;
+  outline: none;
+  -moz-outline: none;
+  -webkit-outline: none;
+  -o-outline: none;
+  -ms-outline: none;
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+
+.form-v6-content .form-detail .form-row input:focus {
+  border-bottom: 2px solid #fe892a;
+}
+
+.form-v6-content .form-detail .register {
+  background: black;
+  border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  width: 160px;
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  -o-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  -ms-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  border: none;
+  margin: 11px 0 50px 0px;
+  cursor: pointer;
+  font-family: "Playfair Display", serif;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.form-v6-content .form-detail .register:hover {
+  background: white;
+  color: black;
+}
+
+.form-v6-content .form-detail .form-row-last input {
+  padding: 13px;
+}
+
+input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #666;
+  font-size: 16px;
+}
+
+input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #666;
+  font-size: 16px;
+}
+
+input:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #666;
+  font-size: 16px;
+}
+
+input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #666;
+  font-size: 16px;
+}
+/* Responsive */
+
+@media screen and (max-width: 991px) {
+  .form-v6-content .form-left {
+    width: 100%;
+  }
+  .form-v6-content .form-left img {
+    width: 100%;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 8px;
+  }
+  .form-v6-content .form-detail {
+    padding: 30px 20px 30px 20px;
+    width: auto;
+  }
+  .form-v6-content .form-detail .form-row input {
+    width: 96%;
+  }
+  .form-v6-content .form-detail .register {
+    margin-bottom: 80px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .form-v6-content .form-detail .form-row input {
+    width: 94%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .form-v6-content .form-detail .form-row input {
+    width: 89%;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Serif", serif;
+}
+
+section {
+  position: relative;
+  width: 100%;
+  height: 77vh;
+  display: flex;
+}
+
+section .img-bg {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  /* margin-right: 10%; */
+}
+
+section .img-bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
+}
+
+section .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 105%;
+}
+
+section .content .form .login {
+  width: 80%;
+}
+
+section .content .form h2 {
+  color: #000000;
+  font-weight: 500;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border-bottom: 4px solid black;
+  display: inline-block;
+  letter-spacing: 1px;
+  font-family: "Playfair Display", serif;
+}
+
+section .content .form .input-form {
+  margin-bottom: 20px;
+}
+
+section .content .form .input-form span {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: inline-block;
+  color: #000000;
+  letter-spacing: 1px;
+}
+
+section .content .form .input-form input {
+  /* width: 100%; */
+  padding: 10px 20px;
+  outline: none;
+  border: 1px solid black;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: black;
+  background: transparent;
+  border-radius: 30px;
+}
+
+section .content .form .input-form input[type="submit"] {
+  background: black;
+  color: white;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 1px 1px rgba(107, 51, 51, 0.12), 0 2px 2px rgba(74, 3, 3, 0.12),
+    0 4px 4px rgba(50, 27, 27, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12);
+}
+
+section .content .form .input-form input[type="submit"]:hover {
+  background: white;
+  color: #000;
+}
+
+section .content .form .remember-login {
+  margin-bottom: 10px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+section .content .form .input-form p {
+  color: black;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+section .content .form .input-form p a {
+  color: blue;
+  font-weight: bold;
+}
+
+section .content .form h3 {
+  color: #4cafdd;
+  text-align: center;
+  margin: 80px 0 10px;
+  font-weight: 500;
+}
+
+section .content .form .login-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section .content .form .login-icon li {
+  list-style: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section .content .form .login-icon li:nth-child(1) {
+  color: #3b5999;
+}
+
+section .content .form .login-icon li:nth-child(2) {
+  color: #dd4b39;
+}
+
+section .content .form .login-icon li:nth-child(3) {
+  color: #55acee;
+}
+
+section .content .form .login-icon li i {
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  section .img-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  section .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  section .content .form {
+    width: 100%;
+    padding: 40px;
+    background: rgba(255 255 255 / 0.9);
+    margin: 50px;
+  }
+  section .content .form h3 {
+    color: #607d8b;
+    text-align: center;
+    margin: 30px 0 10px;
+    font-weight: 500;
+  }
+}
+/* ==========================================================================
    Detail Page
    ========================================================================== */
-    
-    .name {
-        font-family: "Noto Serif", serif;
-        margin-bottom: 0;
-        line-height: 14px;
-        font-size: 24px;
-        font-weight: 500;
-    }
-    
-    .product-price-discount {
-        font-size: 22px;
-        font-weight: 400;
-        padding: 10px 0;
-        clear: both;
-    }
-    
-    .product-price-discount span.line-through {
-        text-decoration: line-through;
-        margin-left: 10px;
-        font-size: 14px;
-        vertical-align: middle;
-        color: #a5a5a5;
-    }
-    
-    .display-flex {
-        display: flex;
-    }
-    
-    .align-center {
-        align-items: center;
-    }
-    
-    .product-info {
-        width: 100%;
-    }
-    
-    .reviews-counter {
-        font-size: 13px;
-    }
-    
-    .reviews-counter span {
-        vertical-align: -2px;
-    }
-    
-    .rate {
-        float: left;
-        padding: 0 10px 0 0;
-    }
-    
-    .rate:not(:checked)>input {
-        position: absolute;
-        top: -9999px;
-    }
-    
-    .rate:not(:checked)>label {
-        float: right;
-        width: 15px;
-        overflow: hidden;
-        white-space: nowrap;
-        cursor: pointer;
-        font-size: 21px;
-        color: #ccc;
-        margin-bottom: 0;
-        line-height: 21px;
-    }
-    
-    .rate:not(:checked)>label:before {
-        content: "\2605";
-    }
-    
-    .rate>input:checked~label {
-        color: #ffc700;
-    }
-    
-    .rate:not(:checked)>label:hover,
-    .rate:not(:checked)>label:hover~label {
-        color: #deb217;
-    }
-    
-    .rate>input:checked+label:hover,
-    .rate>input:checked+label:hover~label,
-    .rate>input:checked~label:hover,
-    .rate>input:checked~label:hover~label,
-    .rate>label:hover~input:checked~label {
-        color: #c59b08;
-    }
-    
-    .product-dtl {
-        font-family: "Playfair Display", serif;
-        font-size: 14px;
-        line-height: 24px;
-        color: #7a7a7a;
-    }
-    
-    .product-dtl .form-control {
-        font-size: 15px;
-    }
-    
-    .product-dtl label {
-        line-height: 16px;
-        font-size: 15px;
-    }
-    
-    .form-control:focus {
-        outline: none;
-        box-shadow: none;
-        border-color: rgb(0, 0, 0);
-    }
-    
-    .product-count {
-        margin-top: 15px;
-    }
-    
-    .product-count .qtyminus,
-    .product-count .qtyplus {
-        width: 34px;
-        height: 30px;
-        background: #212529;
-        text-align: center;
-        font-size: 19px;
-        line-height: 36px;
-        color: #fff;
-        cursor: pointer;
-    }
-    
-    .product-count .qtyminus {
-        border-radius: 3px 0 0 3px;
-    }
-    
-    .product-count .qtyplus {
-        border-radius: 0 3px 3px 0;
-    }
-    
-    .product-count .qty {
-        width: 60px;
-        text-align: center;
-    }
-    
-    .round-black-btn {
-        border-radius: 4px;
-        background: #212529;
-        color: #fff;
-        padding: 7px 45px;
-        display: inline-block;
-        margin-top: 20px;
-        border: solid 2px #212529;
-        transition: all 0.5s ease-in-out 0s;
-    }
-    
-    .round-black-btn:hover,
-    .round-black-btn:focus {
-        background: transparent;
-        color: #212529;
-        text-decoration: none;
-    }
-    
-    .product-info-tabs {
-        margin-top: 25px;
-    }
-    
-    .product-info-tabs .nav-tabs {
-        border-bottom: 2px solid #d8d8d8;
-    }
-    
-    .product-info-tabs .nav-tabs .nav-item {
-        margin-bottom: 0;
-    }
-    
-    .product-info-tabs .nav-tabs .nav-link {
-        border: none;
-        border-bottom: 2px solid transparent;
-        color: #323232;
-    }
-    
-    .product-info-tabs .nav-tabs .nav-item .nav-link:hover {
-        border: none;
-    }
-    
-    .product-info-tabs .nav-tabs .nav-item.show .nav-link,
-    .product-info-tabs .nav-tabs .nav-link.active,
-    .product-info-tabs .nav-tabs .nav-link.active:hover {
-        border: none;
-        border-bottom: 2px solid #d8d8d8;
-        font-weight: bold;
-    }
-    
-    .product-info-tabs .tab-content .tab-pane {
-        padding: 30px 20px;
-        font-size: 15px;
-        line-height: 24px;
-        color: #7a7a7a;
-    }
-    
-    .review-form .form-group {
-        clear: both;
-    }
-    
-    .mb-20 {
-        margin-bottom: 20px;
-    }
-    
-    .review-form .rate {
-        float: none;
-        display: inline-block;
-    }
-    
-    .review-heading {
-        font-size: 24px;
-        font-weight: 600;
-        line-height: 24px;
-        margin-bottom: 6px;
-        text-transform: uppercase;
-        color: #000;
-    }
-    
-    .review-form .form-control {
-        font-size: 14px;
-    }
-    
-    .review-form input.form-control {
-        height: 40px;
-    }
-    
-    .review-form textarea.form-control {
-        resize: none;
-    }
-    
-    .review-form .round-black-btn {
-        text-transform: uppercase;
-        cursor: pointer;
-    }
-    
-    .form-size {
-        width: 30%;
-    }
-    
-    .show {
-        font-family: "Noto Serif", serif;
-    }
-    /* Icon */
-    
-    .notification {
-        background-color: #555;
-        color: white;
-        text-decoration: none;
-        padding: 15px 26px;
-        position: relative;
-        display: inline-block;
-        border-radius: 2px;
-    }
-    
-    .notification:hover {
-        background: red;
-    }
-    
-    .notification .badge {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        padding: 5px 10px;
-        border-radius: 50%;
-        background: red;
-        color: white;
-    }
-    /* ==========================================================================
+
+.name {
+  font-family: "Noto Serif", serif;
+  margin-bottom: 0;
+  line-height: 14px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.product-price-discount {
+  font-size: 22px;
+  font-weight: 400;
+  padding: 10px 0;
+  clear: both;
+}
+
+.product-price-discount span.line-through {
+  text-decoration: line-through;
+  margin-left: 10px;
+  font-size: 14px;
+  vertical-align: middle;
+  color: #a5a5a5;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.product-info {
+  width: 100%;
+}
+
+.reviews-counter {
+  font-size: 13px;
+}
+
+.reviews-counter span {
+  vertical-align: -2px;
+}
+
+.rate {
+  float: left;
+  padding: 0 10px 0 0;
+}
+
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+
+.rate:not(:checked) > label {
+  float: right;
+  width: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 21px;
+  color: #ccc;
+  margin-bottom: 0;
+  line-height: 21px;
+}
+
+.rate:not(:checked) > label:before {
+  content: "\2605";
+}
+
+.rate > input:checked ~ label {
+  color: #ffc700;
+}
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+.product-dtl {
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  line-height: 24px;
+  color: #7a7a7a;
+}
+
+.product-dtl .form-control {
+  font-size: 15px;
+}
+
+.product-dtl label {
+  line-height: 16px;
+  font-size: 15px;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: rgb(0, 0, 0);
+}
+
+.product-count {
+  margin-top: 15px;
+}
+
+.product-count .qtyminus,
+.product-count .qtyplus {
+  width: 34px;
+  height: 30px;
+  background: #212529;
+  text-align: center;
+  font-size: 19px;
+  line-height: 36px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.product-count .qtyminus {
+  border-radius: 3px 0 0 3px;
+}
+
+.product-count .qtyplus {
+  border-radius: 0 3px 3px 0;
+}
+
+.product-count .qty {
+  width: 60px;
+  text-align: center;
+}
+
+.round-black-btn {
+  border-radius: 4px;
+  background: #212529;
+  color: #fff;
+  padding: 7px 45px;
+  display: inline-block;
+  margin-top: 20px;
+  border: solid 2px #212529;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.round-black-btn:hover,
+.round-black-btn:focus {
+  background: transparent;
+  color: #212529;
+  text-decoration: none;
+}
+
+.product-info-tabs {
+  margin-top: 25px;
+}
+
+.product-info-tabs .nav-tabs {
+  border-bottom: 2px solid #d8d8d8;
+}
+
+.product-info-tabs .nav-tabs .nav-item {
+  margin-bottom: 0;
+}
+
+.product-info-tabs .nav-tabs .nav-link {
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #323232;
+}
+
+.product-info-tabs .nav-tabs .nav-item .nav-link:hover {
+  border: none;
+}
+
+.product-info-tabs .nav-tabs .nav-item.show .nav-link,
+.product-info-tabs .nav-tabs .nav-link.active,
+.product-info-tabs .nav-tabs .nav-link.active:hover {
+  border: none;
+  border-bottom: 2px solid #d8d8d8;
+  font-weight: bold;
+}
+
+.product-info-tabs .tab-content .tab-pane {
+  padding: 30px 20px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #7a7a7a;
+}
+
+.review-form .form-group {
+  clear: both;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.review-form .rate {
+  float: none;
+  display: inline-block;
+}
+
+.review-heading {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.review-form .form-control {
+  font-size: 14px;
+}
+
+.review-form input.form-control {
+  height: 40px;
+}
+
+.review-form textarea.form-control {
+  resize: none;
+}
+
+.review-form .round-black-btn {
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.form-size {
+  width: 30%;
+}
+
+.show {
+  font-family: "Noto Serif", serif;
+}
+/* Icon */
+
+.notification {
+  background-color: #555;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification:hover {
+  background: red;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+/* ==========================================================================
    Add Admin Product Page
    ========================================================================== */
-    
-    .gradient-custom {
-        /* fallback for old browsers */
-        background: #f6d365;
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: -webkit-linear-gradient( to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        background: linear-gradient( to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
-    }
-    
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    /* ===============================================================================
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f6d365;
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right bottom,
+    rgba(246, 211, 101, 1),
+    rgba(253, 160, 133, 1)
+  );
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right bottom,
+    rgba(246, 211, 101, 1),
+    rgba(253, 160, 133, 1)
+  );
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+/* ===============================================================================
 Register
 =================================================================================== */
-    
-    @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
-    /* body {
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+/* body {
     /* background-color: #1a1a1a */
-    /* } */
+/* } */
+
+.card1 {
+  height: 750px;
+  width: 80%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.card1:hover {
+  transform: scale(1.05);
+}
+
+.card2 {
+  height: 750px;
+  width: 100%;
+  border: none;
+  /* background-color: #000; */
+  border-radius: 8px;
+  transition: all 0.5s;
+}
+
+.card2:hover {
+  transform: scale(1.05);
+}
+
+.login {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+  font-family: "Playfair Display", serif;
+}
+
+.input-field {
+  font-size: 15px;
+  color: #cecdcd;
+  font-family: "Noto Serif", serif;
+}
+
+.form-control {
+  font-size: 16px;
+  color: #767473;
+  font-weight: 500;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid #9b9b9b;
+  box-shadow: none;
+}
+
+div#user_password {
+  border-bottom: none;
+}
+
+.btn {
+  height: 35px;
+  width: 20%;
+  background-color: #000;
+  font-weight: 400;
+  color: white;
+  border: none;
+  font-size: 15px;
+}
+
+.text1 .forget {
+  color: #767676;
+  font-weight: 500;
+}
+
+.text2 span {
+  font-weight: 500;
+  color: #7a7778;
+  margin: auto;
+}
+
+.radio {
+  color: #7a7778;
+  display: flex;
+  /* padding-right: 5px; */
+  justify-content: space-between;
+}
+
+.text2 .register {
+  color: #4f4942;
+  font-weight: bold;
+}
+/*  */
+
+form .btn {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  height: auto;
+}
+
+form .btn {
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+}
+
+.hidden:focus {
+  border: none;
+}
+
+.form-check-label {
+  margin-right: 50px;
+}
+/* =========================================================== */
+/* Branches */
+.container mt-5 {
+    background-color: #007bff;
+    color: white;
+}
+.btn-branches {
+    background-color: #000;
+    color: white;
+    border-radius: 0.3em;
     
-    .card1 {
-        height: 750px;
-        width: 80%;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.5s;
-    }
-    
-    .card1:hover {
-        transform: scale(1.05);
-    }
-    
-    .card2 {
-        height: 750px;
-        width: 100%;
-        border: none;
-        /* background-color: #000; */
-        border-radius: 8px;
-        transition: all 0.5s;
-    }
-    
-    .card2:hover {
-        transform: scale(1.05);
-    }
-    
-    .login {
-        font-size: 20px;
-        font-weight: bold;
-        margin-left: 10px;
-        font-family: "Playfair Display", serif;
-    }
-    
-    .input-field {
-        font-size: 15px;
-        color: #cecdcd;
-        font-family: "Noto Serif", serif;
-    }
-    
-    .form-control {
-        font-size: 16px;
-        color: #767473;
-        font-weight: 500;
-        border-left: none;
-        border-right: none;
-        border-top: none;
-        border-bottom: 1px solid #9b9b9b;
-        box-shadow: none;
-    }
-    
-    div#user_password {
-        border-bottom: none;
-    }
-    
-    .btn {
-        height: 35px;
-        width: 100%;
-        background-color: #000;
-        font-weight: 500;
-        color: white;
-        border: none;
-        font-size: 15px;
-    }
-    
-    .text1 .forget {
-        color: #767676;
-        font-weight: 500;
-    }
-    
-    .text2 span {
-        font-weight: 500;
-        color: #7a7778;
-        margin: auto;
-    }
-    
-    .radio {
-        color: #7a7778;
-        display: flex;
-        /* padding-right: 5px; */
-        justify-content: space-between;
-    }
-    
-    .text2 .register {
-        color: #4f4942;
-        font-weight: bold;
-    }
-    /*  */
-    
-    form .btn {
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        height: auto;
-    }
-    
-    form .btn {
-        background-color: white;
-        color: black;
-        border: 2px solid #e7e7e7;
-    }
-    
-    .hidden:focus {
-        border: none;
-    }
-    
-    .form-check-label {
-        margin-right: 50px;
-    }
+}
+.branch-column {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.branch-column .col {
+    flex: 1;
+    min-width: 200px;
+}
+.branch-column .list-group-item {
+    cursor: pointer;
+}
