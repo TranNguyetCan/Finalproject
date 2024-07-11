@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use Doctrine\DBAL\Schema\ForeignKeyConstraint;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,7 +79,14 @@ class CateManageController extends AbstractController
      */
     public function deleteAction(Request $req, Category $c): Response
     {
-        $this->repo->remove($c, true);
+        try{
+            $this->repo->remove($c, true);
+        }
+       catch(ForeignKeyConstraintViolationException $e){
+            return $this->render("cate_manage/error.html.twig", [
+                'message' => "Can not remove"
+            ]);
+       }
         return $this->redirectToRoute('cate_page', [], Response::HTTP_SEE_OTHER);
     }
 }
