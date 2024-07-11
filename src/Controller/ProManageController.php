@@ -10,6 +10,7 @@ use App\Repository\ProductRepository;
 use App\Repository\ProSizeRepository;
 use App\Repository\SizeRepository;
 use Doctrine\Common\Proxy\Proxy;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -198,21 +199,36 @@ class ProManageController extends AbstractController
    Delete Admin Product Page
    ========================================================================== */
 
-    /**
-     * @Route("/delete/{id}", name="deletePro_page", methods={"DELETE"})
-     */
-    public function Action(int $id): Response
-    {
+    // /**
+    //  * @Route("/delete/{id}", name="deletePro_page", methods={"DELETE"})
+    //  */
+    // public function Action(int $id): Response
+    // {
 
-        $product = $this->repo->find($id);
-        // $this->repo->remove($product, true);
-        try {
-            $this->repo->remove($product, false);
-            $this->repo->flush();
-        } catch (\Exception $e) {
-            // Log or handle the exception
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
+    //     $product = $this->repo->find($id);
+    //     // $this->repo->remove($product, true);
+    //     try {
+    //         $this->repo->remove($product, false);
+    //         $this->repo->flush();
+    //     } catch (\Exception $e) {
+    //         // Log or handle the exception
+    //         echo 'Caught exception: ',  $e->getMessage(), "\n";
+    //     }
+    //     return new JsonResponse();
+    // }
+    /**
+     *  @Route("/delete/{id}", name="product_delete", requirements={"id"="\d+"})
+     */
+    public function deleteAction(Request $req, Product $c): Response
+    {
+        try{
+            $this->repo->remove($c, true);
         }
-        return new JsonResponse();
+       catch( ForeignKeyConstraintViolationException $e){
+            return $this->render("pro_manage/error.html.twig", [
+                'message' => "Can not remove"
+            ]);
+       }
+        return $this->redirectToRoute('pro_page', [], Response::HTTP_SEE_OTHER);
     }
 }

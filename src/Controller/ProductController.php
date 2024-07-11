@@ -117,6 +117,14 @@ class ProductController extends AbstractController
             'products' => $p,
         ]);
     }
+    //    /**
+    //  *  @Route("/delete/{id}", name="deletePro_page", requirements={"id"="\d+"})
+    //  */
+    // public function deleteAction(Request $req, Product $s): Response
+    // {
+    //     $this->repo->remove($s, true);
+    //     return $this->redirectToRoute('pro_page', [], Response::HTTP_SEE_OTHER);
+    // }
    
 
 }

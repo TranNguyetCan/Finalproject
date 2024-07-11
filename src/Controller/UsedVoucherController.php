@@ -6,6 +6,7 @@ use App\Entity\UsedVoucher;
 use App\Form\UsedVoucherType;
 use App\Repository\UsedVoucherRepository;
 use App\Service\VoucherService;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class UsedVoucherController extends AbstractController
 {
     private $voucherService;
+    private UsedVoucherRepository $repo;
     public function __construct(VoucherService $voucherService)
+
     {
         $this->voucherService = $voucherService;
     }
@@ -28,15 +31,38 @@ class UsedVoucherController extends AbstractController
         $deal = $request->get('deal');
         $Id = $request->get('Id');
         $voucher = $request->get('voucher_code');
+        $useat = $request->get('UseAt');
 
         // return new Response('Voucher applied successfully.');
         return $this->render('used_voucher/index.html.twig', [
-            'voucher' => $voucher,
+           
             'cusName' => $cusName,
+            'voucher' => $voucher,
             'deal' => $deal,
-            'Id' => $Id,         
+            'UseAt' => $useat,
+            // 'Id' => $Id,         
         ]);
 
+    }
+     /**
+     * @Route("/add", name="usedvoucher_add")
+     */
+    public function createAction(Request $req, UsedVoucherRepository $repo): Response
+    {
+
+        $uv = new UsedVoucher();
+        $form = $this->createForm(UsedVoucherType::class, $uv);
+
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $repo->save($uv, true);
+            return $this->redirectToRoute('apply_voucher', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render("used_voucher/add.html.twig", [
+            'form' => $form->createView()
+        ]);
     }
      /**
      * @Route("/edit/{id}", name="usedvoucher_edit")
@@ -56,4 +82,20 @@ class UsedVoucherController extends AbstractController
             'formUV' => $formUV->createView()
         ]);
     }
+      /**
+     *  @Route("/delete/{id}", name="usedvoucher_delete", requirements={"id"="\d+"})
+     */
+    public function deleteAction(Request $req, UsedVoucher $uv): Response
+    {
+        try{
+            $this->repo->remove($uv, true);
+        }
+       catch( ForeignKeyConstraintViolationException $e){
+            return $this->render("used_voucher/error.html.twig", [
+                'message' => "Can not remove"
+            ]);
+       }
+        return $this->redirectToRoute('apply_voucher', [], Response::HTTP_SEE_OTHER);
+    }
+    
 }

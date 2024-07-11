@@ -18,16 +18,16 @@ class CategoryType extends AbstractType{
         ->add('save',SubmitType::class,[
             'label' => "Add"
         ]);
-        $builder
-        ->add('paymentMethod', ChoiceType::class, [
-            'label' => 'Payment Method',
-            'choices' => [
-                'PayPal' => 'paypal',
-                'Cash' => 'cash',
-                'Voucher' => 'voucher',
-            ],
-            'required' => true,
-        ]);
+        // $builder
+    //     ->add('paymentMethod', ChoiceType::class, [
+    //         'label' => 'Payment Method',
+    //         'choices' => [
+    //             'PayPal' => 'paypal',
+    //             'Cash' => 'cash',
+    //             'Voucher' => 'voucher',
+    //         ],
+    //         'required' => true,
+    //     ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

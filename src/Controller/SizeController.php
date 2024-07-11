@@ -7,6 +7,7 @@ use App\Form\ProSizeType;
 use App\Form\SizeType;
 use App\Form\UserType;
 use App\Repository\SizeRepository;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,15 +77,29 @@ class SizeController extends AbstractController
         ]);
     }
 
-    /**
-     *  @Route("/delete/{id}", name="delete_size", requirements={"id"="\d+"})
+    // /**
+    //  *  @Route("/delete/{id}", name="delete_size", requirements={"id"="\d+"})
+    //  */
+    // public function deleteAction(Request $req, Size $sz): Response
+    // {
+    //     $this->repo->remove($sz, true);
+    //     return $this->redirectToRoute('size_page', [], Response::HTTP_SEE_OTHER);
+    // }
+
+        /**
+     *  @Route("/delete/{id}", name="prosize_delete", requirements={"id"="\d+"})
      */
-    public function deleteAction(Request $req, Size $sz): Response
+    public function deleteAction(Request $req, Size $s): Response
     {
-        $this->repo->remove($sz, true);
+        try{
+            $this->repo->remove($s, true);
+        }
+       catch( ForeignKeyConstraintViolationException $e){
+            return $this->render("size/error.html.twig", [
+                'message' => "Can not remove"
+            ]);
+       }
         return $this->redirectToRoute('size_page', [], Response::HTTP_SEE_OTHER);
     }
-
-    
     
 }

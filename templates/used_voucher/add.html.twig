@@ -1,0 +1,64 @@
+{% extends 'admin.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/admin.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+
+{% block body %}
+	<section class="header mx-5">
+		<div class="container mt-4 mb-3">
+			<div class="text-center lh-1 mb-2">
+				<h4 class="fw-bold">Add UsedVoucher</h4>
+			</div>
+			<div class="d-flex justify-content-end">
+				<span>Branch: VESTA</span>
+			</div>
+		</div>
+
+		<div class="container-boder">
+			{{ form_start(form) }}
+			<div class="col-md-12">
+				<div class="row">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(form.CusName) }}
+								{{ form_widget(form.CusName, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(form.Deal) }}
+								{{ form_widget(form.Deal, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+
+                        	<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(form.Voucher) }}
+								{{ form_widget(form.Voucher, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+                        
+                        <div class="col-md-6">
+                            <div class="forms-inputs mt-3">
+                                {{ form_label(form.UseAt) }}
+                                {{ form_widget(form.UseAt, {'attr':{'autocomplete': 'off'}}) }}
+                            </div>
+                        </div>
+                        
+
+
+						<div class="col-md-12">
+							<div class="add mt-3">
+								{{form_row(form.save, {'attr':{'class': 'btn btn-dark me-4'}})}}
+							</div>
+						</div>
+
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</tbody>
+</section>{% endblock %}

@@ -29,7 +29,7 @@
 				<div class="col-lg-6 mx-auto">
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						<button class="btn btn-dark me-4" type="button">
-							<a href="{{path('category_create')}}" class="text-decoration-none text-reset">Add new Voucher</a>
+							<a href="{{path('usedvoucher_add')}}" class="text-decoration-none text-reset">Add new Voucher</a>
 						</button>
 					</div>
 				</div>
@@ -64,7 +64,7 @@
 						</a>	
 					</td>
 					<td>
-						<a href="{{path('category_delete', {'id':v.id})}}">
+						<a href="{{path('usedvoucher_delete', {'id':v.id})}}">
 							<button class="bi bi-trash3 border-0 bg-white" onclick="return confirm('Are you sure to remove?')"></button>
 						</a>
 					</td>

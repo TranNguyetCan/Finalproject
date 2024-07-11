@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\UsedVoucherRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\FormBuilderInterface;
 
 #[ORM\Entity(repositoryClass: UsedVoucherRepository::class)]
 class UsedVoucher
@@ -66,12 +68,12 @@ class UsedVoucher
         return $this;
     }
 
-    public function getUseAt(): ?\DateTimeImmutable
+    public function getUseAt(): DateTimeInterface
     {
         return $this->UseAt;
     }
 
-    public function setUseAt(\DateTimeImmutable $UseAt): self
+    public function setUseAt(\DateTimeInterface $UseAt): self
     {
         $this->UseAt = $UseAt;
 

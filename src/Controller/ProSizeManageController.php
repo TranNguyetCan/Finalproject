@@ -9,6 +9,7 @@ use App\Form\ProSizeType;
 use App\Repository\ProductRepository;
 use App\Repository\ProSizeRepository;
 use App\Repository\SizeRepository;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -149,4 +150,5 @@ class ProSizeManageController extends AbstractController
         $this->repo->remove($ps, true);
         return new JsonResponse();
     }
+    
 }
