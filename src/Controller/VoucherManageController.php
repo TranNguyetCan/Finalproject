@@ -42,8 +42,8 @@ class VoucherManageController extends AbstractController
      */
     public function createVoucherAction(Request $req, ManagerRegistry $reg, ProSizeRepository $repoProSize): Response
     {
-        $d = new Voucher();
-        $VoucherForm = $this->createForm(VoucherType::class, $d);
+        $v = new Voucher();
+        $VoucherForm = $this->createForm(VoucherType::class, $v);
 
         $VoucherForm->handleRequest($req);
         $entity = $reg->getManager();
@@ -60,9 +60,10 @@ class VoucherManageController extends AbstractController
             // $d->setDescription($data->getDescription());
 
             // tell Doctrine you want to (eventually) save the Product (no queries yet)
-            $entity->persist($d);
+            $entity->persist($v);
             // actually executes the queries (i.e. the INSERT query)
             $entity->flush();
+            return $this->redirectToRoute('voucher_list', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('Voucher_manage/new.html.twig', [
             'form' => $VoucherForm->createView()
@@ -71,24 +72,24 @@ class VoucherManageController extends AbstractController
      /**
      *  @Route("/{id}", name="Voucher_delete", requirements={"id"="\d+"})
      */
-    public function deleteAction(Request $req, Voucher $d): Response
+    public function deleteAction(Request $req, Voucher $v): Response
     {
-        $this->VoucherRepository->remove($d, true);
-        return $this->redirectToRoute('Voucher_list', [], Response::HTTP_SEE_OTHER);
+        $this->VoucherRepository->remove($v, true);
+        return $this->redirectToRoute('voucher_list', [], Response::HTTP_SEE_OTHER);
     }
      /**
      * @Route("/edit/{id}", name="Voucher_edit")
      */
-    public function editAction(Request $req, VoucherRepository $VoucherRepository, Voucher $d): Response
+    public function editAction(Request $req, VoucherRepository $VoucherRepository, Voucher $v): Response
     {
-        $formDisc = $this->createform(VoucherType::class, $d);
+        $formDisc = $this->createform(VoucherType::class, $v);
 
         $formDisc->handleRequest($req);
         if ($formDisc->isSubmitted() && $formDisc->isValid()) {
 
 
-            $VoucherRepository->save($d, true);
-            return $this->redirectToRoute('Voucher_list', [], Response::HTTP_SEE_OTHER);
+            $VoucherRepository->save($v, true);
+            return $this->redirectToRoute('voucher_list', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render("Voucher_manage/edit.html.twig", [
             'formDisc' => $formDisc->createView()

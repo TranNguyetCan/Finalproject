@@ -37,7 +37,8 @@
 
 			<thead class="bg-dark text-white text-center">
 				<tr>
-					<th scope="col"> Customer Name</th>
+					<th scope="col">ID</th>
+					<th scope="col">Customer Name</th>
 					<th scope="col">Deal</th>
 					<th scope="col">Voucher</th>
                     <th scope="col">Use At</th>
@@ -49,13 +50,13 @@
 
 				</tr>
 			</thead>
-			{% for v in voucher %}
+			{% for v in vouchers %}
 				<tr class="text-center align-middle">
 					<th scope="row">{{v.id}}</th>						
-					<td>{{v.name}}</td>
+					<td>{{v.cusName}}</td>
 					<td>{{v.deal}}</td>
                     <td>{{v.voucher}}</td>
-                    <td>{{v.useat}}</td>
+                    <td>{{v.useat|date('Y-m-d')}}</td>
 
 					{# Edit, Delete #}
 					<td>

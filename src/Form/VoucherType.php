@@ -19,11 +19,11 @@ class VoucherType extends AbstractType
     {
         $builder
             ->add('deal', IntegerType::class)
-            ->add('startDate', DateTimeType::class, [
+            ->add('start_date', DateTimeType::class, [ 
                 'widget' => 'single_text',
                 'label' => 'Start Date'
             ])
-            ->add('endDate', DateTimeType::class, [
+            ->add('end_date', DateTimeType::class, [
                 'widget' => 'single_text',
                 'label' => 'End Date'
             ])
@@ -35,9 +35,10 @@ class VoucherType extends AbstractType
                 },
             ])
             ->add('save', SubmitType::class, [
-                'label' => "Next"
+                'label' => "Save"
             ]);
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

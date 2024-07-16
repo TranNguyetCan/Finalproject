@@ -24,9 +24,11 @@ class UsedVoucherType extends AbstractType
             ->add('CusName', TextType::class )
             ->add('Voucher', TextType::class)
             ->add('Deal', IntegerType::class)
-            ->add('UseAt', DateTimeType::class , [
+            ->add('UseAt', DateTimeType::class, [
                 'widget' => 'single_text',
-                'placeholder' => 'UseAt'
+                'input'  => 'datetime_immutable', 
+                'html5'  => true, 
+                'label' => 'Date of Use'
             ])
            ->add('save',SubmitType::class,[
             'label' => "Add"    ]);

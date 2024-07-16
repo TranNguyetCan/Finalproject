@@ -24,7 +24,7 @@ class UsedVoucher
     #[ORM\Column(length: 255)]
     private ?string $Deal = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $UseAt = null;
 
     public function getId(): ?int
@@ -68,12 +68,12 @@ class UsedVoucher
         return $this;
     }
 
-    public function getUseAt(): DateTimeInterface
+    public function getUseAt(): ?\DateTimeImmutable
     {
         return $this->UseAt;
     }
 
-    public function setUseAt(\DateTimeInterface $UseAt): self
+    public function setUseAt(\DateTimeImmutable $UseAt): self
     {
         $this->UseAt = $UseAt;
 

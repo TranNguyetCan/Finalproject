@@ -1,20 +1,78 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello DiscountController!{% endblock %}
+{% extends 'admin.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/admin.css')}}" rel="stylesheet" media="all">
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<section class="header mx-5">
+		<div class="container mt-4 mb-3">
+			<div class="text-center lh-1 mb-2">
+				<h4 class="fw-bold">Discount Management</h4>
+			</div>
+			<div class="d-flex justify-content-end">
+				<span>Branch: VESTA</span>
+			</div>
+		</div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+		{# {% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-5 text-center">
+				{{ message }}
+			</div>
+		{% endfor %} #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'E:/Final project/WEB!/danaischgstore_trancan/src/Controller/DiscountController.php'|file_link(0) }}">src/Controller/DiscountController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'E:/Final project/WEB!/danaischgstore_trancan/templates/discount/index.html.twig'|file_link(0) }}">templates/discount/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+		<table class="mt-2 table table-bordered">
+			<div class="row">
+				<div class="col-lg-6">
+					<h5>
+						Discount List</h5>
+				</div>
+				<div class="col-lg-6 mx-auto">
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+						<button class="btn btn-dark me-4" type="button">
+							<a href="{{path('discount_create')}}" class="text-decoration-none text-reset">Add new Discount</a>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<thead class="bg-dark text-white text-center">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Discount Code</th>
+					<th scope="col">Discount Percentage</th>
+					<th scope="col">Start date</th>
+                    <th scope="col">End date</th>
+					
+					{# Edit, Delete #}
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
+					{# Edit, Delete #}
+
+				</tr>
+			</thead>
+			{% for d in discount %}
+				<tr class="text-center align-middle">
+					<th scope="row">{{d.id}}</th>
+                    <td>{{d.DiscountCode}}</td>
+					<td>{{d.DiscountPercentage}}</td>
+					<td>{{d.startDate|date('Y-m-d')}}</td>
+                    <td>{{d.endDate|date('Y-m-d')}}</td>
+					
+
+					{# Edit, Delete #}
+					<td>
+						<a href="{{path('discount_edit', {'id':d.id})}}">
+							<button class="bi bi-pencil-square border-0 bg-white"></button>
+						</a>	
+					</td>
+					<td>
+						<a href="{{path('discount_delete', {'id':d.id})}}">
+							<button class="bi bi-trash3 border-0 bg-white" onclick="return confirm('Are you sure to remove?')"></button>
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</tbody>
+
+	{% endblock %}

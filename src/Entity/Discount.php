@@ -15,17 +15,18 @@ class Discount
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $DiscountCode = null;
+    private ?string $discountCode = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $DiscountPercentage = null;
+    private ?string $discountPercentage = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $Star_date = null;
+    private ?\DateTimeInterface $start_date = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $End_date = null;
+    private ?\DateTimeInterface $end_date = null;
 
+    // Make sure to update your getter and setter methods as well
     public function getId(): ?int
     {
         return $this->id;
@@ -33,49 +34,45 @@ class Discount
 
     public function getDiscountCode(): ?string
     {
-        return $this->DiscountCode;
+        return $this->discountCode;
     }
 
-    public function setDiscountCode(string $DiscountCode): self
+    public function setDiscountCode(string $discountCode): self
     {
-        $this->DiscountCode = $DiscountCode;
-
+        $this->discountCode = $discountCode;
         return $this;
     }
 
     public function getDiscountPercentage(): ?string
     {
-        return $this->DiscountPercentage;
+        return $this->discountPercentage;
     }
 
-    public function setDiscountPercentage(string $DiscountPercentage): self
+    public function setDiscountPercentage(string $discountPercentage): self
     {
-        $this->DiscountPercentage = $DiscountPercentage;
-
+        $this->discountPercentage = $discountPercentage;
         return $this;
     }
 
-    public function getStarDate(): ?\DateTimeInterface
+    public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->Star_date;
+        return $this->start_date;
     }
 
-    public function setStarDate(\DateTimeInterface $Star_date): self
+    public function setStartDate(\DateTimeInterface $start_date): self
     {
-        $this->Star_date = $Star_date;
-
+        $this->start_date = $start_date;
         return $this;
     }
 
     public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->End_date;
+        return $this->end_date;
     }
 
-    public function setEndDate(\DateTimeInterface $End_date): self
+    public function setEndDate(\DateTimeInterface $end_date): self
     {
-        $this->End_date = $End_date;
-
+        $this->end_date = $end_date;
         return $this;
     }
 }

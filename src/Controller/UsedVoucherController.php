@@ -25,22 +25,13 @@ class UsedVoucherController extends AbstractController
     /**
      * @Route("/usedvoucher", name="apply_voucher")
      */
-    public function applyVoucher(Request $request): Response
+    public function applyVoucher(Request $request, UsedVoucherRepository $repo): Response
     {
-        $cusName = $request->get('cusName');
-        $deal = $request->get('deal');
-        $Id = $request->get('Id');
-        $voucher = $request->get('voucher_code');
-        $useat = $request->get('UseAt');
+        $vouchers = $repo->findAll();
 
-        // return new Response('Voucher applied successfully.');
+        // Render view with vouchers data
         return $this->render('used_voucher/index.html.twig', [
-           
-            'cusName' => $cusName,
-            'voucher' => $voucher,
-            'deal' => $deal,
-            'UseAt' => $useat,
-            // 'Id' => $Id,         
+            'vouchers' => $vouchers
         ]);
 
     }
@@ -77,20 +68,20 @@ class UsedVoucherController extends AbstractController
 
             $usedVoucherRepository->save($uv, true);
             return $this->redirectToRoute('apply_voucher', [], Response::HTTP_SEE_OTHER);
-        }
+        }   
         return $this->render("used_voucher/edit.html.twig", [
             'formUV' => $formUV->createView()
         ]);
     }
-      /**
+    /**
      *  @Route("/delete/{id}", name="usedvoucher_delete", requirements={"id"="\d+"})
-     */
-    public function deleteAction(Request $req, UsedVoucher $uv): Response
+    */
+    public function deleteAction(Request $req, UsedVoucherRepository $usedVoucherRepository, UsedVoucher $uv): Response
     {
         try{
-            $this->repo->remove($uv, true);
+            $usedVoucherRepository->remove($uv, true);
         }
-       catch( ForeignKeyConstraintViolationException $e){
+       catch(ForeignKeyConstraintViolationException $e){
             return $this->render("used_voucher/error.html.twig", [
                 'message' => "Can not remove"
             ]);

@@ -21,17 +21,31 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="forms-inputs mt-3">
-								{{ form_label(formUV.deal) }}
-								{{ form_widget(formUV.deal, {'attr':{'autocomplete': 'off'}}) }}
+								{{ form_label(formUV.CusName) }}
+								{{ form_widget(formUV.CusName, {'attr':{'autocomplete': 'off'}}) }}
 							</div>
 						</div>
 
 						<div class="col-md-6">
 							<div class="forms-inputs mt-3">
-								{{ form_label(formUV.description) }}
-								{{ form_widget(formUV.description, {'attr':{'autocomplete': 'off'}}) }}
+								{{ form_label(formUV.Deal) }}
+								{{ form_widget(formUV.Deal, {'attr':{'autocomplete': 'off'}}) }}
 							</div>
 						</div>
+
+						  	<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(formUV.Voucher) }}
+								{{ form_widget(formUV.Voucher, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+						     
+                        <div class="col-md-6">
+                            <div class="forms-inputs mt-3">
+                                {{ form_label(formUV.UseAt) }}
+                                {{ form_widget(formUV.UseAt, {'attr':{'autocomplete': 'off'}}) }}
+                            </div>
+                        </div>
 
 						<div class="col-md-12">
 							<div class="add mt-3">

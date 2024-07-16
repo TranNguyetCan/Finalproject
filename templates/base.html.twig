@@ -260,4 +260,52 @@ $('#shopingCart').text(response.length)
 }
 })
 })
-</script>{# link to main.js #}</body></html>{# tôi muốn hiển thị số lượng sản phẩm trong đơn hàng ra tại id = shopingCart tại controller cart #}<
+</script>{# link to main.js #}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Hàm để load danh sách chi nhánh từ server
+    function loadBranches() {
+        fetch('/branches') // Thay đổi endpoint cho phù hợp
+            .then(response => response.json())
+            .then(data => {
+                const branchList = document.getElementById('branch-list');
+                branchList.innerHTML = ''; // Xóa các chi nhánh cũ
+
+                data.forEach(branch => {
+                    const branchItem = document.createElement('div');
+                    branchItem.className = 'branch-item';
+                    branchItem.textContent = branch.name;
+                    branchItem.dataset.branchId = branch.id;
+                    branchList.appendChild(branchItem);
+                });
+
+                // Thêm sự kiện click cho từng chi nhánh
+                document.querySelectorAll('.branch-item').forEach(item => {
+                    item.addEventListener('click', function () {
+                        const branchId = this.dataset.branchId;
+                        chooseBranch(branchId);
+                    });
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Hàm để xử lý khi chọn một chi nhánh
+    function chooseBranch(branchId) {
+        fetch(`/products?branch_id=${branchId}`) // Thay đổi endpoint cho phù hợp
+            .then(response => response.json())
+            .then(data => {
+                // Xử lý dữ liệu sản phẩm tồn kho và hiển thị
+                console.log(data); // Thay đổi đoạn này để hiển thị dữ liệu theo cách của bạn
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Gọi hàm loadBranches khi modal được mở
+    $('#myModal').on('show.bs.modal', function () {
+        loadBranches();
+    });
+});
+</script>
+
+</body></html>{# tôi muốn hiển thị số lượng sản phẩm trong đơn hàng ra tại id = shopingCart tại controller cart #}<
