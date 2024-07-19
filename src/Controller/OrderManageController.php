@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Form\OrderType;
 use App\Repository\OrderRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -32,6 +34,26 @@ class OrderManageController extends AbstractController
 
         return $this->render('order_manage/index.html.twig', [
             'orders' => $orders
+        ]);
+    }
+    /**
+     * @Route("/add", name="order_create")
+     */
+    public function createAction(Request $req, OrderRepository $repo): Response
+    {
+
+        $o = new Order();
+        $formOr = $this->createForm(OrderType::class, $o);
+
+        $formOr->handleRequest($req);
+        if ($formOr->isSubmitted() && $formOr->isValid()) {
+
+
+            $repo->save($o, true);
+            return $this->redirectToRoute('order_page', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render("order_manage/add.html.twig", [
+            'formOr' => $formOr->createView()
         ]);
     }
 

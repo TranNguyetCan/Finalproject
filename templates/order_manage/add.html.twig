@@ -1,0 +1,69 @@
+{% extends 'admin.html.twig' %}
+{% block stylesheets %}
+	<link href="{{asset('css/admin.css')}}" rel="stylesheet" media="all">
+{% endblock %}
+
+{% block body %}
+	<section class="header mx-5">
+		<div class="container mt-4 mb-3">
+			<div class="text-center lh-1 mb-2">
+				<h4 class="fw-bold">Add Category</h4>
+			</div>
+			<div class="d-flex justify-content-end">
+				<span>Branch: DANA_ISCHG</span>
+			</div>
+		</div>
+
+		<div class="container-boder">
+			{{ form_start(formOr) }}
+			<div class="col-md-12">
+				<div class="row">
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(formOr.cusName) }}
+								{{ form_widget(formOr.cusName, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(formOr.cusPhone) }}
+								{{ form_widget(formOr.cusPhone, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(formOr.deliveryLocal) }}
+								{{ form_widget(formOr.deliveryLocal, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(formOr.total) }}
+								{{ form_widget(formOr.total, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
+								{{ form_label(formOr.status) }}
+								{{ form_widget(formOr.status, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="add mt-3">
+								{{form_row(formOr.save, {'attr':{'class': 'btn btn-dark me-4'}})}}
+							</div>
+						</div>
+
+						{{ form_end(formOr) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</tbody>
+</section>{% endblock %}
