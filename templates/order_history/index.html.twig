@@ -1,0 +1,58 @@
+ {% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{# <link href="{{asset('css/ordertracking.css')}}" rel="stylesheet" media="all"> #}
+{% endblock %}
+{% block body %}
+ <section class="py-5">
+        <div class="container">
+            <h2 class="fw-bold text-4xl text-center mb-4">Payment Successful</h2>
+            <p class="text-lg text-center text-muted mb-5">Thanks for making a purchase. You can check our order summary below</p>
+            <div class="border border-secondary rounded p-4 mb-4">
+                <div class="d-flex justify-content-between border-bottom pb-3 mb-3">
+                    <div>
+                        <p class="fw-semibold mb-1">Order Id: <span class="text-primary">#10234987</span></p>
+                        <p class="fw-semibold mb-0">Order Payment : <span class="text-muted">18th March 2021</span></p>
+                    </div>
+                    <button class="btn btn-primary rounded-pill">Track Your Order</button>
+                </div>
+                <div class="d-flex flex-column flex-lg-row mb-4">
+                    <div class="mb-3 mb-lg-0 me-lg-3">
+                        <img src="https://pagedone.io/asset/uploads/1701167607.png" alt="Premium Watch image" width="100px" height="100px" class="img-fluid rounded">
+                    </div>
+                    <div class="d-flex flex-column flex-lg-row w-100">
+                        <div class="flex-grow-1">
+                            <h5 class="fw-semibold mb-2">Premium Quality Dust Watch</h5>
+                            <p class="text-muted mb-2">By: Dust Studios</p>
+                            <div class="d-flex mb-2">
+                                <p class="me-4 border-end pe-4 mb-0">Size: <span class="text-muted">100 ml</span></p>
+                                <p class="mb-0">Qty: <span class="text-muted">2</span></p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column flex-lg-row">
+                            <div class="me-lg-3 mb-3 mb-lg-0">
+                                <p class="fw-medium mb-1">Price</p>
+                                <p class="fw-medium text-primary">$100</p>
+                            </div>
+                            <div class="me-lg-3 mb-3 mb-lg-0">
+                                <p class="fw-medium mb-1">Status</p>
+                                <p class="badge bg-success text-light">Ready for Delivery</p>
+                            </div>
+                            <div>
+                                <p class="fw-medium mb-1">Expected Delivery Time</p>
+                                <p class="text-success">$23rd March 2021</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-lg-row justify-content-between border-top pt-3">
+                    <div class="d-flex align-items-center mb-3 mb-lg-0">
+                        <button class="btn btn-outline-danger me-3">Cancel Order</button>
+                        <p class="mb-0">Paid using Credit Card <span class="text-muted">ending with 8822</span></p>
+                    </div>
+                    <p class="fw-semibold mb-0">Total Price: <span class="text-primary">$200.00</span></p>
+                </div>
+            </div>
+        </div>
+    </section> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -15,4 +15,22 @@ class OrderController extends AbstractController
             'controller_name' => 'OrderController',
         ]);
     }
+    /**
+     * @Route("/ordertrackcing", name="ordertracking")
+     */ 
+    public function ordertracking(): Response
+    {
+        return $this->render('order_tracking/index.html.twig', [
+            'ordertracking' => 'ordertracking',
+        ]);
+    }
+      /**
+     * @Route("/orderhistory", name="orderhistory")
+     */ 
+    public function orderhistory(): Response
+    {
+        return $this->render('order_history/index.html.twig', [
+            'Orderhistory' => 'orderhistory',
+        ]);
+    }
 }

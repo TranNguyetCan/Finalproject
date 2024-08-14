@@ -133,12 +133,12 @@ class CartController extends AbstractController
         return $this->redirectToRoute('shoppingCart');
     }
     
-    //hàm hiển thị số lượng sản phẩm trong giỏ hàng bằng api
+    //function to display number of products in cart using API
     /**
      * @Route("/count", name="countCart", methods={"GET"})
      */
     public function countCartAction(): Response {
-        $user = $this->getUser(); //lấy thông tin user hiện tại
+        $user = $this->getUser(); //get current user information
         $count = $this->repo->showCart($user);
         return new JsonResponse($count);
     }

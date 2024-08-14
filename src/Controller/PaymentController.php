@@ -142,7 +142,7 @@ class PaymentController extends AbstractController
         $paymentform->handleRequest($request);
             $listPayment = $repo->findAll();
     
-            // Xử lý dữ liệu khi form được gửi đi
+            // Process data when form is submitted
             // $formData = $paymentform->getData();
             // $selectedPayment = $formData['pa'];
             return $this->render('payment/choosePayment.html.twig', ['listPayment' => $listPayment]);
