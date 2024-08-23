@@ -28,6 +28,13 @@
 
 						<div class="col-md-6">
 							<div class="forms-inputs mt-3">
+								{{ form_label(formDisc.percentage) }}
+								{{ form_widget(formDisc.percentage, {'attr':{'autocomplete': 'off'}}) }}
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="forms-inputs mt-3">
 								{{ form_label(formDisc.description) }}
 								{{ form_widget(formDisc.description, {'attr':{'autocomplete': 'off'}}) }}
 							</div>

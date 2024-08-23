@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\VoucherRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Collection;
 
 #[ORM\Entity(repositoryClass: VoucherRepository::class)]
 class Voucher
@@ -29,6 +31,19 @@ class Voucher
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
+
+    #[ORM\Column]
+    private ?int $percentage = null;
+
+    #[ORM\OneToMany(mappedBy: 'vouchers', targetEntity: Order::class)]
+    private \Doctrine\Common\Collections\Collection $orderLst;
+
+    public function __construct()
+    {
+        $this->orderLst = new ArrayCollection();
+    }
+
+  
 
     public function getId(): ?int
     {
@@ -89,6 +104,48 @@ class Voucher
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPercentage(): ?int
+    {
+        return $this->percentage;
+    }
+
+    public function setPercentage(int $percentage): self
+    {
+        $this->percentage = $percentage;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection<int, Order>
+     */
+    public function getOrderLst(): \Doctrine\Common\Collections\Collection
+    {
+        return $this->orderLst;
+    }
+
+    public function addOrderLst(Order $orderLst): self
+    {
+        if (!$this->orderLst->contains($orderLst)) {
+            $this->orderLst->add($orderLst);
+            $orderLst->setVouchers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderLst(Order $orderLst): self
+    {
+        if ($this->orderLst->removeElement($orderLst)) {
+            // set the owning side to null (unless already changed)
+            if ($orderLst->getVouchers() === $this) {
+                $orderLst->setVouchers(null);
+            }
+        }
 
         return $this;
     }

@@ -27,6 +27,7 @@ class VoucherType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'End Date'
             ])
+            ->add('percentage', IntegerType::class)
             ->add('description', TextareaType::class)
             ->add('proSize', EntityType::class, [
                 'class' => ProSize::class,

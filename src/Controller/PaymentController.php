@@ -8,6 +8,7 @@ use App\Entity\CreditCard;
 use App\Entity\Paypal;
 use App\Entity\ProSize;
 use App\Entity\User;
+use App\Enum\OrderStatus;
 use App\Form\OrderType;
 use App\Form\PaymentType;
 use App\Form\CreditCardType;
@@ -20,6 +21,7 @@ use App\Repository\PaymentRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ProSizeRepository;
 use App\Repository\UserRepository;
+use App\Repository\VoucherRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,94 +45,58 @@ class PaymentController extends AbstractController
     }
     // Show payment page
     /**
-     * @Route("/payment", name="payment_page", methods={"POST"})
+     * @Route("/payment", name="payment_page", methods={"POST","GET"})
      */
-    public function paymentAction(CartRepository $repoCart, UserRepository $repoUser): Response
+    public function paymentAction(Request $req,CartRepository $repoCart, UserRepository $repoUser, VoucherRepository $voucherRepository,
+    CartRepository $cartRepo,OrderRepository $orderRepo, ProSizeRepository $proSizeRepo, OrderDetailRepository $orderDetailRepository): Response
     {
-        $o = new Order();
-        $orderForm = $this->createForm(OrderType::class, $o, [
-            'action' => $this->generateUrl('addOrder')
-        ]);
+        $order = new Order();
+        $orderForm = $this->createForm(OrderType::class, $order);
+        $orderForm->handleRequest($req);
+        if ($orderForm->isSubmitted() && $orderForm->isValid()) {
+    
+            $cartItems = $cartRepo->findAll();
+            if ($cartItems) {
+                //tạo order và lưu vào db
+                $total = 0;
+                $order->setUsername($this->getUser());
+                $order->setDate(new \DateTime());//lấy ngày hiện tại
+                $order->setStatus(OrderStatus::Ordered);
+                //Lưu order lần 1 để tạo đơn hàng và lấy mã đơn hàng đưa vô OrderDetail
+                $orderRepo->save($order, true);
+                
+                foreach ($cartItems as $cartItem) {
+                    //lấy prosize từ cart
+                    $proSize = $proSizeRepo->find($cartItem->getProSize()->getId());
+                    $total += $proSize->getProduct()->getPrice() * $cartItem->getCount();
+                    //lưu orderDetail lại
+                    $orderDetailRepository->addProductToOrder($order, $proSize, $cartItem->getCount());
 
+                    //xóa cart
+                    $cartRepo->remove($cartItem, true);
+                }
+                $totalDiscount = $total - ($total * ($order->getVouchers()->getPercentage() / 100));
+                
+                $order->setTotal($totalDiscount);
+                //Lưu order lần cuối để chốt đơn hàng
+                $orderRepo->save($order, true);
+            }
+        }
         $user = $this->getUser();
         $products = $repoCart->showCart($user);
+        $vouchers = $voucherRepository->findAll();
 
         return $this->render('payment/index.html.twig', [
             // Display product and Calculate the total price
             'products' => $products,
+            'vouchers' => $vouchers,
             // Display customer's infomation to set into Order
             'user' => $user,
             'orderForm' => $orderForm->createView(  )
         ]);
     }
 
-    /**
-     * @Route("/order", name="addOrder", methods={"POST"})
-     */
-    public function orderAction(
-        Request $req,
-        ManagerRegistry $reg,
-        CartRepository $repoCart,
-        ProSizeRepository $repoProSize,
-        OrderDetailRepository $repoOd
-    ): Response {
-        $o = new Order();
-        $orderForm = $this->createForm(OrderType::class, $o);
-
-        $orderForm->handleRequest($req);
-        $entity = $reg->getManager();
-
-        $user = $this->getUser();
-        $data = $orderForm->getData($req);
-
-        $o->setDate(new \DateTime());
-        $o->setTotal($data->getTotal());
-        $o->setDeliveryLocal($data->getDeliveryLocal());
-        $o->setStatus($data->isStatus());
-        $o->setUsername($user);
-        $o->setCusName($data->getCusName());
-        $o->setCusPhone($data->getCusPhone());
-
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $entity->persist($o);
-        // actually executes the queries (i.e. the INSERT query)
-        $entity->flush();
-
-        // Save Order Detail
-        // It returns two-dimensional array
-        $carts = $repoCart->getCartOfCurrentUser($user);
-
-        foreach ($carts as $c) :
-            $orderDetail = new OrderDetail();
-            // Find object ProSize pof this proSizeId
-            $p = $repoProSize->find($c['proSizeId']);
-            $orderDetail->setProSize($p);
-            $orderDetail->setQuantity($c['qty']);
-            $orderDetail->setOrders($o);
-
-            $repoOd->save($orderDetail, true);
-
-            // Update quantity in Stock
-            $p->setQuantity($p->getQuantity() - $c['qty']);
-        endforeach;
-
-        // Delete Cart
-        $entity = $reg->getManager();
-        foreach ($carts as $c) :
-            // Find object Cart based on two-dimensional array $carts
-            $cart = $repoCart->find($c['cartId']);
-            $entity->remove($cart, true);
-            $entity->flush();
-        endforeach;
-
-        // Notification success
-        $this->addFlash(
-            'success',
-            'Order successully'
-        );
-        
-        return $this->redirectToRoute("shoppingCart");
-    }
+    
 
     /**
      * @Route("/checkout", name="checkout")

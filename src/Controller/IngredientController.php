@@ -3,16 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Ingredient;
-use App\Form\IngredientType;
+use App\Repository\CategoryRepository;
 use App\Repository\IngredientRepository;
-use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use App\Repository\ProSizeRepository;
+use App\Repository\SizeRepository;
+use App\Repository\SupplierRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 /**
- * @Route("/admin/ingredient")
+ * @Route("/ingredient")
  */
 class IngredientController extends AbstractController
 {
@@ -21,68 +22,97 @@ class IngredientController extends AbstractController
     {
         $this->repo = $repo;
     }
+
     /**
-     * @Route("/", name="ingredient_page")
+     * @Route("/", name="showIngre")
      */
-    public function readAllAction(): Response
+    public function showIngreAction(Request $req, SupplierRepository $repoSupp, CategoryRepository $repoCate, ProSizeRepository $repoPs, SizeRepository $repoSize): Response
     {
-        $i = $this->repo->findAll();
+        $title = "Not Found";
+        $categories = $repoCate->findAll();
+        $sizes = $repoSize->findAll();
+        $suppliers = $repoSupp->findAll();
+
+        $proSizes = $repoPs->findNameSize([], [
+            'id' => 'DESC'
+        ]);
+
+        $sort_by = $req->query->get('sort_by');
+        $order = $req->query->get('order');
+        $btnSearch = $req->query->get('btnSearch');
+        $value = $req->query->get('value');
+
+        if (isset($btnSearch)) :
+            $ingredients = $this->repo->searchByName($value);
+            $title = "Results";
+        elseif (isset($sort_by)) :
+            if ($sort_by == 'name') :
+                $ingredients = $this->repo->findByName($order);
+                $title = "Sort by name";
+            endif;
+            if ($sort_by == 'price') :
+                $ingredients = $this->repo->findByPrice($order);
+                $title = "Sort by price";
+            endif;
+            if ($sort_by == 'category') :
+                $ingredients = $this->repo->findByCate($order);
+                $title = "Sort by categpory";
+            endif;
+            if ($sort_by == 'supplier') :
+                $ingredients = $this->repo->findBySupp($order);
+                $title = "Sort by supplier";
+            endif;
+            if ($sort_by == 'size') :
+                $ingredients = $this->repo->findBySize($order);
+                $title = "Sort by supplier";
+            endif;
+            if ($sort_by == 'gender') :
+                if ($order == "men") :
+                    $ingredients = $this->repo->findByGender(0);
+                    $title = "Sort by Men's clothing";
+                else :
+                    $ingredients = $this->repo->findByGender(1);
+                    $title = "Sort by Women's clothing";
+                endif;
+            endif;
+        else :
+            $ingredients = $this->repo->findAll();
+            $title = "All product";
+        endif;
+
         return $this->render('ingredient/index.html.twig', [
-            'ingredient' => $i
+            'ingredients' => $ingredients,
+            'catefories' => $categories,
+            'suppliers' => $suppliers,
+            'sizes' => $sizes,
+            'proSizes' => $proSizes,
+            'title' => $title
         ]);
     }
-      /**
-     * @Route("/add", name="ingredient_create")
+
+    /**
+     * @Route("/detail/{id}", name="IngreDetail_page")
      */
-    public function createAction(Request $req, IngredientRepository $repo): Response
+    public function ingreDetailAction(Ingredient $i, ProSizeRepository $repoPs): Response
     {
-
-        $i = new Ingredient();
-        $formIng = $this->createForm(IngredientType::class, $i);
-
-        $formIng->handleRequest($req);
-        if ($formIng->isSubmitted() && $formIng->isValid()) {
-
-
-            $repo->save($i, true);
-            return $this->redirectToRoute('ingredient_page', [], Response::HTTP_SEE_OTHER);
-        }
-        return $this->render("ingredient/new.html.twig", [
-            'formIng' => $formIng->createView()
+        $proSizes = $repoPs->findNameSize([], [
+            'id' => 'DESC'
         ]);
-    }
-     /**
-     * @Route("/edit/{id}", name="ingredient_edit")
-     */
-    public function editAction(Request $req, IngredientRepository $repo, Ingredient $i): Response
-    {
-        $formIng = $this->createform(IngredientType::class, $i);
 
-        $formIng->handleRequest($req);
-        if ($formIng->isSubmitted() && $formIng->isValid()) {
-
-
-            $repo->save($i, true);
-            return $this->redirectToRoute('ingredient_page', [], Response::HTTP_SEE_OTHER);
-        }
-        return $this->render("ingredient/edit.html.twig", [
-            'formIng' => $formIng->createView()
+        return $this->render('ingredient/detail.html.twig', [
+            'ingredient' => $i,
+            'proSizes' => $proSizes
         ]);
     }
     /**
-     *  @Route("/delete/{id}", name="ingredient_delete", requirements={"id"="\d+"})
+     * @Route("/feature", name="ingredient_fratured")
      */
-    public function deleteAction(Request $req, Ingredient $i): Response
+    public function featuredIngredients(IngredientRepository $ingredientRepository): Response
     {
-        try{
-            $this->repo->remove($i, true);
-        }
-       catch(ForeignKeyConstraintViolationException $e){
-            return $this->render("ingredident/error.html.twig", [
-                'message' => "Can not remove"
-            ]);
-       }
-        return $this->redirectToRoute('ingredident', [], Response::HTTP_SEE_OTHER);
-    }
+        $i = $ingredientRepository->findBy(['isFeatured' => true]);
 
+        return $this->render('product/show.html.twig', [
+            'ingredient' => $i,
+        ]);
+    }
 }

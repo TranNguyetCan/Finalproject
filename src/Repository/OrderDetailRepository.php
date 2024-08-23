@@ -2,7 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Order;
 use App\Entity\OrderDetail;
+use App\Entity\Product;
+use App\Entity\ProSize;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -38,6 +41,27 @@ class OrderDetailRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+
+    public function addProductToOrder(Order $order, ProSize $productSize, int $quantity): void
+    {
+        // $orderDetail = $this->findOrderDetailByOrderAndProduct($order, $productSize);
+
+        // if ($orderDetail) {
+        //     // Nếu OrderDetail đã tồn tại, cập nhật số lượng
+        //     $orderDetail->setQuantity($orderDetail->getQuantity() + $quantity);
+        //     $this->getEntityManager()->flush();
+        //     return;
+        // }
+
+        // Nếu OrderDetail chưa tồn tại, tạo mới
+        $orderDetail = new OrderDetail();
+        $orderDetail->setOrders($order);
+        $orderDetail->setProSize($productSize);
+        $orderDetail->setQuantity($quantity);
+        $this->getEntityManager()->persist($orderDetail);
+    }
+
 
     /**
      * @return OrderDetail[] Returns an array of OrderDetail objects

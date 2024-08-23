@@ -32,6 +32,7 @@
                 <tr>
                     <th scope="col">Deal</th>
                     <th scope="col">Product Size</th>
+                    <th scope="col">Percentage</th>
                     <th scope="col">Description</th>
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
@@ -43,6 +44,7 @@
                 <tr class="text-center align-middle">
                     <th scope="row">{{ v.id }}</th>
                     <td>{{ v.deal }}</td>
+                    <td>{{ v.percentage }}</td>
                     <td>{{ v.description }}</td>
                     <td>{{ v.startDate|date('Y-m-d') }}</td>
                     <td>{{ v.endDate|date('Y-m-d') }}</td>

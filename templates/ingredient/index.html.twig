@@ -1,80 +1,257 @@
-{% extends 'admin.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block stylesheets %}
-	<link href="{{asset('css/admin.css')}}" rel="stylesheet" media="all">
+	<link href="{{asset('css/header.css')}}" rel="stylesheet" media="all">
 {% endblock %}
-
 {% block body %}
-	<section class="header mx-5">
-		<div class="container mt-4 mb-3">
-			<div class="text-center lh-1 mb-2">
-				<h4 class="fw-bold">Ingredient Management</h4>
-			</div>
-			<div class="d-flex justify-content-end">
-				<span>Branch: VESTA</span>
-			</div>
-		</div>
+	<!-- Shop Start -->
+	<div class="container-fluid">
+		<div
+			class="row ms-3">
+			<!-- Shop Sidebar Start -->
+			<div
+				class="col-lg-3 col-sm-3 shadow-sm p-3 mb-5 bg-body rounde">
+				<!-- Category Start -->
+				<div class="border-bottom mb-4 pb-4">
+					<div class="row">
+						<h5 class="font-weight-semi-bold mb-4">Category</h5>
+						<div>
+							{% for c in catefories %}
+								<a href="?sort_by=category&order={{c.name}}">{{c.name}}</a>
+								<br>
+							{% endfor %}
+						</div>
 
-		{# {% for message in app.flashes('success') %}
-			<div class="alert alert-success mt-5 text-center">
-				{{ message }}
-			</div>
-		{% endfor %} #}
-
-		<table class="mt-2 table table-bordered">
-			<div class="row">
-				<div class="col-lg-6">
-					<h5>
-						Ingredient List</h5>
-				</div>
-				<div class="col-lg-6 mx-auto">
-					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						<button class="btn btn-dark me-4" type="button">
-							<a href="{{path('ingredient_create')}}" class="text-decoration-none text-reset">Add new Ingredient</a>
-						</button>
 					</div>
 				</div>
+				<!-- Category End -->
+
+				<!-- Supplier Start -->
+				<div class="border-bottom mb-4 pb-4">
+					<div class="row">
+						<h5 class="font-weight-semi-bold mb-4">Supplier</h5>
+						<div>
+							{% for sup in suppliers %}
+								<a href="?sort_by=supplier&order={{sup.name}}">{{sup.name}}</a>
+								<br>
+							{% endfor %}
+						</div>
+
+					</div>
+				</div>
+				<!-- Supplier End -->
+
+				<!-- For Gender Start -->
+				{# <div class="border-bottom mb-4 pb-4 filter">
+					<div class="row">
+						<h5 class="font-weight-semi-bold mb-4">For Gender</h5>
+						<a href="?sort_by=gender&order=men">Men's Clothing</a>
+						<a href="?sort_by=gender&order=women">Women's Clothing</a>
+					</div>
+				</div> #}
+				<!-- For Gender End -->
+
+				<!-- Price End -->
+
+				<!-- Size Start -->
+					<div class="mb-5"> <h5 class="font-weight-semi-bold mb-4 filter">Filter by Size</h5>
+					<div class="d-flex">
+						{% for s in sizes %}
+							<a href="?sort_by=size&order={{s.name}}" class="mx-2">{{s.name}}</a>
+							<br>
+						{% endfor %}
+					</div>
+				</div>
+				<!-- Size End -->
 			</div>
+			<!-- Shop Sidebar End -->
 
-			<thead class="bg-dark text-white text-center">
-				<tr>
-					<th scope="col">ID</th>
-					<th scope="col">Material name</th>
-					<th scope="col">Quantity</th>
-					<th scope="col">Unit</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Inventory</th>
-					
-					{# Edit, Delete #}
-					<th scope="col">Edit</th>
-					<th scope="col">Delete</th>
-					{# Edit, Delete #}
+			<!-- Shop Product Start -->
+			<div class="col-lg-9 col-sm-9">
+				<div class="row">
+					<div class="col-md-10">
+						<h2 style="padding-left: 2% title">{{title}}</h2>
+					</div>
+					<div class="col-md-2">
+						<div class="input-group mb-2 d-flex">
+							<div class="select">
+								<select name="sort_by" onchange="location = this.value;" class="form-control border-white">
+									<option disabled="disabled" value="2" selected>SORT BY</option>
+									<option value="?sort_by=name&order=ASC">A -> Z</option>
+									<option value="?sort_by=name&order=DESC">Z -> A</option>
+									<option value="?sort_by=price&order=ASC">Low to high</option>
+									<option value="?sort_by=price&order=DESC">High to low</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
 
-				</tr>
-			</thead>
-			{% for i in ingredient %}
-				<tr class="text-center align-middle">
-					<th scope="row">{{i.id}}</th>
-                    <td>{{i.materialName}}</td>
-					<td>{{i.quantity}}</td>
-					<td>{{i.unit}}</td>
-                    <td>{{i.price}}</td>
-                    <td>{{i.inventory}}</td>
-					
+				<!-- Product -->
+				<div class="col-12 pb-1">
+					<nav aria-label="Page navigation">
+						<div class="row">
+							{% for i in ingredients %}
+								<div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+									<div class="product-grid">
+										<div class="product-image">
+											<a href="{{path('proDetail_page', {'id': i.id})}}" class="image">
+												{% set img = i.image %}
+												<img src="{{asset('images/'~img)}}" class="card-img-top" alt=""/>
+											</a>
+											<ul class="product-links">
+												{# <li>
+													<button class="search-btn" onclick="searchProduct('{{p.name}}')" style="width: 30px; height: 30px ;background: #efeeec; margin-bottom: 5px;border-radius: 10px;">
+														<i class="fa fa-search"></i>
+													</button>
+												</li> #}
+												<li>
+													<a class="heart-btn" onclick="addToFavorites('{{i.id}}')" href="{{ path('add_wishlist', {'id': i.id}) }}" method="post" style="width: 30px; height: 30px ; background: #efeeec; margin-bottom: 5px;border-radius: 10px; border: 2px solid;">
+													<i class="fa-solid fa-heart-circle-plus"></i>
+													</a>
+												</li>
+												
+												<li>
+													<button class="share-btn" onclick="shareIngredient('{{i.id}}')" style="width: 30px; height: 30px ; background: #efeeec; margin-bottom: 5px;border-radius: 10px;">
+														<i class="fa fa-share"></i>
+													</button>
+												</li>
 
-					{# Edit, Delete #}
-					<td>
-						<a href="{{path('ingredient_edit', {'id':i.id})}}">
-							<button class="bi bi-pencil-square border-0 bg-white"></button>
-						</a>	
-					</td>
-					<td>
-						<a href="{{path('ingredient_delete', {'id':i.id})}}">
-							<button class="bi bi-trash3 border-0 bg-white" onclick="return confirm('Are you sure to remove?')"></button>
-						</a>
-					</td>
-				</tr>
-			{% endfor %}
-		</table>
-	</tbody>
+											</li>
+										</ul>
+										<input type="hidden" id="count" value="1"/>
+										<input type="hidden" name="size" value="" id="proSizeId{{i.id}}">
+										<button class="add-to-cart fw-bold" name="insert_button{{i.id}}" onclick="insert_row({{i.id}})">Add to Cart</button>
+									</div>
 
-	{% endblock %}
+									<!-- HTML cho cửa sổ popup -->
+									<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="shareModalLabel">Share Product</h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													<p id="shareLink">Product Link Here</p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="product-content">
+										<div class="mb-1">
+											{# <span>Select Size</span> #}
+											<div class="form text-center">
+												{% set status = 0 %}
+												{% for ps in proSizes %}
+													{% if ps.proId == p.id and ps.productQty > 0 %}
+														<input type="radio" name="size" id="size{{ps.sizeId}}" onchange="getSize({{ps.psId}}, {{i.id}})"/>
+														<label for="size{{ps.sizeId}}" class="me-1">{{ps.sizeName}}</label>
+														{% set status = 1 %}
+													{% endif %}
+												{% endfor %}
+												{% if status == 0 %}
+													<p class="mb-0">Out Of Stock</p>
+												{% endif %}
+											</div>
+										</div>
+										<h3 class="title">
+											<a href="{{path('proDetail_page', {'id': i.id})}}">{{i.name}}</a>
+										</h3>
+										<div class="price">
+											<a href="{{path('proDetail_page', {'id': i.id})}}">${{i.price}}</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					{# <ul class="pagination justify-content-center mb-3">																																																																																															</ul> #}
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!-- Shop Product End -->
+</div></div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Insert into Cart -->
+<script>
+	const myModal = new bootstrap.Modal(document.getElementById('shareModal'));
+
+    function getSize(proSizeId, proId) {
+        var getProSize = document.getElementById("proSizeId" + proId);
+        getProSize.value = proSizeId;
+    }
+
+    function insert_row(id) {
+        var proSizeId = document.getElementById("proSizeId" + id).value;
+        if (proSizeId != "") {
+            var count = document.getElementById("count").value;
+            $.ajax({
+                type: 'post',
+                url: '/cart/add',
+                data: {
+                    proId: id,
+                    proSizeId: proSizeId,
+                    count: count
+                },
+                success: function (response) {
+                    window.location.href = '/cart';
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr);
+                }
+            });
+        } else {
+            Swal.fire('Please choose your size!');
+        }
+    }
+
+    function shareIngredient(ingredientId) {
+        var currentUrl = window.location.href;
+		var shareUrl = currentUrl + "detail/" + ingredientId;
+
+		// Create input element
+		var input = `
+			<div class="row">
+				<div class="col-10">
+					<input type="text" readonly value="${shareUrl}" id="shareLinkInput" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+				</div>
+				<div class="col-2">
+					<button onclick="copyToClipboard()" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f8f9fa;">Copy</button>
+				</div>
+			</div>
+			`;
+		document.getElementById("shareLink").innerHTML = input;
+
+
+        myModal.show();
+    }
+
+	function copyToClipboard() {
+    var copyText = document.getElementById("shareLinkInput");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+
+    // Display tick icon in Swal
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Copied!',
+        showConfirmButton: false,
+        timer: 1500
+    }).then((result) => { // Add a 'then' block to execute code after the Swal is closed
+        // Close modal
+            myModal.hide();
+    });
+}
+
+</script>
+
+<!-- Shop End -->{% endblock %}	

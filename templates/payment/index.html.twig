@@ -15,7 +15,9 @@
 					<hr>
 					<div class="item d-flex align-items-center">
 						{% set img = p.image %}
-						<div class="col-4 align-self-center" style="width: 15%"><img class="img-fluid" src="{{asset('images/'~img)}}"></div>
+						<div class="col-4 align-self-center" style="width: 15%">
+							<img class="img-fluid" src="{{asset('images/'~img)}}">
+						</div>
 						<div class="col-8">
 							<div class="pb-2">
 								<b>${{p.unitTotal}}</b>
@@ -34,7 +36,7 @@
 
 		<div class="col-6">
 
-			{{ form_start(orderForm, {'action': path('addOrder')}) }}
+			{{ form_start(orderForm) }}
 			<div class="left border p-3">
 				<div class="row">
 					<span class="header-payment fw-bold text-dark pb-2">Payment</span>
@@ -47,6 +49,17 @@
 
 				<span>Address:</span>
 				{{ form_widget(orderForm.deliveryLocal, {'attr':{'value': user.address, 'class': 'input' }}) }}
+				
+				<!-- Voucher Selection -->
+                <span>Voucher:</span>
+                {# <select id="voucher" name="vouchers" class="form-control">
+                    <option value="">Select a voucher</option>
+                    {% for voucher in vouchers %}
+                        <option value="{{ voucher.id }}">{{ voucher.percentage }}%</option>
+                    {% endfor %}
+                </select> #}
+				{{ form_widget(orderForm.vouchers, {'attr':{ 'class': 'input' }}) }}
+
 			</div>
 			<div class="row lower mt-3">
 				<div class="col text-left">Subtotal</div>

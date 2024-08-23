@@ -7,7 +7,7 @@ use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ProSizeRepository;
 use App\Repository\SizeRepository;
-use App\Repository\SupplierRepository;
+use App\Repository\SupplierRepository;  
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

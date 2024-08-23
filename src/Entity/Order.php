@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\OrderStatus;
 use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -26,14 +27,15 @@ class Order
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $total = null;
 
-    #[ORM\Column]
-    private ?bool $status = null;
+    #[ORM\Column(type: Types::STRING, enumType: OrderStatus::class)]
+    private OrderStatus $status;
 
-    #[ORM\OneToMany(mappedBy: 'orders', targetEntity: OrderDetail::class)]
+    #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderDetail::class)]
     private Collection $orderDetails;
     
     #[ORM\Column(length: 255)]
     private ?string $cusName = null;
+
 
     #[ORM\Column]
     private ?int $cusPhone = null;
@@ -41,6 +43,11 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $username = null;
+
+
+    #[ORM\ManyToOne(inversedBy: 'orderLst')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Voucher $vouchers = null;
 
     public function __construct()
     {
@@ -89,12 +96,12 @@ class Order
         return $this;
     }
 
-    public function isStatus(): ?bool
+    public function getStatus(): OrderStatus
     {
         return $this->status;
     }
 
-    public function setStatus(bool $status): self
+    public function setStatus(OrderStatus $status): self
     {
         $this->status = $status;
 
@@ -163,6 +170,18 @@ class Order
     public function setUsername(?User $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getVouchers(): ?Voucher
+    {
+        return $this->vouchers;
+    }
+
+    public function setVouchers(?Voucher $vouchers): self
+    {
+        $this->vouchers = $vouchers;
 
         return $this;
     }

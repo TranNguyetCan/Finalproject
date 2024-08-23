@@ -23,7 +23,8 @@
 
 						<h5>Your order Confirmed!</h5>
 
-						<span class="font-weight-bold d-block mt-4">Hello, Chris</span>
+						<span class="font-weight-bold d-block mt-4">Hello,
+							{{order.username.fullname}}</span>
 						<span>You order has been confirmed and will be shipped in next two days!</span>
 
 						<div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
@@ -36,7 +37,7 @@
 											<div class="py-2">
 
 												<span class="d-block text-muted">Order Date</span>
-												<span>12 Jan,2018</span>
+												<span>{{ order.date|date('Y-m-d') }}</span>
 
 											</div>
 										</td>
@@ -45,7 +46,7 @@
 											<div class="py-2">
 
 												<span class="d-block text-muted">Order No</span>
-												<span>MT12332345</span>
+												<span>{{order.id}}</span>
 
 											</div>
 										</td>
@@ -63,68 +64,46 @@
 											<div class="py-2">
 
 												<span class="d-block text-muted">Shiping Address</span>
-												<span>414 Advert Avenue, NY,USA</span>
+												<span>{{order.username.address}}</span>
 
 											</div>
 										</td>
 									</tr>
 								</tbody>
-
 							</table>
-
-
 						</div>
-
-
 						<div class="product border-bottom table-responsive">
 
 							<table class="table table-borderless">
 
 								<tbody>
-									<tr>
-										<td width="20%">
-
-											<img src="../images/candle1.jpg" width="90">
-
-										</td>
-
-										<td width="60%">
-											<span class="font-weight-bold">Candle Pink</span>
-											<div class="product-qty">
-												<span class="d-block">Quantity:1</span>
-												<span>Color: Pink</span>
-
-											</div>
-										</td>
-										<td width="20%">
-											<div class="text-right">
-												<span class="font-weight-bold">$67.50</span>
-											</div>
-										</td>
-									</tr>
+									{% for orderDetail in order.orderDetails %}
+										<tr>
+											<td width="20%">
+												{% set img = orderDetail.proSize.product.image %}
+												<img
+												src="{{asset('images/'~img)}}" width="90">
+											{# <img class="img-fluid" src="{{asset('images/'~img)}}"> #}
 
 
-									<tr>
-										<td width="20%">
+											</td>
 
-											<img src="../images/candle5.jpg" width="90">
+											<td width="60%">
+												<span class="font-weight-bold">{{orderDetail.proSize.product.name}}</span>
+												<div class="product-qty">
+													<span class="d-block">Quantity:
+														{{orderDetail.quantity}}</span>
+													{# <span>Color: Pink</span> #}
 
-										</td>
-
-										<td width="60%">
-											<span class="font-weight-bold">Men's Collar T-shirt</span>
-											<div class="product-qty">
-												<span class="d-block">Quantity:1</span>
-												<span>Color:Orange</span>
-
-											</div>
-										</td>
-										<td width="20%">
-											<div class="text-right">
-												<span class="font-weight-bold">$77.50</span>
-											</div>
-										</td>
-									</tr>
+												</div>
+											</td>
+											<td width="20%">
+												<div class="text-right">
+													<span class="font-weight-bold">${{orderDetail.proSize.product.price}}</span>
+												</div>
+											</td>
+										</tr>
+									{% endfor %}
 								</tbody>
 
 							</table>
@@ -151,13 +130,13 @@
 											</td>
 											<td>
 												<div class="text-right">
-													<span>$168.50</span>
+													<span>{{'$' ~ total }}</span>
 												</div>
 											</td>
 										</tr>
 
 
-										<tr>
+										{# <tr>
 											<td>
 												<div class="text-left">
 
@@ -170,9 +149,9 @@
 													<span>$22</span>
 												</div>
 											</td>
-										</tr>
+										</tr> #}
 
-
+{# 
 										<tr>
 											<td>
 												<div class="text-left">
@@ -186,20 +165,26 @@
 													<span>$7.65</span>
 												</div>
 											</td>
-										</tr>
+										</tr> #}
 
 
 										<tr>
 											<td>
 												<div class="text-left">
 
-													<span class="text-muted">Discount</span>
+													<span class="text-muted">Voucher</span>
 
 												</div>
 											</td>
 											<td>
 												<div class="text-right">
-													<span class="text-success">$168.50</span>
+													<span class="text-success">
+													{% if order.vouchers %}
+														{{ '- $' ~ total * (order.vouchers.percentage / 100) }}
+													{% else %}
+														No voucher applied
+													{% endif %}
+													</span>
 												</div>
 											</td>
 										</tr>
@@ -215,7 +200,7 @@
 											</td>
 											<td>
 												<div class="text-right">
-													<span class="font-weight-bold">$238.50</span>
+													<span class="font-weight-bold">${{order.total}}</span>
 												</div>
 											</td>
 										</tr>
@@ -232,7 +217,7 @@
 
 						<p>We will be sending shipping confirmation email when the item shipped successfully!</p>
 						<p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
-						<span>Nike Team</span>
+						<span>VESTA</span>
 
 
 					</div>

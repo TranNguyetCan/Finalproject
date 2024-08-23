@@ -38,6 +38,9 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProSize::class)]
     private Collection $proSizes;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderDetail::class)]
+    private Collection $orderDetails;
+
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
